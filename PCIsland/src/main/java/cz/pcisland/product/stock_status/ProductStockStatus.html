@@ -1,0 +1,51 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Přehled zboží -->
+	<h2>Přehled zboží</h2>
+	
+	<form id="productsStatusForm" wicket:id="productsStatusForm">
+		<div class="frameTitle"><br></div>
+		
+		<table wicket:id="productsStatusPageableListView">
+			<tr>
+				<td id="imageCell">
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+				
+				<td id="nameCell">
+					<a href="#" wicket:id="nameLink">
+						<span id="name" wicket:id="name"></span>
+					</a>
+					
+					<span id="stock">Počet kusů:
+						<span wicket:id="stock"></span>
+					</span>
+					
+					<span id="change">Změnit o:</span>
+					<input class="amount" type="number" wicket:id="amount">
+				</td>
+				
+				<td>
+					<button id="changeStock" type="submit">Uložit stav</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<!-- Stránkování -->
+	<div class="pagingNavigatorContainer">
+		<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+	</div>
+</wicket:extend>

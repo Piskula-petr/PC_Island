@@ -1,0 +1,37 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Úprava recenze -->
+	<h2>Úprava recenze</h2>
+	<form id="reviewOverviewChangeForm" wicket:id="reviewOverviewChangeForm">
+		<div class="frameTitle">
+		
+			<a href="#" id="nameLink" wicket:id="nameLink">
+				<span wicket:id="name"></span>
+			</a>
+			
+			<button id="submitButton" type="submit">Uložit změny</button>
+		</div>
+		
+		<div id="reviewInfo">
+			<div class="rating" wicket:id="reviewRating"></div>
+			<div id="userFullName" wicket:id="userFullName"></div>
+			<div wicket:id="creationDate"></div>
+		</div>
+		
+		<textarea id="inputReview" rows="5" cols="20" wicket:id="prosTextArea"></textarea>
+		<textarea id="inputReview" rows="5" cols="20" wicket:id="consTextArea"></textarea>
+	</form>
+	
+	<!-- Navigační link -->
+	<a href="#" id="backToReviewOverviewLink" wicket:id="backToReviewOverviewLink">Zpět na přehled recenzí</a>
+</wicket:extend>

@@ -1,0 +1,2533 @@
+html, body {
+	height: 100%;
+	padding: 0;
+	width: 960px;
+	margin: auto;
+	display: table;
+	font-family: Verdana;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+/*___________________________ záhlaví ___________________________*/
+header {
+	height: 100px;
+	background: #B22222;
+	border-radius: 5px;
+	margin: 12px 0px;
+}
+
+header a {
+	text-decoration: none;
+	color: white;
+}
+
+figure a {
+	padding: 47px 20px 35px 15px;
+	position: relative;
+	z-index: 1;
+}
+
+#mainLogo img{
+	float: left;
+	margin: 14px 14px 0px 25px;
+	width: 70px;
+	height: 70px;
+}
+
+#mainLogo span {
+	float: left;
+	margin: 25px 0px 0px 0px;
+	font-weight: bold;
+	font-size: 2.2em;
+}
+
+header img {
+	width: 55px;
+	height: 55px;
+}
+
+header figure {
+	float: right;
+	text-align: center;
+	margin: 10px 22px 0px 0px;
+}
+
+#loginLabel {
+	display: block;
+	color: white;
+}
+
+/*___________________________ vyhledávací lišta ___________________________*/
+#searchBar {
+	float: left;
+	width: 260px;
+	height: 28px;
+	font-size: 1.1em;
+	border-radius: 5px;
+	margin: 31px 0px 0px 50px;
+}
+
+#searchBarButton {
+	float: left;
+	margin: 33px 0px 0px 6px;
+	border: none;
+	padding: 0px;
+	background: #B22222;
+}
+
+#searchBarButton:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#searchBarImage {
+	width: 30px;
+	height: 30px;
+}
+
+#searchedProductsContainer {
+	float: left;
+	margin: 65px 0px 0px -307px;
+}
+
+/*___________________________ vyhledávací lišta - dropdown ___________________________*/
+#searchBarDropdown-choice {
+	display: block;
+  	position: absolute;
+  	background-color: white;
+  	margin: 0px;
+  	width: 272px;
+  	border-radius: 5px;
+  	z-index: 1;
+}
+
+#searchedProductsDropdown {
+	border-left: 2px solid #B22222;
+	border-right: 2px solid #B22222;
+	border-bottom: 1px solid #c2c2c2;
+}
+
+#searchedProductsDropdown:nth-child(1) {
+	border-top: 2px solid #B22222;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#searchedProductsDropdown:nth-last-child(1) {
+	border-bottom: 2px solid #B22222;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+#searchedProductsDropdown table td {
+	height: 50px;
+}
+
+#searchedProductsDropdown #imageContainer {
+	width: 50px;
+}
+
+#searchedProductsDropdown #image {
+	height: 45px;
+	width: 45px;
+	padding: 0px 4px 0px 0px;
+	margin: 0px;
+}
+
+#searchedProductsDropdown #name {
+	margin: 0px;
+	padding: 0px 0px 0px 5px;
+	font-size: 1em;
+}
+
+/*___________________________ přihlášení dropdown ___________________________*/
+#loginDropdown-choice {
+  	display: none;
+  	position: absolute;
+  	background-color: #B22222;
+  	margin: 35px 0px 0px 0px;
+  	width: 160px;
+  	border-radius: 5px;
+  	box-shadow: 0 0 0 2px white;
+  	z-index: 1;
+}
+
+#loginDropdown-choice a:nth-child(1) {
+	padding: 0px;
+}
+
+#loginDropdown-choice a:nth-child(2) {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-top: 1px solid #B22222;
+}
+
+#loginDropdown-choice a:last-child {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom: 1px solid #B22222;
+}
+
+#loginDropdown-choice a {
+  	color: white;
+  	text-align: center;
+  	padding: 10px 0px 10px 0px;
+  	text-decoration: none;
+  	display: block;
+  	border-left: 1px solid #B22222;
+  	border-right: 1px solid #B22222;
+}
+
+#loginDropdown-choice a:not(:first-child):not(:last-child) {
+	border-bottom: 1px solid white;
+}
+
+#loginDropdown-choice a:hover {
+	color: #B22222;
+	background: white;
+}
+
+.dropdown:hover #loginDropdown-choice {
+	display: block;
+}
+
+/*___________________________ košík dropdown ___________________________*/
+#cartDropdown-choice {
+  	display: none;
+  	position: absolute;
+  	background-color: white;
+  	margin: 35px 0px 0px -348px;
+  	width: 460px;
+  	z-index: 1;
+  	border-radius: 5px;
+  	box-shadow: 0 0 0 2px white;
+}
+
+#cartDropdown {
+	border-left: 1px solid #B22222;
+	border-right: 1px solid #B22222;
+	border-bottom: 1px solid #c2c2c2;
+}
+
+#cartDropdown:nth-child(1) {
+	border-top: 1px solid #B22222;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#cartDropdown:nth-last-child(1) {
+	border-bottom: 1px solid #B22222;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+#cartDropdown-choice a:nth-child(1) {
+	padding: 0px;
+}
+
+#cartDropdown-choice a:nth-child(2) {
+  	text-align: center;
+  	padding: 10px 0px 10px 0px;
+  	text-decoration: none;
+  	display: block;
+}
+
+#cartDropdown-choice a:hover {
+	opacity: 0.7;
+}
+
+.dropdown:hover #cartDropdown-choice {
+	display: block;
+}
+
+#cartSize {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	padding: 5px 10px;
+	border-radius: 50%;
+	background-color: white;
+	color: #B22222;
+}
+
+#cartLabel {
+	display: block;
+	padding-left: 5px;
+	color: white;
+}
+
+figure:hover img {
+	opacity: 0.7;
+}
+
+figure:hover figcaption {
+	opacity: 0.7;
+}
+
+#cartDropdown #imageContainer {
+	width: 12%;
+}
+
+#cartDropdown #image {
+	width: 70px;
+	height: 70px;
+	opacity: 1;
+}
+
+#cartDropdown #produktInfoContainer {
+	width: 80%;
+	padding: 0;
+	margin: 0;
+}
+
+#cartDropdown #name {
+	float: left;
+	color: #004080;
+	font-size: 1.15em;
+	margin: 5px 0px 0px 7px;
+	padding: 0px;
+}
+
+#cartDropdown #amount {
+	float: left;
+	clear: left;
+	color: #004080;
+	font-size: 1.2em;
+	margin: 5px 0px 0px 7px;
+	padding: 0px;
+}
+
+#cartDropdown #price {
+	float: left;
+	font-size: 1.2em;
+	margin: 5px 0px 0px 20px;
+	padding: 0px;
+	color: #B22222;
+	font-weight: bold;
+}
+
+#cartDropdown #removeContainer {
+	width: 8%;
+}
+
+#cartDropdown #removeImage {
+	width: 20px;
+	height: 20px;
+	opacity: 1;
+}
+
+/*___________________________ přihlášení ___________________________*/
+.frameTitle {
+	background: #B22222;
+	font-size: 1.2em;
+	color: white;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	padding: 5px 0px 5px 10px;
+}
+
+#loginForm {
+	float: left;
+	margin: 7px 0px 30px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	height: 265px;
+	width: 711px;
+}
+
+#loginTable {
+	width: 405px;
+	margin: 0px 0px 0px 150px;
+}
+
+.success {
+	color: green;
+	width: 290px;
+	border: 1px solid green;
+	border-radius: 5px;
+	margin: 23px auto 0px auto;
+	text-align: center;
+	font-size: 1.1em;
+	padding: 6px;
+}
+
+table .nameColumn {
+	width: 205px;
+	padding: 0px 10px 0px 0px;
+	text-align: right;
+}
+
+table .inputColumn {
+	width: 350px;
+}
+
+input[type=text], [type=password] {
+	height: 20px;
+	border: 1px solid #c2c2c2;
+	border-radius: 4px;
+	padding: 2px 5px;
+}
+
+input[type=radio] {
+	margin-left: 22px;
+}
+
+select {
+	height: 28px;
+	width: 181px;
+	border-radius: 4px;
+	border-color: #c2c2c2;
+	padding: 2px 5px;
+}
+
+option {
+	font-size: 1.1em;
+}
+
+.button {
+	float: right;
+	width: 180px;
+	font-size: 1.05em;
+  	background-color: #B22222;
+  	color: white;
+  	padding: 9px 20px;
+  	margin: 0px 72px 0px 0px;
+  	border: none;
+  	border-radius: 5px;
+  	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #c72525;
+}
+
+/*___________________________ registrace ___________________________*/
+#registrationForm {
+	float: left;
+	margin: 20px 0px 20px 247px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	height: 965px;
+	width: 711px;
+}
+
+.button2 {
+	float: right;
+	width: 181px;
+	font-size: 1.05em;
+  	background-color: #B22222;
+  	color: white;
+  	padding: 9px 20px;
+  	margin: 0px 75px 0px 0px;
+  	border: none;
+  	border-radius: 5px;
+  	cursor: pointer;
+}
+
+.button2:hover {
+	background-color: #c72525;
+}
+
+#registrationTable {
+	width: 405px;
+	margin: 0px 0px 0px 150px;
+}
+
+#registrationTable #conditions {
+	height: 30px;
+	padding: 0px 0px 0px 94px;
+}
+
+/*___________________________ nastavení účtu _________________________*/
+#emailChangeForm {
+	float: left;
+	margin: 7px 0px 30px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	height: 190px;
+	width: 711px;
+}
+
+#emailChangeTable {
+	width: 405px;
+	margin: 0px 0px 0px 150px;
+}
+
+#passwordChangeForm {
+	float: right;
+	margin: 14px 0px 30px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	height: 340px;
+	width: 711px;
+}
+
+#passwordChangeTable {
+	width: 405px;
+	margin: 0px 0px 0px 150px;	
+}
+
+#deliveryDataChangeForm {
+	float: right;
+	margin: 14px 0px 30px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	height: 635px;
+	width: 711px;
+}
+
+.button3 {
+	float: right;
+	width: 181px;
+	font-size: 1.05em;
+  	background-color: #B22222;
+  	color: white;
+  	padding: 9px 10px;
+  	margin: 0px 75px 0px 0px;
+  	border: none;
+  	border-radius: 5px;
+  	cursor: pointer;
+}
+
+.button3:hover {
+	background-color: #c72525;
+}
+
+#deliveryDataChangeTable {
+	width: 405px;
+	margin: 0px 0px 0px 150px;	
+}
+
+/*___________________________ přehled objednávek ___________________________*/
+#noOrdersLabel {
+	float: left;
+	margin: 7px 0px 30px 7px;
+	padding: 20px 0px;
+	border: 1px solid red;
+	border-radius: 4px;
+	width: 711px;
+	font-size: 1.2em;
+	text-align: center;
+	font-weight: bold;
+	color: red;
+}
+
+#ordersOverviewContainer {
+	float: right;
+	margin: 7px 0px 20px 7px;
+	width: 711px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+}
+
+#ordersOverviewContainer #creationDate {
+	float: left;
+	margin: 0px 25px 0px 10px;
+	width: 113px;
+}
+
+#ordersOverviewContainer #idOrder {
+	color: white;
+	padding: 1px 7px;
+	margin-right: -5px;
+}
+
+#ordersOverviewContainer #idOrder:hover {
+	text-decoration: underline;
+}
+
+#ordersOverviewContainer #idOrderLink {
+	text-decoration: none;
+}
+
+#ordersOverviewContainer #status {
+	margin: 0px 0px 0px 20px;
+}
+
+#ordersOverviewContainer #totalPrice {
+	float: right;
+	margin: 0px 20px 0px 00px;
+}
+
+#ordersOverviewContainer #image {
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin: 10px 20px;
+}
+
+#ordersOverviewContainer #image:hover {
+	opacity: 0.7;
+}
+
+
+
+/*___________________________ přehled objednávek - detail ___________________________*/
+#orderOverviewContainer {
+	float: left;
+	width: 711px;
+	margin: 0px 0px 0px 247px;
+}
+
+#orderOverviewContainer #orderOverviewLink {
+	float: left;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+#orderOverviewContainer #orderOverviewLink:hover {
+		background: #c72525;
+}
+
+#orderStatus {
+	float: right;
+	margin: -49px 0px 0px 0px;
+}
+
+/*___________________________ přehled objednávek - dropdown ___________________________*/
+#statusLabel {
+	float: right;
+	color: black;
+	font-size: 1.5em;
+	font-weight: bold;
+	margin: -50px 0px 0px 0px;
+}
+
+#orderOverviewDetailButton {
+	float: right;
+	background: white;
+	font-size: 1.1em;
+	font-weight: bold;
+	border: none;
+	margin: 0px 0px 0px 5px;
+}
+
+#orderOverviewDetailButton:focus {
+	outline: none;
+}
+
+.dropdown-options {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 100px;
+	overflow: auto;
+	z-index: 1;
+}
+
+.dropdown-options a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-options a:hover {
+	background: #ddd;
+}
+
+.show {
+	display: block;
+}
+
+/*___________________________ přehled zboží ___________________________*/
+#productsStatusForm {
+	float: left;
+	margin: 0px 0px 30px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 711px;
+}
+
+#productsStatusForm #image {
+	max-height: 70px;
+	max-width: 70px;
+	margin: 15px 0px 15px 15px;
+	padding: 0px;
+}
+
+#productsStatusForm #imageCell {
+	width: 100px;
+}
+
+#productsStatusForm #name {
+	margin: 0px 0px 5px 0px;
+}
+
+#productsStatusForm #nameCell {
+	width: 400px;
+}
+
+#productsStatusForm #stock {
+	float: left;
+	clear: left;
+	margin: 5px 0px 5px 10px;
+	font-size: 1.2em;
+}
+
+#productsStatusForm table:not(:last-child) {
+	border-bottom: 1px solid #c2c2c2;
+}
+
+/*___________________________ přehled zboží - number input ___________________________*/
+#productsStatusForm .amount {
+	float: left;
+	height: 15px;
+	width: 20px;
+	font-size: 1.1em;
+	margin: 2px 0px 5px 15px;
+	text-align: center;
+}
+
+#productsStatusForm input[type=number] {
+	position: relative; 
+	padding: 6px;
+	padding-right: 25px;
+}
+
+#productsStatusForm input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+	opacity: 1;
+}
+
+#productsStatusForm input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: inner-spin-button !important;
+	width: 25px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	margin: 0px;
+}
+/*___________________________  ___________________________*/
+
+#productsStatusForm #change {
+	float: left;
+	font-size: 1.2em;
+	margin: 5px 0px 5px 50px;
+}
+
+#productsStatusForm #changeStock {
+	float: left;
+	margin: auto 0px auto 25px;
+	font-size: 1.1em;
+	text-decoration: none;
+	border-radius: 5px;
+	border: none;
+	background: #B22222;
+	color: white;
+	padding: 6px 15px;
+	cursor: pointer;
+}
+
+#productsStatusForm #changeStock:hover {
+	background: #c72525;
+}
+
+/*___________________________ změna ceny ___________________________*/
+#productsPriceChangeForm {
+	float: left;
+	margin: 0px 0px 30px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 711px;
+}
+
+#productsPriceChangeForm #image {
+	max-height: 70px;
+	max-width: 70px;
+	margin: 15px 0px 15px 10px;
+	padding: 0px;
+}
+
+#productsPriceChangeForm #imageCell {
+	width: 85px;
+}
+
+#productsPriceChangeForm #name {
+	margin: 0px 0px 5px 0px;
+}
+
+#productsPriceChangeForm #nameCell {
+	width: 480px;
+}
+
+#productsPriceChangeForm #currentPrice {
+	float: left;
+	clear: left;
+	margin: 5px 0px 5px 10px;
+	font-size: 1.15em;
+}
+
+/*___________________________ změna ceny - number input ___________________________*/
+#productsPriceChangeForm .priceChange {
+	float: right;
+	height: 15px;
+	width: 48px;
+	font-size: 1.1em;
+	margin: 2px 15px 5px 10px;
+	text-align: center;
+}
+
+#productsPriceChangeForm input[type=number] {
+	text-align: left;
+	font-size: 1.1em;
+	padding: 6px;
+	width: 60px;
+}
+
+#productsPriceChangeForm input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: inner-spin-button;
+    display: inline-block;
+    cursor: default;
+    flex: 0 0 auto;
+    align-self: stretch;
+    -webkit-user-select: none;
+    opacity: 0;
+    pointer-events: none;
+    -webkit-user-modify: read-only;
+}
+
+/*___________________________  ___________________________*/
+
+#productsPriceChangeForm #change {
+	float: right;
+	font-size: 1.15em;
+	margin: 5px 0px 5px 30px;
+}
+#productsPriceChangeForm table:not(:last-child) {
+	border-bottom: 1px solid #c2c2c2;
+	margin: 0px;
+	padding: 0px;
+}
+
+#productsPriceChangeForm #changePrice {
+	float: right;
+	margin: 34px 0px 0px 5px;
+	font-size: 1.11em;
+	text-decoration: none;
+	border-radius: 5px;
+	border: none;
+	background: #B22222;
+	color: white;
+	padding: 6px 10px;
+	cursor: pointer;
+}
+
+#productsPriceChangeForm #changePrice:hover {
+	background: #c72525;
+}
+
+/*___________________________ přehled recenzí ___________________________*/
+#reviewContainer {
+	float: right;
+	margin: 7px 0px 20px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 711px;
+}
+
+#reviewContainer #nameLink {
+	color: white;
+	text-decoration: none;
+	margin: 0px 0px 0px 0px;
+}
+
+#reviewContainer #nameLink:hover {
+	text-decoration: underline;
+}
+
+#reviewContainer #underlineCell {
+	width: 701px;
+	float: left;
+	clear: left;
+	margin: 0px 0px 10px 5px;
+}
+
+#reviewContainer #reviewPros {
+	width: 230px;
+}
+
+#reviewContainer #reviewCons {
+	width: 230px;
+}
+
+#reviewContainer #linkCell {
+	float: right;
+	width: 93px;
+}
+
+#reviewContainer #editLink {
+	float: right;
+	color: white;
+	font-size: 1.1em;
+	border-radius: 5px;
+	background: #B22222;
+	margin: 0px 8px 0px 0px;
+	padding: 5px 10px;
+	border: none;
+	text-decoration: none;
+}
+
+#reviewContainer #editLink:hover {
+	cursor: pointer;
+	background: #c72525;
+}
+
+/*___________________________ přehled recenzí - změna ___________________________*/
+#reviewOverviewChangeForm {
+	float: right;
+	margin: 7px 0px 20px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 711px;
+}
+
+#reviewOverviewChangeForm #nameLink {
+	color :white;
+	text-decoration: none;
+}
+
+#reviewOverviewChangeForm #nameLink:hover {
+	text-decoration: underline;
+}
+
+#reviewOverviewChangeForm #submitButton {
+	float: right;
+	font-size: 1.1em;
+	color: white;
+	background: #B22222;
+	border: none;
+	margin: 0px 8px 0px 0px;
+}
+
+#reviewOverviewChangeForm #submitButton:hover {
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+#reviewOverviewChangeForm #inputReview {
+	float: left;
+	font-size: 1.1em;
+	margin: 20px 15px 20px 0px;
+	width: 270px;
+	resize: none;
+	border-radius: 5px;
+}
+
+#backToReviewOverviewLink {
+	text-decoration: none;
+	color: white;
+	background: #B22222;
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin: 0px 0px 0px 7px;
+}
+
+#backToReviewOverviewLink:hover {
+	background: #c72525;
+}
+
+/*___________________________ košík ___________________________*/
+#cartTitle {
+	background: #B22222;
+	font-size: 1.35em;
+	height: 52px;
+	margin: 0px 0px 20px 247px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+}
+
+#cartTitle a {
+	float: left;
+	color: white;
+	text-decoration: none;
+	padding: 13px 13.7px 12px 13.7px;
+	opacity: 0.7;
+	cursor: default;
+}
+
+#cartTitle a:not(:last-child) {
+	border-right: 2px solid white;
+}
+
+#cartTitle a:first-child {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+#cartTitle a:last-child {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+#cartTitle #current {
+	color: #B22222;
+	background: white;
+	opacity: 1;
+}
+
+#cartTitle #activeLink {
+	opacity: 1;
+	cursor: pointer;
+}
+
+#cartTitle #activeLink:hover {
+	text-decoration: underline;
+}
+
+#cartWebContainer {
+	float: left;
+	margin: 7px 0px 30px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 711px;
+}
+
+#cartWebContainer #emptyCartLabel {
+	float: right;
+	margin: 15px 230px 10px 0px;
+	font-size: 1.2em;
+	color: red;
+}
+
+#cartUnderline {
+	float: right;
+	border-bottom: 1px solid #c2c2c2;
+	margin: 10px 6px 0px 0px;
+	width: 98.5%;
+}
+
+#cartWebContainer #image {
+	max-height: 70px;
+	max-width: 70px;
+	margin: 15px 0px 15px 15px;
+	padding: 0px;
+}
+
+#cartWebContainer #imageCell {
+	width: 90px;
+}
+
+#cartWebContainer #name {
+	float: left;
+	color: #004080;
+	text-decoration: none;
+	font-size: 1.2em;
+	margin: 0px 0px 7px 0px;
+	padding: 0px;
+}
+
+#cartWebContainer #name:hover {
+	text-decoration: underline;
+}
+
+#cartWebContainer #nameCell {
+	width: 350px;
+	padding: 0px 0px 0px 10px;
+}
+
+#cartWebContainer .onStock {
+	float: left;
+	clear: left;
+	color: #008000;
+	font-size: 1.05em;
+	margin: 0px;
+	padding: 0px;
+}
+
+#cartWebContainer .outStock {
+	float: left;
+	clear: left;
+	color: #B22222;
+	font-size: 1.05em;
+	margin: 0px;
+	padding: 0px;
+}
+
+#cartWebContainer #price {
+	float: right;
+	font-size: 1.2em;
+	margin: 0px 15px 0px 0px; 
+	padding: 0px;
+	font-weight: bold;
+	color: #B22222;
+}
+
+#cartWebContainer #priceCell {
+	width: 120px;
+}
+
+#cartWebContainer #removeImage {
+	width: 25px;
+	height: 25px;
+	margin: 4px 0px 0px 0px;
+}
+
+#cartWebContainer #removeLink:hover {
+	opacity: 0.7;
+}
+
+#cartWebContainer #removeLink {
+	margin: 0px 5px 0px 10px;
+	padding: 10px 0px 0px 0px;
+}
+
+#cartWebContainer table {
+	border-bottom: 1px solid #c2c2c2;
+}
+
+.totalPriceWithoutDPH {
+	float: right;
+	clear: right;
+	color: #c2c2c2;
+	font-size: 1.05em;
+	margin: 15px 30px 0px 0px;
+}
+
+.totalPrice {
+	float: right;
+	clear: right;
+	font-size: 1.2em;
+	margin: 0px 15px 15px 0px;
+}
+
+.totalPriceInt {
+	font-size: 1.25em;
+	color: #B22222;
+	font-weight: bold;
+}
+
+.cartContainer {
+	float: left;
+	width: 711px;
+	margin: 0px 0px 0px 247px;
+}
+
+.cartContainer #backToHomePageLink {
+	float: left;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+.cartContainer #backToHomePageLink:hover {
+	background: #c72525;
+}
+
+.cartContainer #deliveryAndPaymentLink {
+	float: right;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px -2px 0px 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+.cartContainer #deliveryAndPaymentLink:hover {
+	background: #c72525;
+}
+
+/*___________________________ košík - number input ___________________________*/
+#cartWebContainer .amount {
+	float: right;
+	height: 22px;
+	width: 22px;
+	font-size: 1.2em;
+	margin: 0px 5px 0px 0px;
+}
+
+#cartWebContainer #amountCell {
+	width: 70px;
+}
+
+#cartWebContainer input[type=number] {
+	position: relative; 
+	padding: 6px;
+	padding-right: 25px;
+}
+
+#cartWebContainer input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+	opacity: 1;
+}
+
+#cartWebContainer input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+	-webkit-appearance: inner-spin-button !important;
+	width: 25px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	margin: 0px;
+}
+
+/*___________________________ doprava a platba ___________________________*/
+#shippingForm {
+	float: left;
+	margin: 7px 0px 20px 7px;
+	padding: 0px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 350px;
+}
+
+#shippingForm .row {
+	float: left;
+	clear: left;
+	margin: 10px 0px 0px 0px;;
+}
+
+#shippingForm img {
+	float: left;
+	width: 50px;
+	height: 25px;
+}
+
+#shippingForm .title {
+	margin: 0px 0px 0px 10px;
+	font-size: 1.1em;
+}
+
+#shippingForm .price {
+	float: right;
+	color: #B22222;
+	margin: 0px 10px 0px 0px;
+	padding: 0px;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+#paymentForm {
+	float: right;
+	clear: right;
+	margin: 7px 0px 20px 7px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 351px;
+}
+
+#paymentForm .row {
+	float: left;
+	clear: left;
+	margin: 10px 0px 0px 0px;
+}
+
+#paymentForm img {
+	float: left;
+	width: 50px;
+	height: 25px;
+}
+
+#paymentForm .title {
+	margin: 0px 0px 0px 10px;
+	font-size: 1.1em;
+}
+
+#paymentForm .price {
+	float: right;
+	color: #B22222;
+	margin: 0px 10px 0px 0px;
+	padding: 0px;
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+#cartContantWebContainer {
+	float: left;
+	margin: 7px 0px 20px 247px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 711px;
+}
+
+#cartContantWebContainer table {
+	border-bottom: 1px solid #c2c2c2;
+	width: 98.5%;
+}
+
+#cartContantWebContainer #image {
+	max-width: 70px;
+	max-height: 70px;
+}
+
+#cartContantWebContainer #imageCell {
+	width: 70px;
+	padding: 10px 0px 10px 15px;
+}
+
+#cartContantWebContainer #nameAndStockCell {
+	padding: 0px 0px 0px 10px;
+	width: 370px;
+}
+
+#cartContantWebContainer #name {
+	float: left;
+	font-size: 1.2em;
+	text-decoration: none;
+	margin: 0px 0px 0px 15px;
+	color: #004080;
+}
+
+#cartContantWebContainer #name:hover {
+	text-decoration: underline;
+}
+ 
+#cartContantWebContainer .onStock {
+	float: left;
+	clear: left;
+	font-size: 1.05em;
+	color: #008000;
+	margin: 5px 0px 0px 25px;
+	padding: 0px;
+}
+
+#cartContantWebContainer .outStock {
+	float: left;
+	clear: left;
+	font-size: 1.05em;
+	color: #B22222;
+	margin: 5px 0px 0px 25px;
+	padding: 0px;
+}
+
+#cartContantWebContainer #amountCell {
+	width: 70px;
+}
+
+#cartContantWebContainer #amount {
+	float: right;
+	color: #004080;
+	font-size: 1.2em;
+	margin: 0px 0px 0px 30px;
+}
+
+#cartContantWebContainer #price {
+	float: right;
+	color: #B22222;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: 0px;
+	margin: 0px 20px 0px 0px;
+}
+
+.shipping {
+	float: right;
+	clear: right;
+	font-size: 1.1em;
+	margin: 10px 30px 0px 0px;
+}
+
+.shippingPrice {
+	color: #B22222;
+	font-weight: bold;
+}
+
+.payment {
+	float: right;
+	clear: right;
+	font-size: 1.1em;
+	margin: 10px 30px 0px 0px;
+}
+
+.paymentPrice {
+	color: #B22222;
+	font-weight: bold;
+}
+
+.totalPrice {
+	float: right;
+	clear: right;
+	font-size: 1.1em;
+	margin: 10px 30px 15px 0px;
+}
+
+.totalPriceInt {
+	font-size: 1.2em;
+	color: #B22222;
+	font-weight: bold;
+}
+
+.shippingAndPaymentContainer {
+	float: left;
+	width: 711px;
+	margin: 0px 0px 0px 247px;
+}
+
+.shippingAndPaymentContainer #cartLink {
+	float: left;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+.shippingAndPaymentContainer #cartLink:hover {
+	background: #c72525;
+}
+
+.shippingAndPaymentContainer #deliveryDataLink {
+	float: right;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px -1px 0px 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+.shippingAndPaymentContainer #deliveryDataLink:hover {
+	background: #c72525;
+}
+
+/*___________________________ dodání a platba - radio ___________________________*/
+.containerRadio {
+  	display: block;
+  	width: 305px;
+  	position: relative;
+  	padding: 12px 0px 12px 35px;
+  	margin: -10px 0px 0px 5px;
+  	cursor: pointer;
+  	-webkit-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+  	border-bottom: 1px solid #c2c2c2;
+}
+
+#withoutBorder {
+	border: none;
+}
+
+.containerRadio input {
+  	position: absolute;
+  	opacity: 0;
+  	cursor: pointer;
+}
+
+.checkmarkRadio {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	height: 20px;
+  	width: 20px;
+  	background-color: white;
+  	border: 1px solid #c2c2c2;
+  	border-radius: 50%;
+  	margin: 13px 0px 0px 5px;
+}
+
+.containerRadio:hover input ~ .checkmarkRadio {
+  	border-color: #B22222;
+}
+
+.containerRadio input:checked ~ .checkmarkRadio {
+  background-color: #B22222;
+  border-color: #B22222;
+}
+
+.checkmarkRadio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.containerRadio input:checked ~ .checkmarkRadio:after {
+  display: block;
+}
+
+.containerRadio .checkmarkRadio:after {
+ 	top: 6px;
+	left: 6px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+/*___________________________ dodací údaje ___________________________*/
+#deliveryAddressForm {
+	float: left;
+	margin: 7px 0px 20px 7px;
+	padding: 0px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 711px;
+	height: 630px;
+}
+
+#deliveryAddressTable {
+	width: 405px;
+	margin: 0px 0px 0px 150px;
+}
+
+#deliveryDataContainer {
+	float: left;
+	width: 711px;
+	margin: 0px 0px 0px 247px;
+}
+
+#deliveryDataContainer #orderSummaryButton {
+	float: right;
+	background: #B22222;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 10px 20px;
+	margin: 0px -1px 0px 0px;
+	font-size: 1em;
+}
+
+#deliveryDataContainer #orderSummaryButton:hover {
+	background: #c72525;
+}
+
+#deliveryDataContainer #shippingAndPaymentLink {
+	float: left;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+#deliveryDataContainer #shippingAndPaymentLink:hover {
+	background: #c72525;
+}
+
+/*___________________________ souhrn objednávky ___________________________*/
+#contactInformationWebContainer {
+	float: left;
+	margin: 7px 0px 20px 7px;
+	padding: 0px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 350px;
+}
+
+#billingAddressWebContainer {
+	float: left;
+	margin: 7px 0px 20px 7px;
+	padding: 0px;
+	border: 1px solid #B22222;
+	border-radius: 4px;
+	width: 351px;
+}
+
+#contactInformationTable, #billingAddressTable {
+	font-size: 1.1em;
+	border-collapse: collapse;
+	width: 342px;
+	margin: 0px 0px 0px 5px;
+}
+
+#contactInformationTable .orderUnderline,
+#billingAddressTable .orderUnderline {
+	border-bottom: 1px solid #c2c2c2;
+}
+
+#contactInformationTable .nameColumn,
+#billingAddressTable .nameColumn {
+	text-align: center;
+	height: 48px;
+	width: 100px;
+}
+
+#contactInformationTable .outputColumn,
+#billingAddressTable .outputColumn {
+	height: 48px;
+	color: #B22222;
+	font-weight: bold;
+	max-width: 242px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#orderSummaryContainer {
+	float: left;
+	width: 711px;
+	margin: 0px 0px 0px 247px;
+}
+
+#orderSummaryContainer #deliveryDataLink {
+	float: left;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px 303px 0px 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+#orderSummaryContainer #deliveryDataLink:hover {
+	background: #c72525;
+}
+
+#orderSummaryContainer #sendOrderLink {
+	float: right;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px 0px 0px 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+#orderSummaryContainer #sendOrderLink:hover {
+	background: #c72525;
+}
+
+/*___________________________ zpráva o objednávce ___________________________*/
+#orderReporWebContainer {
+	float: left;
+	margin: 7px 0px 30px 7px;
+	padding: 20px 0px;
+	border: 1px solid green;
+	border-radius: 4px;
+	width: 711px;
+	font-size: 1.2em;
+	text-align: center;
+	font-weight: bold;
+	color: #006628;
+}
+
+#orderReporWebContainer img {
+	float: left;
+	margin: 0px 0px 0px 20px;
+	height: 100px;
+	width: 100px;
+}
+
+#idOrder {
+	color: #B22222;
+}
+
+#orderReportContainer {
+	float: left;
+	width: 711px;
+	margin: 0px 0px 0px 7px;
+}
+
+#orderReportContainer #orderOverviewLink {
+	float: right;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px 0px 0px 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+#orderReportContainer #orderOverviewLink:hover {
+	background: #c72525;
+}
+
+#orderReportContainer #backToHomePageLink {
+	float: left;
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 0px 303px 0px 0px;
+	color: white;
+	border-radius: 5px;
+	background: #B22222;
+}
+
+#orderReportContainer #backToHomePageLink:hover {
+	background: #c72525;
+}
+
+/*___________________________ hlavní obsah ___________________________*/
+section {
+	flex: 1 0 auto;
+	border-radius: 5px;
+	margin: 0px 0px 20px 0px;
+}
+
+section h2 {
+	margin-left: 260px;
+}
+
+#companiesContainer {
+	float: left;
+	margin: 72px 38px 0px 38px;
+	width: 152px;
+}
+
+#companiesContainer a {
+	float: left;
+	margin: 0px 0px 73px 0px;
+}
+
+#companiesContainer img {
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: all .6s ease; 
+}
+
+#companiesContainer img:hover {
+	filter: none;
+    -webkit-filter: grayscale(0%);
+}
+
+#logo {
+	float: right;
+	margin: -50px 0px 0px 0px;
+}
+
+#productLogo {
+	float: right;
+	margin: -75px 0px 0px 0px;
+	max-height: 75px;
+}
+
+/*___________________________ slideshow galerie _________________________*/
+#slider img {
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.slide {
+	display: none;
+}
+
+#pointerContainer {
+	text-align: center;
+	margin: -35px 0px 0px 0px;
+}
+
+.pointer {
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: white;
+	display: inline-block;
+	transition: background-color 0.6s ease;
+	border: 1px solid white;
+}
+
+.active, .pointer:hover {
+	background-color: #B22222;
+}
+
+/*___________________________ stránkování _________________________*/
+.pagingNavigatorContainer {
+	float: right;
+	width: 711px;
+	margin: 0px 0px 0px 11px;
+}
+
+.pagingNavigator {
+	float: right;
+	margin: 25px 0px 10px 0px; 
+}
+
+.pagingNavigator #arrow {
+	width: 15px;
+	height: 15px;
+}
+
+.pagingNavigator #first {
+	padding: 6px 7px 4px 10px;
+	background: #B22222
+}
+
+.pagingNavigator #last {
+	background: #B22222;
+	padding: 6px 11px 4px 13px;
+}
+
+.pagingNavigator #previous {
+	display: none;
+}
+
+.pagingNavigator #next {
+	display: none;
+}
+
+.pagingNavigator a {
+	text-decoration: none;
+	color: white;
+	padding: 6px 6px 4px 10px;
+	margin: 0px 2px;
+	border-radius: 5px;
+	background: #B22222;
+	border: 1px solid #B22222;
+}
+
+#navigation a:hover {
+	background: #B22222;
+	color: white;
+}
+
+.pagingNavigator a:link {
+	text-decoration: none;
+	color: #B22222;
+	background: white;
+}
+
+/*___________________________ navigační menu ___________________________*/
+nav {
+	float: left;
+	width: 238px;
+	border-radius: 5px;
+	border: 1px solid #B22222;
+}
+
+nav a {
+	background: #B22222;
+	display: block;
+	font-weight: bolder;
+	padding: 15px 15px 15px 20px;
+	text-decoration: none;
+	color: white;
+	background: #B22222;
+}
+
+.underline {
+	 border-top: 1px solid white;
+}
+
+nav a:hover, #active, #active-top, #active-bottom {
+	color: #B22222;
+	background: white;
+}
+
+nav a:first-child:hover {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+nav a:last-child:hover {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+#active {
+	border-top: 1px solid #B22222;
+	border-bottom: 1px solid #B22222;
+}
+
+#active-top {
+	border-bottom: 1px solid #B22222;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#active-bottom {
+	border-top: 1px solid #B22222;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+/*___________________________ filtr ___________________________*/
+#filter {
+	float: left;
+	width: 218px;
+	border: 1px solid #B22222;
+	border-radius: 5px;
+	margin: 335px 0px 0px -240px;
+	padding: 0px 10px 0px 10px;
+}
+
+#filter .frameTitle {
+	margin: 0px -10px;
+}
+
+#productFilter {
+	float: left;
+	width: 218px;
+	border: 1px solid #B22222;
+	border-radius: 5px;
+	margin-top: 20px;
+	padding: 0px 10px 0px 10px;
+}
+
+#productFilter .frameTitle {
+	margin: 0px -10px;
+}
+
+.category {
+	border-bottom: 1px solid #c0c0c0;
+}
+
+#productFilter #from,
+#productFilter #to {
+	float: left;
+	margin: 2px 2px 14px 2px;
+}
+
+#productFilter input[type=text] {
+	float: left;
+	margin: 0px 6px 12px 6px;
+	width: 50px;
+}
+
+/*___________________________ filtr - checkbox _________________________*/
+.containerCheckbox {
+	display: table;
+  	position: relative;
+  	padding-left: 27px;
+  	cursor: pointer;
+  	-webkit-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+}
+
+.containerCheckbox input {
+  	position: absolute;
+  	opacity: 0;
+  	cursor: pointer;
+  	height: 0;
+  	width: 0;
+}
+
+.checkmarkCheckbox {
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	height: 20px;
+  	width: 20px;
+  	background-color: #eee;
+  	border-radius: 5px;
+  	white-space: pre;
+}
+
+.containerCheckbox input:checked ~ .checkmarkCheckbox {
+  	background-color: #B22222;
+}
+
+.checkmarkCheckbox:after {
+  	content: "";
+  	position: absolute;
+  	display: none;
+}
+
+.containerCheckbox input:checked ~ .checkmarkCheckbox:after {
+  	display: block;
+}
+
+.containerCheckbox .checkmarkCheckbox:after {
+  	left: 6px;
+  	top: 2px;
+  	width: 5px;
+  	height: 10px;
+  	border: solid white;
+  	border-width: 0 3px 3px 0;
+  	-webkit-transform: rotate(45deg);
+  	-ms-transform: rotate(45deg);
+  	transform: rotate(45deg);
+}
+
+.choice {
+	margin-bottom: 7px;
+	height: 20px;
+	width: 20px;
+} 
+
+/*___________________________ nejprodávanější položky _________________________*/
+
+article {
+	float: left;
+	margin: 1px 0px 7px 8px;
+	border: 1px solid #B22222;
+	border-radius: 5px;
+	height: 299px;
+	width: 711px;
+	position: relative;
+	overflow: hidden;
+}
+
+#topSellingUnderline1 {
+	position: relative;
+	border-bottom: 1px solid #c0c0c0;
+	top: 77px;
+	margin: 0px 9px 0px 9px;
+}
+
+#topSellingUnderline2 {
+	position: relative;
+	border-bottom: 1px solid #c0c0c0;
+	top: 150px;
+	margin: 0px 9px 0px 9px;
+}
+
+#topSelling {
+	float: left;
+	margin: 7px 0px 7px 7px;
+	border: 1px solid #B22222;
+	border-radius: 5px;
+	height: 264px;
+	width: 711px;
+}
+
+table {
+	width: 98.5%;
+	margin-left: 5px;
+}
+
+table tr td {
+	height: 70px;
+}
+
+table a :hover {
+	text-decoration: underline;
+}
+
+#topSelling #counter {
+	color: #808080;
+	margin:  19px 20px 0px 5px;
+	padding: 0px;
+}
+
+#topSelling #image {
+	max-height: 56px;
+	max-width: 56px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#topSelling #name {
+	color: #004080;
+	padding: 0px;
+	margin: 0px 0px 0px 10px;
+	text-decoration: none;
+}
+
+#topSelling #description {
+	padding: 0px;
+	float: left;
+	font-size: 0.8em;
+	color: #808080;
+	margin: 5px 0px 0px 10px;
+	height: 35px;
+	overflow: hidden;
+	text-decoration: none;
+}
+
+#topSelling #price {
+	float: right;
+	font-size: 1.2em;
+	margin:  7px 7px 0px 10px;
+	padding: 0px;
+	color: #B22222;
+	font-weight: bold;
+}
+
+.errorMessageContainer {
+	float: left;
+	margin: 6px 0px 7px 7px;
+	border: 1px solid #B22222;
+	border-radius: 5px;
+	width: 711px;
+	text-align: center;
+	padding: 10px 0px;
+	color: red;
+}
+
+/*___________________________ třídící filtr _________________________*/
+.toRight {
+	margin-left: 240px;
+}
+
+#sortFilter {
+	float: left;
+	margin: 20px 7px 5px 7px;
+	border: 1px solid #c2c2c2;
+	border-radius: 5px;
+	width: 711px;
+}
+
+#sortFilter span {
+	float: right;
+	margin: 0px 10px 0px 10px;
+	padding: 10px 5px;
+}
+
+#sortFilter a {
+	float: left;
+	text-decoration: none;
+	color: black;
+	border-right: 3px solid #c2c2c2;
+	padding: 10px 10px 10px 15px;
+}
+
+#sortFilter a:hover:not(.active) {
+	border-right: 3px solid #B22222;
+	text-decoration: underline;
+}
+
+#sortFilter .active {
+	border-right: 3px solid white;
+	color: white;
+}
+
+#sortFilter .nextToActive {
+	border-right: 3px solid #B22222;
+}
+
+#sortFilter #first.active {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+/*___________________________ produkty _________________________*/
+#items {
+	float: left;
+	border: 1px solid #c0c0c0;
+	width: 350px;
+	height: 310px;
+	margin: 5px 0px 5px 8px;
+	overflow: hidden;
+}
+
+#imageFrame {
+	float: left;
+	margin-left: 14px;
+	height: 190px;
+	width: 176px;
+}
+
+#image {
+	display: block;
+	margin: 14px auto 0px auto;
+	height: auto;
+	width: auto;
+	max-height: 175px;
+	max-width: 175px;
+}
+
+#rating {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 20px 0px 0px 210px;
+	font-size: 0.95em;
+	color: #808080;
+}
+
+#price {
+	float: left;
+	padding: 40px 0px 0px 18px;
+	color: #B22222;
+	font-size: 1.7em;
+	font-weight: bold;
+}
+
+#items #priceWithoutDPH {
+	float: left;
+	padding: 5px 0px 0px 18px;
+	font-size: 0.9em;
+	color: #808080;
+}
+
+#items .onStock {
+	float: left;
+	padding: 10px 0px 0px 18px;
+	color: #008000;
+	font-size: 0.95em;
+}
+
+#items .outStock {
+	float: left;
+	padding: 10px 0px 0px 18px;
+	color: #B22222;
+	font-size: 0.95em;
+}
+
+#buy {
+	float: right;
+	border: none;
+	background: #B22222;
+	color: white;
+	font-size: 1.1em;
+	text-decoration: none;
+	padding: 10px 36px 14px 36px;
+	margin: 14px 14px 0px 0px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#buy:hover {
+	background: #c72525;
+}
+
+#name {
+	text-decoration: none;
+	padding: 10px 0px 0px 10px;
+	float: left;
+	clear: left;
+	font-size: 1.15em;
+	color: #004080;
+}
+
+#name:hover {
+	text-decoration: underline;
+}
+
+#description {
+	float: left;
+	font-size: 0.8em;
+	color: #808080;
+	padding: 3px 10px 3px 10px;
+}
+
+/*___________________________ detail produktu ___________________________*/
+#itemDetailWebContainer {
+	border: 1px solid #B22222;
+	border-radius: 5px;
+	height: auto;
+	padding: 0px 0px 20px 0px;
+	margin: 0px 0px 0px 7px;
+}
+
+#itemDetailWebContainer h2 {
+	float: none;
+	padding: 0px;
+	margin: 20px 0px 25px 20px;
+}
+
+#itemDetailWebContainer #rating {
+	float: left;
+	position: relative;
+	font-size: 1.1em;
+	margin: -20px 0px 10px 20px;
+	padding: 0;
+	color: #808080;
+}
+
+#itemDetailWebContainer #mainImageFrame {
+	float: left;
+	clear: left;
+	width: 360px;
+	height: 400px;
+	margin: 10px 0px 0px 30px;
+}
+
+#mainImage {
+	width: auto;
+	height: auto;
+	max-width: 360px;
+	max-height: 380px;
+}
+
+.toRightDetail {
+	height: 400px;
+	margin: 0px 20px 0px 420px;
+}
+
+#itemDetailWebContainer #price {
+	float: left;
+	width: 180px;
+	text-align: center;
+	font-size: 2.2em;
+	margin: 0px 0px 0px 30px;
+	padding: 0px;
+}
+
+#itemDetailWebContainer #priceWithoutDPH {
+	float: left;
+	width: 180px;
+	color: #808080;
+	text-align: center;
+	font-size: 1.2em;
+	margin: 8px 20px 0px 30px;
+	padding: 0px;
+}
+
+#itemDetailWebContainer .onStock {
+	float: left;
+	width: 180px;
+	text-align: center;
+	font-size: 1.2em;
+	color: #008000;
+	margin: 15px 0px 0px 30px;
+	padding: 0px;
+}
+
+#itemDetailWebContainer .outStock {
+	float: left;
+	width: 180px;
+	text-align: center;
+	font-size: 1.2em;
+	color: #B22222;
+	margin: 15px 0px 0px 30px;
+	padding: 0px;
+}
+
+#itemDetailWebContainer #buy {
+	float: left;
+	text-align: center;
+	margin: 20px 0px 0px 30px;
+	padding: 10px 64px 14px 64px;
+}
+
+#itemDetailWebContainer #description {
+	float: left;
+	font-size: 1em;
+	margin: 20px 20px 0px 0px;
+	padding: 0px;
+}
+
+#itemDetailWebContainer #gallery {
+	float: left;
+	clear: left;
+	padding: 24px 0px 0px 0px;
+	margin: 0px 0px 0px 14px;
+	height: 180px;
+	width: 96%;
+	border-top: 1px solid #c0c0c0;
+	border-bottom: 1px solid #c0c0c0;
+}
+
+#itemDetailWebContainer #imageGallery {
+	width: auto;
+	height: auto;
+	max-height: 150px;
+	max-width: 200px;
+	padding: 0px;
+	margin-left: 40px;
+}
+
+#itemDetailWebContainer #imageLink {
+	text-decoration: none;
+}
+
+#itemDetailWebContainer #imageGallery:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+/*___________________________ parametry ___________________________*/
+
+#itemDetailWebContainer .title {
+	width: 96%;
+	margin: 260px 0px 0px 15px;
+}
+
+#parameters {
+	float: left;
+	border: 1px solid #c0c0c0;
+	width: 96%;
+	margin: 40px 0px 0px 14px;
+	padding-bottom: 10px;
+	border-radius: 5px;
+}
+
+#parametersColumn1 {
+	float: left;
+	width: 290px;
+	margin-left: 28px;
+}
+
+#parametersColumn2 {
+	float: left;
+	width: 332px;
+}
+
+#parameters p {
+	border-bottom: 1px solid #c0c0c0;
+}
+
+/*___________________________ uživatelské recenze ___________________________*/
+#userReviews {
+	float: left;
+	border: 1px solid #c0c0c0;
+	width: 96%;
+	margin: 40px 0px 0px 14px;
+	padding-bottom: 10px;
+	border-radius: 5px;
+}
+
+/*___________________________ nová recenze ___________________________*/
+#userReviews #newReviewLink {
+	float: right;
+	color: white;
+	background: #B22222;
+	text-decoration: none;
+	margin: 0px 10px 0px 0px;
+}
+
+#userReviews #newReviewLink:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#reviewFrame {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 200px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+}
+
+#userReviews #close {
+	float: right;
+	font-size: 1.35em;
+	font-weight: bold;
+	padding: 0px 2px;
+	margin: -5px 3px 0px 0px;
+}
+
+#userReviews #close:hover {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#userReviews #newReviewForm {
+	margin: auto;
+	background-color: white;
+	width: 740px;
+	border-radius: 5px;
+}
+
+#reviewTable td {
+	padding: 15px 0px 0px 0px;
+}
+
+#reviewTable .inputColumn {
+	width: 480px;
+	padding: 15px 0px 0px 10px;
+}
+
+#reviewTable #inputReview, #rangeSlider {
+	width: 240px;
+	resize: none;
+	border-radius: 5px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  height: 10px;
+  background: #d2d2d2;
+  outline: none;
+  border-radius: 0px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 25px;
+  background: #B22222;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#reviewTable #buttonContainer {
+	text-align: center;
+	padding: 9px 20px;
+}
+/*___________________________  ___________________________*/
+#noReview {
+	margin: 20px 0px 15px 0px;;
+	font-size: 1.2em;
+	color: #808080;
+	text-align: center;
+}
+
+#userReviews #reviewContainer {
+	border: none;
+	float: left;
+	clear: left;
+	width: 673px;
+	margin: 0px 0px 10px 5px;
+}
+
+#reviewInfo {
+	float: left;
+	width: 107px;
+	padding: 10px;
+	text-align: center;
+}
+
+.rating {
+	float: left;
+	width: 107px;
+	font-size: 1.7em;
+	color: black;
+	text-align: center;
+	margin: 5px 0px 10px 0px;
+}
+
+#userFullName {
+	float: left;
+	width: 107px;
+	text-align: center;
+	margin: 0px 0px 5px 0px;
+}
+
+#reviewPros {
+	float: left;
+	padding: 5px 0px 0px 10px;
+	width: 250px;
+}
+
+#plus {
+	border: 1px solid green;
+	border-radius: 5px;
+	color: green;
+	padding: 0px 2px;
+	font-weight: bold;
+}
+
+#pros {
+	margin: 10px 0px 10px 0px;
+	color: green;
+}
+
+#reviewCons {
+	float: left;
+	padding: 5px 0px 0px 10px;
+	width: 250px;
+}
+
+#minus {
+	border: 1px solid #d93535;
+	border-radius: 5px;
+	color: #d93535;
+	padding: 0px 2px;
+	font-weight: bold;
+}
+
+#cons {
+	margin: 10px 0px 10px 0px;
+	color: #d93535;
+}
+
+/*___________________________ zápatí ___________________________*/
+
+footer {
+	flex-shrink: 0;
+	height: 100px;
+	background: #B22222;
+	border-radius: 5px;
+	margin: 0px 0px 11px 0px;
+}
+
+#copyright {
+	font-size: 1.1em;
+	color: white;
+	text-align: center;
+	margin: 40px 0px 0px 0px;
+}

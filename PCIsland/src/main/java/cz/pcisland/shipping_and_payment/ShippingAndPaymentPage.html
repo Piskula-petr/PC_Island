@@ -1,0 +1,179 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Postup objednávkou -->
+	<div id="cartTitle">
+		<a href="#" id="activeLink" wicket:id="menuCartLink">Košík</a>
+		<a href="#" id="current">Doprava a platba</a>
+		<a href="#">Dodací údaje</a>
+		<a href="#">Souhrn objednávky</a>
+	</div>
+	
+	<!-- Způsob dopravy -->
+	<form id="shippingForm" wicket:id="shippingForm">
+		<div class="frameTitle">Způsob dopravy</div>
+		
+		<div wicket:id="shippingRadioGroup">
+		
+			<div class="row">
+				<label class="containerRadio">
+					<img src="logo_delivery.png">
+					<span class="title">Osobní odběr</span>
+					<span class="price" wicket:id="personalPickupPrice"></span>
+					<input type="radio" wicket:id="personalPickupRadio">
+					<span class="checkmarkRadio"></span>
+				</label>
+			</div>
+			
+			<div class="row">
+				<label class="containerRadio">
+					<img src="ceska_posta.png">
+					<span class="title">Česká pošta</span>
+					<span class="price" wicket:id="CzechPostPrice"></span>
+					<input type="radio" wicket:id="CzechPostRadio">
+					<span class="checkmarkRadio"></span>
+				</label>
+			</div>
+			
+			<div class="row">
+				<label class="containerRadio">
+					<img src="dhl.png">
+					<span class="title">DHL</span>
+					<span class="price" wicket:id="DHLPrice"></span>
+					<input type="radio" wicket:id="DHLRadio">
+					<span class="checkmarkRadio"></span>
+				</label>
+			</div>
+			
+			<div class="row">
+				<label id="withoutBorder" class="containerRadio">
+					<img src="zasilkovna.png">
+					<span class="title">Zásilkovna</span>
+					<span class="price" wicket:id="mailboxPrice"></span>
+					<input type="radio" wicket:id="mailboxRadio">
+					<span class="checkmarkRadio"></span>
+				</label>
+			</div>
+		</div>
+	</form>
+	
+	<!-- Typ platby -->
+	<form id="paymentForm" wicket:id="paymentForm">
+		<div class="frameTitle">Typ platby</div>
+		
+		<div wicket:id="paymentRadioGroup">
+			<div class="row">
+				<label class="containerRadio">
+					<img src="dobirka.png">
+					<span class="title">Dobírka</span>
+					<span class="price" wicket:id="cashOnDeliveryLabel"></span>
+					<input type="radio" wicket:id="cashOnDeliveryRadio">
+					<span class="checkmarkRadio"></span>
+				</label>
+				
+				<div class="row">
+					<label class="containerRadio">
+						<img src="bankovni_prevod.png">
+						<span class="title">Bankovní převod</span>
+						<span class="price" wicket:id="bankTransferLabel"></span>
+						<input type="radio" wicket:id="creditCardPaymentRadio">
+						<span class="checkmarkRadio"></span>
+					</label>
+				</div>
+				
+				<div class="row">
+					<label class="containerRadio">
+						<img src="platba_kartou.png">
+						<span class="title">Platba kartou</span>
+						<span class="price" wicket:id="creditCardPaymentLabel"></span>
+						<input type="radio" wicket:id="bankTransferRadio">
+						<span class="checkmarkRadio"></span>
+					</label>
+				</div>
+				
+				<div class="row">
+					<label id="withoutBorder" class="containerRadio">
+						<img src="paypal.png">
+						<span class="title">PayPal</span>
+						<span class="price" wicket:id="paypalLabel"></span>
+						<input type="radio" wicket:id="paypalRadio">
+						<span class="checkmarkRadio"></span>
+					</label>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<!-- Obsah košíku -->
+	<div id="cartContantWebContainer" wicket:id="cartContantWebContainer">
+		<div class="frameTitle">Obsah košíku</div>
+	
+		<table wicket:id="cartListView">
+			<tr>
+				<td id="imageCell">
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+				
+				<td id="nameAndStockCell">
+					<a href="#" wicket:id="nameLink">
+						<span id="name" wicket:id="name"></span>
+					</a>
+					
+					<span wicket:id="stock"></span>
+				</td>
+				
+				<td id="amountCell">
+					<span id="amount" wicket:id="amount"></span>
+				</td>
+				<td>
+					<span id="price" wicket:id="price"></span>
+				</td>
+			</tr>
+		</table>
+		
+		<!-- Doprava -->
+		<div class="shipping">
+			<span>Doprava: </span>
+			<span wicket:id="shippingType"></span>
+			<span class="shippingPrice" wicket:id="shippingPrice"></span>
+		</div>
+		
+		<!-- Platba -->
+		<div class="payment">
+			<span>Platba: </span>
+			<span wicket:id="paymentType"></span>
+			<span class="paymentPrice" wicket:id="paymentPrice"></span>
+		</div>
+		
+		<div id="cartUnderline" ></div>
+		
+		<!-- Cena bez DPH -->
+		<div class="totalPriceWithoutDPH">
+			<span>Cena bez DPH: </span>
+			<span wicket:id="totalPriceWithoutDPH"></span>
+		</div>
+		
+		<!-- Celková cena -->
+		<div class="totalPrice">
+			<span>Celková cena k úhradě: </span>
+			<span class="totalPriceInt" wicket:id="totalPrice"></span>
+		</div>
+	</div>
+	
+	<!-- Navigační linky -->
+	<div class="shippingAndPaymentContainer">
+		<a href="#" id="deliveryDataLink" wicket:id="deliveryDataLink">Dodací údaje</a>
+		<a href="#" id="cartLink" wicket:id="cartLink">Zpět do košíku</a>
+	</div>
+</wicket:extend>

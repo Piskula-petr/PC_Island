@@ -1,0 +1,240 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" id="active" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+
+	<h2>Operační paměti (RAM)</h2>
+	<img id="productLogo" src="products logos\\memory.png">
+	
+	<!-- Nejprodávanější produkty -->
+	<article id="topSelling">
+	<div class="frameTitle">Nejprodávanější</div>
+	
+	<div id="topSellingUnderline1"></div>
+	<div id="topSellingUnderline2"></div>
+	
+		<table wicket:id="topSellingListView">
+			<tr>
+				<td>
+					<span id="counter" wicket:id="counter"></span>
+				</td>
+				
+				<td>
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+				
+				<td>
+					<a href="#" id="name" wicket:id="nameLink">
+						<span wicket:id="name"></span>
+					</a>
+					<a href="#" id="description" wicket:id="descriptionLink">
+						<span wicket:id="description"></span>
+					</a>
+				</td>
+				
+				<td>
+					<span id="price" wicket:id="price"></span>
+				</td>
+			</tr>
+		</table>
+	</article>
+	
+	<!-- Filtr produktů -->
+	<form id="productFilter" wicket:id="filterForm">
+		<div class="frameTitle">Filtr</div>
+		
+		<!-- Cena -->
+		<p class="category">Cena:</p>
+		<p>
+  			<span id="from">Od: </span>
+  			<input type="text" wicket:id="minPriceTextField">
+  			<span id="to">Do: </span>
+  			<input type="text" wicket:id="maxPriceTextField">
+  			<input type="submit" hidden="true">
+  			<br><br>
+		</p>
+		
+		<!-- Dostupnost -->
+		<p class="category">Dostupnost:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="onStockCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="onStockLabel"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Výrobce -->
+		<p class="category">Výrobce:</p>
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="corsairCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="corsairLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="crucialCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="crucialLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="gSkillCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="gSkillLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="hyperXCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="hyperXLabel"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Konfigurace paměti -->
+		<p class="category">Konfigurace paměti:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="memory16CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="memory16Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="memory32CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="memory32Label"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Pracovní frekvence -->
+		<p class="category">Pracovní frekvence:</p>
+		<p>
+			<label class="containerCheckbox"> 
+  				<input type="checkbox" wicket:id="frequency3000CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="frequency3000Label"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox"> 
+  				<input type="checkbox" wicket:id="frequency3200CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="frequency3200Label"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+				<input type="checkbox" wicket:id="frequency3600CheckBox">
+				<span class="checkmarkCheckbox" wicket:id="frequency3600Label"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+				<input type="checkbox" wicket:id="frequency4000CheckBox">
+				<span class="checkmarkCheckbox" wicket:id="frequency4000Label"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Latence -->
+		<p class="category">Latence:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="cl15CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="cl15Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="cl16CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="cl16Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="cl19CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="cl19Label"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Verze XMP -->
+		<p class="category">Verze XMP:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="intelXMPCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="intelXMPLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="intelXMP2CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="intelXMP2Label"></span>
+			</label><br>
+		</p>
+	</form>
+	
+	<!-- Produkty -->
+	<div class="toRight" wicket:id="markupContainer">
+	
+		<!-- Třídící filtr -->
+		<div id="sortFilter">
+			<span wicket:id="itemsAmount"></span>
+			
+			<a href="#" id="first" wicket:id="topSellingLink">Nejprodávanější</a>
+			<a href="#" wicket:id="mostExpensiveLink">Nejdražší</a>
+			<a href="#" wicket:id="cheapestLink">Nejlevnější</a>
+			<a href="#" wicket:id="bestRatedLink">Nejlépe hodnocené</a>
+		</div>
+	
+		<!-- Chybová hláška -->
+		<div class="errorMessageContainer" wicket:id="errorMessageMarkupContainer">
+			<span wicket:id="errorMessage"></span>
+			<a href="#" wicket:id="refreshLink">Zrušit filtr</a>
+		</div>
+	
+		<!-- Produkt -->
+		<article id="items" wicket:id="productsPageableListView">
+		
+			<div id="imageFrame">
+				<a href="#" wicket:id="imageLink">
+					<img id="image" wicket:id="image">
+				</a>
+			</div>
+			
+			<span id="rating" wicket:id="rating"></span>
+			<span id="price" wicket:id="price"></span>
+			<span id="priceWithoutDPH" wicket:id="priceWithoutDPH"></span>
+			<span wicket:id="stock"></span>
+			
+			<a href="#" id="buy" wicket:id="buyLink">
+				<span wicket:id="buyLabel"></span>
+			</a>
+			
+			<a href="#" id="name" wicket:id="nameLink">
+				<span wicket:id="name"></span>
+			</a>
+			
+			<span id="description" wicket:id="description"></span>
+		</article>
+		
+		<!-- Stránkování -->
+		<div class="pagingNavigatorContainer">
+			<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+		</div>
+	</div>
+</wicket:extend>

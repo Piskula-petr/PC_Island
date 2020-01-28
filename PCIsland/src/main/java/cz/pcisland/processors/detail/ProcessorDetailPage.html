@@ -1,0 +1,209 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" id="active-top" wicket:id="processorsPage">Procesory</a>
+		<a href="#" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Detail produktu -->
+	<article id="itemDetailWebContainer" wicket:id="markupContainer">
+		<h2>
+			<span wicket:id="name"></span>
+		</h2>
+		
+		<span id="rating" wicket:id="rating"></span>
+			
+		<div id="mainImageFrame">
+			<img id="mainImage" wicket:id="mainImage">
+		</div>
+			
+		<div class="toRightDetail">
+			<span id="price" wicket:id="price"></span>
+			<span id="priceWithoutDPH" wicket:id="priceWithoutDPH"></span>
+			<span wicket:id="stock"></span>
+			
+			<a href="#" id="buy" wicket:id="buyLink">
+				<span wicket:id="buyLabel"></span>
+			</a>
+			
+			<span id="description" wicket:id="description"></span>
+		</div>
+		
+		<!-- Galerie produktu -->
+		<div id="gallery">
+			<img id="imageGallery" wicket:id="image1" onclick="changeImage(this);">
+			<img id="imageGallery" wicket:id="image2" onclick="changeImage(this);">
+			<img id="imageGallery" wicket:id="image3" onclick="changeImage(this);">
+		</div>
+		
+		<!-- Parametry -->
+		<div id="parameters">	
+			<div class="frameTitle">Parametry</div>
+			
+			<div id="parametersColumn1">
+				<p>Vyrobce:</p>
+				<p>Procesorová řada:</p>
+				<p>Kódové označení:</p>
+				<p>Patice:</p>
+				<p>Počet jader:</p>
+				<p>Počet vláken:</p>
+				<p>Frekvence procesoru:</p>
+				<p>Maximální frekvence:</p>
+				<p>Vyrovnávací paměť:</p>
+				<p>Tepelný výkon:</p>
+				<p>Výrobní technologie:</p>
+				<p>Podpora chipsetu:</p>
+			</div>
+			
+			<div id="parametersColumn2">
+				<p><span wicket:id="company"></span></p>
+				<p><span wicket:id="series"></span></p>
+				<p><span wicket:id="codeName"></span></p>
+				<p><span wicket:id="socket"></span></p>
+				<p><span wicket:id="numberOfCores"></span></p>
+				<p><span wicket:id="numberOfThreads"></span></p>
+				<p><span wicket:id="workFrequency"></span></p>
+				<p><span wicket:id="turboFrequency"></span></p>
+				<p><span wicket:id="cache"></span></p>
+				<p><span wicket:id="thermalDesignPower"></span></p>
+				<p><span wicket:id="technology"></span></p>
+				<p><span wicket:id="chipset"></span></p>
+			</div>
+		</div>
+		
+		<!-- Uživatelské recenze -->
+		<div id="userReviews">
+			<div class="frameTitle">Uživatelské recenze
+				<a href="#" id="newReviewLink" wicket:id="newReviewLink">&plus; Přidat recenzi</a>
+			</div>
+			
+			<!-- Nová recenze -->
+			<div id="reviewFrame">
+				<form id="newReviewForm" wicket:id="newReviewForm">
+				
+					<div class="frameTitle">Nová recenze
+						<span id="close" onclick="document.getElementById('reviewFrame').style.display='none'">&times;</span>
+					</div>
+					
+					<table id="reviewTable">
+						<tr>
+							<td class="nameColumn">
+								<span>Jméno: </span>
+							</td>
+							
+							<td class="inputColumn">
+								<input type="text" wicket:id="userFullNameReviewTextField">
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="nameColumn">
+								<span>Klady: </span>
+							</td>
+							
+							<td class="inputColumn">
+								<textarea id="inputReview" wicket:id="prosReviewTextArea" type="text" rows="3" cols="20"></textarea>
+							</td>
+							
+							<td class="nameColumn">
+								<span>Zápory: </span>
+							</td>
+							
+							<td class="inputColumn">
+								<textarea id="inputReview" wicket:id="consReviewTextArea" type="text" rows="3" cols="20"></textarea>
+							</td>
+						</tr>
+						
+						<tr> 
+							<td class="nameColumn">
+								<span>Hodnocení: </span>
+							</td>
+							
+							<td class="inputColumn">
+								<input id="rangeSlider" class="slider" wicket:id="ratingReviewRangeTextField" type="range">
+							</td>
+							
+							<td class="nameColumn">
+								<span id="rangeValue"></span>
+								<span>%</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="inputColumn" colspan="4">
+								<div id="buttonContainer">
+									<button class="button" wicket:id="submitReviewButton" type="submit">Odeslat</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			
+			<div id="noReview" wicket:id="noReview"></div>
+			
+			<!-- List recenzí -->
+			<div wicket:id="reviewsListView">
+			
+				<div id="reviewContainer">
+				
+					<div wicket:id="underline"></div>
+				
+					<div id="reviewInfo">
+						<div class="rating" wicket:id="reviewRating"></div>
+						<div id="userFullName" wicket:id="userFullName"></div>
+						<div wicket:id="creationDate"></div>
+					</div>
+					
+					<div id="reviewPros">
+						<div id="pros" wicket:id="prosListView">
+							<span id="plus">&plus;</span>
+							<span wicket:id="pros"></span>
+						</div>
+					</div>
+					
+					<div id="reviewCons">
+						<div id="cons" wicket:id="consListView">
+							<span id="minus">&minus;</span>
+							<span wicket:id="cons"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</article>
+	
+	<!-- Scripty -->
+	<script>
+	
+		// Změna hlavního obrázku
+		function changeImage(image) {
+			var expandImage = document.getElementById("mainImage");
+			expandImage.src = image.src;
+			expandImage.parentElement.style.display = "block";
+		}
+		
+		// Zavření recenze při kliknutí mimo okno
+		var reviewFrame = document.getElementById("reviewFrame");
+	
+		window.onclick = function(event) {
+			if (event.target == reviewFrame) {
+				reviewFrame.style.display = "none";
+			}
+		}
+		
+		// Zobrazení hodnocení
+		var slider = document.getElementById("rangeSlider");
+		var value = document.getElementById("rangeValue");
+		value.innerHTML = slider.value;
+		
+		slider.oninput = function() {
+			value.innerHTML = this.value;
+		}
+	</script>
+</wicket:extend>

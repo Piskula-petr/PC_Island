@@ -1,0 +1,185 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+
+	<h2>Nastavení účtu</h2>
+	
+	<!-- Změna emailu -->
+	<form id="emailChangeForm" wicket:id="emailChangeForm">
+		<div class="frameTitle">Změna emailu</div>
+		
+		<table id="emailChangeTable">
+		
+			<!-- Úspěšná změna emailu -->
+			<div wicket:id="successEmailChangeLabel"></div>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Email: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="emaiLChangeLabel"></span>
+					<input type="text" wicket:id="emailChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<button class="button" type="submit">Změnit email</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<!-- Změna emailu -->
+	<form id="passwordChangeForm" wicket:id="passwordChangeForm">
+		<div class="frameTitle">Změna hesla</div>
+		
+		<table id="passwordChangeTable">
+		
+			<!-- Úspěšná změna hesla -->
+			<div wicket:id="successPasswordChangeLabel"></div>
+		
+			<tr>
+				<td class="nameColumn">
+					<span>Aktuální heslo: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="currentPasswordLabel"></span>
+					<input type="password" wicket:id="currentPassword">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Nové heslo: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="passwordChangeLabel"></span>
+					<input type="password" wicket:id="passwordChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Potvrzení hesla: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="passwordConfirmChangeLabel"></span>
+					<input type="password" wicket:id="passwordConfirmChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<button class="button2" type="submit">Změnit heslo</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<!-- Změna dodacích údajů -->
+	<form id="deliveryDataChangeForm" wicket:id="deliveryDataChangeForm">
+		<div class="frameTitle">Změna dodacích údajů</div>
+		
+		<table id="deliveryDataChangeTable">
+		
+			<!-- Úspěšná změna dodacích údajů -->
+			<div wicket:id="successDeliveryChangeLabel"></div>
+		
+			<tr>
+				<td class="nameColumn">
+					<span>Jméno: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="nameChangeLabel"></span>
+					<input type="text" wicket:id="nameChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Příjmení: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="surnameChangeLabel"></span>
+					<input type="text" wicket:id="surnameChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Telefonní číslo: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="phoneNumberChangeLabel"></span>
+					<input type="text" wicket:id="phoneNumberChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Ulice a č. p.: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="streetAddressChangeLabel"></span>
+					<input type="text" wicket:id="streetAddressChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Město: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="cityChangeLabel"></span>
+					<input type="text" wicket:id="cityChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>PSČ: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="zipCodeChangeLabel"></span>
+					<input type="text" wicket:id="zipCodeChange">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Stát: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<select wicket:id="countryChange"></select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<button class="button3" type="submit">Změnit dodací údaje</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</wicket:extend>

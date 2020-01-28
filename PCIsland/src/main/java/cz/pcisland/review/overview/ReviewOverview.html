@@ -1,0 +1,62 @@
+<wicket:extend>
+	
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Přehled recenzí -->
+	<h2>Přehled recenzí</h2>
+	
+	<div wicket:id="reviewContainer">
+		<div id="reviewContainer" wicket:id="reviewedProductsPageableListView">
+			<div class="frameTitle">
+			
+				<a href="#" id="nameLink" wicket:id="nameLink">
+					<span wicket:id="name"></span>
+				</a>
+			</div>
+			
+			<div wicket:id="productReviewListView">
+				
+				<div id="underlineCell">
+					<div wicket:id="underline"></div>
+				</div>
+			
+				<div id="reviewInfo">
+					<div class="rating" wicket:id="reviewRating"></div>
+					<div id="userFullName" wicket:id="userFullName"></div>
+					<div wicket:id="creationDate"></div>
+				</div>
+				
+				<div id="reviewPros">
+					<div id="pros" wicket:id="prosListView">
+						<span id="plus">&plus;</span>
+						<span wicket:id="pros"></span>
+					</div>
+				</div>
+				
+				<div id="reviewCons">
+					<div id="cons" wicket:id="consListView">
+						<span id="minus">&minus;</span>
+						<span wicket:id="cons"></span>
+					</div>
+				</div>
+				
+				<div id="linkCell">
+					<a href="#" id="editLink" wicket:id="editLink">Upravit</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Stránkování -->
+	<div class="pagingNavigatorContainer">
+		<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+	</div>
+</wicket:extend>

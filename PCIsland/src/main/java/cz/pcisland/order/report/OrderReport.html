@@ -1,0 +1,29 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Zpráva o objednávce -->
+	<h2>Zpráva o objednávce</h2>
+	
+	<form id="orderReporWebContainer" wicket:id="orderReporWebContainer">
+		<img src="success.png">
+		<span>Vaše objednávka číslo: </span>
+		<span id="idOrder" wicket:id="idOrder"></span><br>
+		<span>byla úspěšně vytvořena a odeslána ke zpracování.<br><br>
+			  Děkujeme za váš nákup.</span>
+	</form>
+	
+	<!-- Navigační odkazy -->
+	<div id="orderReportContainer">
+		<a href="#" id="orderOverviewLink" wicket:id="orderOverviewLink">Přehled objednávek</a>
+		<a href="#" id="backToHomePageLink" wicket:id="backToHomePageLink">Zpět do obchodu</a>
+	</div>
+</wicket:extend>

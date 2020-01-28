@@ -1,0 +1,100 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Filtr produktů -->
+	<form id="filter" wicket:id="filterForm">
+		<div class="frameTitle">Filtr</div>
+		
+		<!-- Typ produktu -->
+		<p class="category">Typ produktu:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="processorsCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="processorsLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="graphicsCardsCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="graphicsCardsLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="memoryCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="memoryLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="motherboardsCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="motherboardsLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="hardDisksCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="hardDisksLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="powerSupplyUnitsCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="powerSupplyUnitsLabel"></span>
+			</label><br>
+		</p>
+	</form>
+	
+	<!-- Změna ceny -->
+	<h2>Změna ceny</h2>
+	<form id="productsPriceChangeForm" wicket:id="productsPriceChangeForm">
+		<div class="frameTitle"><br></div>
+		
+		<table wicket:id="productsPriceChangePageableListView">
+			<tr>
+				<td id="imageCell">
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+					
+				<td id="nameCell">
+					<a href="#" wicket:id="nameLink">
+						<span id="name" wicket:id="name"></span>
+					</a>
+					
+					<span id="currentPrice">Aktuální cena:
+						<span wicket:id="currentPrice"></span>
+					</span>
+					
+					
+					<input class="priceChange" type="number" wicket:id="priceChange">
+					<span id="change">Nová cena:</span>
+				</td>
+				
+				<td>
+					<button id="changePrice" type="submit" wicket:id="submitButton">Uložit cenu</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<!-- Stránkování -->
+	<div class="pagingNavigatorContainer">
+		<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+	</div>
+</wicket:extend>

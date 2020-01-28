@@ -1,0 +1,204 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Přihlášení -->
+	<h2>Přihlášení a registrace</h2>
+	
+	<form id="loginForm" wicket:id="loginForm">
+		<div class="frameTitle">Přihlášení</div>
+		
+		<table id="loginTable">
+		
+			<!-- Úspěšné přihlášení -->
+			<div wicket:id="successLoginLabel"></div>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Email: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="emailLoginLabel"></span>
+					<input type="text" wicket:id="emailLogin">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Heslo: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="passwordLoginLabel"></span>
+					<input type="password" wicket:id="passwordLogin">
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<button class="button" type="submit" wicket:id="submitLogin">Přihlásit se</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<!-- Registrace -->
+	<form id="registrationForm" wicket:id="registrationForm">
+		<div class="frameTitle">Registrace</div>
+		
+		<table id="registrationTable">
+		
+			<!-- Úspěšná registrace -->
+			<div wicket:id="successRegLabel"></div>
+		
+			<tr>
+				<td class="nameColumn">
+					<span>Email: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="emailRegLabel"></span>
+					<input type="text" wicket:id="emailReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Heslo: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="passwordRegLabel"></span>
+					<input type="password" wicket:id="passwordReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Potvrzení hesla: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="passwordConfirmRegLabel"></span>
+					<input type="password" wicket:id="passwordConfirmReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Jméno: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="nameRegLabel"></span>
+					<input type="text" wicket:id="nameReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Příjmení: </span>
+				</td>
+				
+				<td class="inputColumn">
+					 <span wicket:id="surnameRegLabel"></span>
+					<input type="text" wicket:id="surnameReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Pohlaví: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<div wicket:id="genderReg">
+						<input type="radio" wicket:id="man">
+						<span wicket:id="manLabel"></span>
+					
+						<input type="radio" wicket:id="woman">
+						<span wicket:id="womanLabel"></span>
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Telefonní číslo: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="phoneNumberRegLabel"></span>
+					<input type="text" wicket:id="phoneNumberReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Ulice a č. p.: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="streetAddressRegLabel"></span>
+					<input type="text" wicket:id="streetAddressReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Město: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="cityRegLabel"></span>
+					<input type="text" wicket:id="cityReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>PSČ: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<span wicket:id="zipCodeRegLabel"></span>
+					<input type="text" wicket:id="zipCodeReg">
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Stát: </span>
+				</td>
+				
+				<td class="inputColumn">
+					<select wicket:id="countyReg"></select>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" id="conditions">
+					<div>
+						<span wicket:id="submitLabel"></span>
+						<input type="checkbox" wicket:id="agreeReg">
+					</div>
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<button class="button2" type="submit" wicket:id="submitReg">Registrovat se</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</wicket:extend>

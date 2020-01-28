@@ -1,0 +1,159 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Postup objednávkou -->
+	<div id="cartTitle">
+		<a href="#" id="activeLink" wicket:id="menuCartLink">Košík</a>
+		<a href="#" id="activeLink" wicket:id="menuShippingAndPaymentLink">Doprava a platba</a>
+		<a href="#" id="activeLink" wicket:id="menuDeliveryDataLink">Dodací údaje</a>
+		<a href="#" id="current">Souhrn objednávky</a>
+	</div>
+	
+	<!-- Kontaktní údaje -->
+	<div id="contactInformationWebContainer" wicket:id="contactInformationWebContainer">
+		<div class="frameTitle">Kontaktní údaje</div>
+		
+		<table id="contactInformationTable">
+			<tr class="orderUnderline">
+				<td class="nameColumn">
+					<span>Jméno: </span>
+				</td>
+				
+				<td class="outputColumn">
+					<span wicket:id="customerFullName"></span>
+				</td>
+			</tr>
+			
+			<tr class="orderUnderline">
+				<td class="nameColumn">
+					<span>Telefon: </span>
+				</td>
+				
+				<td class="outputColumn">
+					<span wicket:id="customerPhoneNumber"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Email: </span>
+				</td>
+				
+				<td class="outputColumn">
+					<span wicket:id="customerEmail"></span>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<!-- Fakturační adresa -->
+	<div id="billingAddressWebContainer" wicket:id="billingAddressWebContainer">
+		 <div class="frameTitle">Fakturační údaje</div>
+		 
+		 <table id="billingAddressTable">
+		 	<tr class="orderUnderline">
+		 		<td class="nameColumn">
+		 			<span>Adresa: </span>
+		 		</td>
+		 		
+		 		<td class="outputColumn">
+		 			<span wicket:id="customerStreetAddress"></span>
+		 		</td>
+		 	</tr>
+		 	
+		 	<tr class="orderUnderline">
+		 		<td class="nameColumn">
+		 			<span>Město: </span>
+		 		</td>
+		 		
+		 		<td class="outputColumn">
+		 			<span wicket:id="customerZipCodeAndCity"></span>
+		 		</td>
+		 	</tr>
+		 	
+		 	<tr>
+		 		<td class="nameColumn">
+		 			<span>Země: </span>
+		 		</td>
+		 		
+		 		<td class="outputColumn">
+		 			<span wicket:id="customerCountry"></span>
+		 		</td>
+		 	</tr>
+		 </table>
+	</div>
+	
+	<!-- Obsah košíku -->
+	<div id="cartContantWebContainer" wicket:id="cartContantWebContainer">
+		<div class="frameTitle">Obsah košíku</div>
+	
+		<table wicket:id="cartListView">
+			<tr>
+				<td id="imageCell">
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+				
+				<td id="nameAndStockCell">
+					<a href="#" wicket:id="nameLink">
+						<span id="name" wicket:id="name"></span>
+					</a>
+					
+					<span wicket:id="stock"></span>
+				</td>
+				
+				<td id="amountCell">
+					<span id="amount" wicket:id="amount"></span>
+				</td>
+				
+				<td>
+					<span id="price" wicket:id="price"></span>
+				</td>
+			</tr>
+		</table>
+		
+		<!-- Způsob dopravy -->
+		<div class="shipping">
+			<span>Doprava: </span>
+			<span wicket:id="shippingType"></span>
+			<span class="shippingPrice" wicket:id="shippingPrice"></span>
+		</div>
+		
+		<!-- Způsob platby -->
+		<div class="payment">
+			<span>Platba: </span>
+			<span wicket:id="paymentType"></span>
+			<span class="paymentPrice" wicket:id="paymentPrice"></span>
+		</div>
+		
+		<div id="cartUnderline" ></div>
+		
+		<!-- Cena bez DPH -->
+		<div class="totalPriceWithoutDPH">
+			<span>Cena bez DPH: </span>
+			<span wicket:id="totalPriceWithoutDPH"></span>
+		</div>
+		
+		<!-- Celková cena -->
+		<div class="totalPrice">
+			<span>Celková cena k úhradě: </span>
+			<span class="totalPriceInt" wicket:id="totalPrice"></span>
+		</div>
+	</div>
+	
+	<!-- Navigační odkazy -->
+	<div id="orderSummaryContainer">
+		<a href="#" id="sendOrderLink" wicket:id="sendOrderLink">Odeslat Objednávku</a>
+		<a href="#" id="deliveryDataLink" wicket:id="deliveryDataLink">Dodací údaje</a>
+	</div>
+</wicket:extend>

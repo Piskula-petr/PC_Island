@@ -1,0 +1,189 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Detail objednávky -->
+	<h2 wicket:id="idOrder"></h2>
+	<div id="statusLabel">Stav:
+		<button id="orderOverviewDetailButton" onclick="statusOptions()" wicket:id="orderStatusButton"></button>
+  	</div>
+  	
+  	<!-- Změna stavu objednávky -->
+  	<div id="orderOverviewDetailDropdown" class="dropdown-options" wicket:id="dropdownOptionsContainer">
+    	<a href="#" wicket:id="newOrderLink">Nová</a>
+    	<a href="#" wicket:id="processedOrderLink">Zpracovaná</a>
+    	<a href="#" wicket:id="sentOrderLink">Odeslaná</a>
+    	<a href="#" wicket:id="completedOrderLink">Vyřízená</a>
+  	</div>
+	
+	<!-- Kontaktní údaje -->
+	<div id="contactInformationWebContainer" wicket:id="contactInformationWebContainer">
+		<div class="frameTitle">Kontaktní údaje</div>
+		
+		<table id="contactInformationTable">
+			<tr class="orderUnderline">
+				<td class="nameColumn">
+					<span>Jméno: </span>
+				</td>
+				
+				<td class="outputColumn">
+					<span wicket:id="customerFullName"></span>
+				</td>
+			</tr>
+			
+			<tr class="orderUnderline">
+				<td class="nameColumn">
+					<span>Telefon: </span>
+				</td>
+				
+				<td class="outputColumn">
+					<span wicket:id="customerPhoneNumber"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="nameColumn">
+					<span>Email: </span>
+				</td>
+				
+				<td class="outputColumn">
+					<span wicket:id="customerEmail"></span>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<!-- Fakturační adresa -->
+	<div id="billingAddressWebContainer" wicket:id="billingAddressWebContainer">
+		 <div class="frameTitle">Fakturační údaje</div>
+		 
+		 <table id="billingAddressTable">
+		 	<tr class="orderUnderline">
+		 		<td class="nameColumn">
+		 			<span>Adresa: </span>
+		 		</td>
+		 		
+		 		<td class="outputColumn">
+		 			<span wicket:id="customerStreetAddress"></span>
+		 		</td>
+		 	</tr>
+		 	
+		 	<tr class="orderUnderline">
+		 		<td class="nameColumn">
+		 			<span>Město: </span>
+		 		</td>
+		 		
+		 		<td class="outputColumn">
+		 			<span wicket:id="customerZipCodeAndCity"></span>
+		 		</td>
+		 	</tr>
+		 	
+		 	<tr>
+		 		<td class="nameColumn">
+		 			<span>Země: </span>
+		 		</td>
+		 		
+		 		<td class="outputColumn">
+		 			<span wicket:id="customerCountry"></span>
+		 		</td>
+		 	</tr>
+		 </table>
+	</div>
+	
+	<!-- Obsah košíku -->
+	<div id="cartContantWebContainer" wicket:id="productsWebContainer">
+		<div class="frameTitle">Obsah košíku</div>
+	
+		<table wicket:id="productsListView">
+			<tr>
+				<td id="imageCell">
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+				
+				<td id="nameAndStockCell">
+					<a href="#" wicket:id="nameLink">
+						<span id="name" wicket:id="name"></span>
+					</a>
+					<span wicket:id="stock"></span>
+				</td>
+				
+				<td id="amountCell">
+					<span id="amount" wicket:id="amount"></span>
+				</td>
+				
+				<td>
+					<span id="price" wicket:id="price"></span>
+				</td>
+			</tr>
+		</table>
+		
+		<!-- Způsob dopravy -->
+		<div class="shipping">
+			<span>Doprava: </span>
+			<span wicket:id="shippingType"></span>
+			<span class="shippingPrice" wicket:id="shippingPrice"></span>
+		</div>
+		
+		<!-- Způsob platby -->
+		<div class="payment">
+			<span>Platba: </span>
+			<span wicket:id="paymentType"></span>
+			<span class="paymentPrice" wicket:id="paymentPrice"></span>
+		</div>
+		
+		<div id="cartUnderline" ></div>
+		
+		<!-- Cena bez DPH -->
+		<div class="totalPriceWithoutDPH">
+			<span>Cena bez DPH: </span>
+			<span wicket:id="totalPriceWithoutDPH"></span>
+		</div>
+		
+		<!-- Celková cena -->
+		<div class="totalPrice">
+			<span>Celková cena: </span>
+			<span class="totalPriceInt" wicket:id="totalPrice"></span>
+		</div>
+	</div>
+	
+	<!-- Navigační odkaz -->
+	<div id="orderOverviewContainer">
+		<a href="#" id="orderOverviewLink" wicket:id="orderOverviewLink">Přehled objednávek</a>
+	</div>
+	
+	<!-- Script -->
+	<script>
+	
+		// Zobrazí možnosti
+		function statusOptions() {
+		  document.getElementById("orderOverviewDetailDropdown").classList.toggle("show");
+		}
+	
+		// Zavření možností při kliknutí mimo
+		window.onclick = function(event) {
+			
+			if (!event.target.matches('#orderOverviewDetailButton')) {
+				var options = document.getElementsByClassName("dropdown-options");
+				var i;
+				
+				for (i = 0; i < options.length; i++) {
+					var openDropdown = options[i];
+					
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
+	</script>
+</wicket:extend>

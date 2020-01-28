@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="logo.png">
+		<link rel="styleSheet" href="style.css" type="text/css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title wicket:id="titleLabel"></title>
+	</head>
+	
+	<body>
+	
+		<!-- Záhlaví -->
+		<header>
+		
+			<!-- Odkaz na hlavní stránku -->
+			<a href="#" id="mainLogo" wicket:id="homePageLink">
+				<img src="logo.png">
+				<span>PC ISLAND</span>
+			</a>
+			
+			
+			<!-- Vyhledávací lišta -->
+			<form wicket:id="searchBarForm">
+				<input id="searchBar" type="text" placeholder="Co hledáte..." autocomplete="off" wicket:id="searchBarTextField">
+			
+				<button id="searchBarButton" type="submit">
+					<img id="searchBarImage" src="search.png">
+				</button>
+			</form>
+			
+			<!-- List hledaných produktů -->
+			<div id="searchedProductsContainer" wicket:id="searchedProductsContainer">
+			
+				<div id="searchBarDropdown-choice">
+					<div id="searchedProductsDropdown" wicket:id="searchedProductsDropdownListView">
+						<table>
+							<tr>
+								<td id="imageContainer">
+									<a href="#" wicket:id="imageLink">
+										<img id="image" wicket:id="image">
+									</a>
+								</td>
+								
+								<td>
+									<a href="#" wicket:id="nameLink">
+										<span id="name" wicket:id="name"></span>
+									</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Odkaz na košík -->
+			<figure>
+				<div class="dropdown">
+					<a href="#" wicket:id="cartPage">
+						<img src="cart.png">	
+						<span id="cartSize" wicket:id="cartSize"></span>
+					</a>
+						
+					<!-- List produktů v košíku -->
+					<div id="cartDropdown-choice">
+						<div id="cartDropdown" wicket:id="cartDropdownListView">
+							<table>
+								<tr>
+									<td id="imageContainer">
+										<a href="#" wicket:id="imageLink">
+											<img id="image" wicket:id="image">
+										</a>
+									</td>
+									
+									<td id="produktInfoContainer">
+										<a href="#" wicket:id="nameLink">
+											<span id="name" wicket:id="name"></span>
+										</a>
+										
+										<span id="amount" wicket:id="amount"></span>
+										<span id="price" wicket:id="price"></span>
+									</td>
+									
+									<td id="removeContainer">
+										<a href="#" id="removeLink" wicket:id="removeLink">
+											<img id="removeImage" src="remove.png">
+										</a>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<figcaption id="cartLabel" wicket:id="cartLabel"></figcaption>
+			</figure>	
+				
+			<!-- Odkaz pro přihlášení a registraci -->
+			<figure>
+					<div class="dropdown">
+						<a href="#" wicket:id="loginPage">
+							<img src="login.png">
+							
+							<div id="loginDropdown-choice">
+								<div id="loginDropdown">
+								
+									<!-- Odkaz pro nastavení -->
+									<a href="#" wicket:id="settingLink">Nastavení účtu</a>
+									
+									<!-- Odkaz na objednávky -->
+									<a href="#" wicket:id="ordersLink">Objednávky</a>
+																	
+									<!-- Přehled recenzí -->
+									<a href="#" wicket:id="reviewOverviewLink">Přehled recenzí</a>
+									
+									<!-- Stav zboží (Admin only) -->
+									<a href="#" wicket:id="productStatusLink">Přehled zboží</a>
+									
+									<!-- Změna ceny (Admin only) -->
+									<a href="#" wicket:id="productPriceChangeLink">Změna ceny</a>
+									
+									<!-- Odkaz pro odhlášení -->
+									<a href="#" wicket:id="logoutLink" >Odhlásit se</a>
+								</div>
+							</div>
+						</a> 
+					</div>
+				<figcaption id="loginLabel" wicket:id="userLabel"></figcaption>
+			</figure>
+		</header>
+		
+		<!-- Hlavní sekce stránky -->		
+		<section>
+			<wicket:child/>
+		</section>
+
+		<!-- Zápatí -->
+		<footer>
+			<div id="copyright" wicket:id="copyright"></div>
+		</footer>
+	</body>
+</html>

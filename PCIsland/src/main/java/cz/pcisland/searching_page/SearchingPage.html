@@ -1,0 +1,59 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<h2>Vyhledáno: 
+		<span wicket:id="searchLabel"></span>
+	</h2>
+	<img id="productLogo" src="products logos\\search_logo.png">
+	
+	<!-- Produkty -->
+	<div class="toRight" wicket:id="markupContainer">
+		
+		<!-- Třídící filtr -->
+		<div id="sortFilter">
+			<span wicket:id="itemsAmount"></span>
+			<a href="#" id="first" wicket:id="topSellingLink">Nejprodávanější</a>
+			<a href="#" wicket:id="mostExpensiveLink">Nejdražší</a>
+			<a href="#" wicket:id="cheapestLink">Nejlevnější</a>
+			<a href="#" wicket:id="bestRatedLink">Nejlépe hodnocené</a>
+		</div>
+	
+		<article id="items" wicket:id="productsPageableListView">
+		
+			<div id="imageFrame">
+				<a href="#" wicket:id="imageLink">
+					<img id="image" wicket:id="image">
+				</a>
+			</div>
+			
+			<span id="rating" wicket:id="rating"></span>
+			<span id="price" wicket:id="price"></span>
+			<span id="priceWithoutDPH" wicket:id="priceWithoutDPH"></span>
+			<span wicket:id="stock"></span>
+			
+			<a href="#" id="buy" wicket:id="buyLink">
+				<span wicket:id="buyLabel"></span>
+			</a>
+			
+			<a href="#" id="name" wicket:id="nameLink">
+				<span wicket:id="name"></span>
+			</a>
+			
+			<span id="description" wicket:id="description"></span>
+		</article>
+		
+		<!-- Stránkování -->
+		<div class="pagingNavigatorContainer">
+			<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+		</div>
+	</div>
+</wicket:extend>

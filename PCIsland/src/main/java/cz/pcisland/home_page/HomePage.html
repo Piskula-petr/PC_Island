@@ -1,0 +1,182 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Reklamní akce -->
+	<article style="border: none">
+		<div>
+			<div id="slider">
+				<img class="slide" src="events\\event_1.jpg">
+				<img class="slide" src="events\\event_2.jpg">
+				<img class="slide" src="events\\event_3.jpg">
+				<img class="slide" src="events\\event_4.jpg">
+			</div>
+			
+			<div id="pointerContainer">
+				<span class="pointer" onclick="currentSlide(1)"></span> 
+				<span class="pointer" onclick="currentSlide(2)"></span> 
+				<span class="pointer" onclick="currentSlide(3)"></span> 
+				<span class="pointer" onclick="currentSlide(4)"></span> 
+			</div>
+		</div>
+	</article>
+	
+	<!-- Společnosti -->
+	<div id="companiesContainer">
+		<a href=# wicket:id="amdLink">
+			<img src="companies logos\\amd.png">
+		</a>
+		
+		<a href=# wicket:id="asusLink">
+			<img src="companies logos\\asus.png">
+		</a>
+		
+		<a href=# wicket:id="corsairLink">
+			<img src="companies logos\\corsair.png">
+		</a>
+		
+		<a href=# wicket:id="crucialLink">
+			<img src="companies logos\\crucial.png">
+		</a>
+		
+		<a href=# wicket:id="evgaLink">
+			<img src="companies logos\\evga.png">
+		</a>
+		
+		<a href=# wicket:id="gigabyteLink">
+			<img src="companies logos\\gigabyte.png">
+		</a>
+		
+		<a href=# wicket:id="gskillLink">
+			<img src="companies logos\\gskill.png">
+		</a>
+		
+		<a href=# wicket:id="hyperxLink">
+			<img src="companies logos\\hyperx.png">
+		</a>
+		
+		<a href=# wicket:id="intelLink">
+			<img src="companies logos\\intel.png">
+		</a>
+		
+		<a href=# wicket:id="msiLink">
+			<img src="companies logos\\msi.png">
+		</a>
+		
+		<a href=# wicket:id="samsungLink">
+			<img src="companies logos\\samsung.png">
+		</a>
+		
+		<a href=# wicket:id="seagateLink">
+			<img src="companies logos\\seagate.png">
+		</a>
+		
+		<a href=# wicket:id="seasonicLink">
+			<img src="companies logos\\seasonic.png">
+		</a>
+		
+		<a href=# wicket:id="westernDigitalLink">
+			<img src="companies logos\\western_digital.png">
+		</a>
+	</div>
+	
+	<!-- Všechny produkty -->
+	<div class="toRight" wicket:id="markupContainer">
+	
+	<!-- Třídící filtr -->
+	<div id="sortFilter">
+		<span wicket:id="itemsAmount"></span>
+		<a href="#" id="first" wicket:id="topSellingLink">Nejprodávanější</a>
+		<a href="#" wicket:id="mostExpensiveLink">Nejdražší</a>
+		<a href="#" wicket:id="cheapestLink">Nejlevnější</a>
+		<a href="#" wicket:id="bestRatedLink">Nejlépe hodnocené</a>
+	</div>
+	
+		<article id="items" wicket:id="productsPageableListView">
+			<div id="imageFrame">
+				<a href="#" wicket:id="imageLink">
+					<img id="image" wicket:id="image">
+				</a>
+			</div>
+			
+			<span id="rating" wicket:id="rating"></span>
+			<span id="price" wicket:id="price"></span>
+			<span id="priceWithoutDPH" wicket:id="priceWithoutDPH"></span>
+			<span wicket:id="stock"></span>
+			
+			<a href="#" id="buy" wicket:id="buyLink">
+				<span wicket:id="buyLabel"></span>
+			</a>
+			
+			<a href="#" id="name" wicket:id="nameLink">
+				<span wicket:id="name"></span>
+			</a>
+			
+			<span id="description" wicket:id="description"></span>
+		</article>
+		
+		<div class="pagingNavigatorContainer">
+			<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+		</div>
+	</div>
+	
+	<script>
+	
+		// Postupné zobrazování obrázku
+		var slideIndex = 0;
+		var slides;
+		var dots;
+		showSlides();
+
+		function showSlides() {
+		 	slides = document.getElementsByClassName("slide");
+		  	dots = document.getElementsByClassName("pointer");
+		  	
+		  	var i;
+		  	for (i = 0; i < slides.length; i++) {
+		    	slides[i].style.display = "none";  
+		  	}
+		  	slideIndex++;
+		  
+		  	if (slideIndex > slides.length) {
+			  slideIndex = 1
+				}    
+		  	for (i = 0; i < dots.length; i++) {
+		    	dots[i].className = dots[i].className.replace(" active", "");
+		  	}
+		  	
+		  	slides[slideIndex-1].style.display = "block";  
+		  	dots[slideIndex-1].className += " active";
+		  	setTimeout(showSlides, 5000);
+		}
+		
+		// Zobrazení aktuálního obrázku
+		function currentSlide(index) {
+    		if (index > slides.length) {
+    			index = 1;
+    		}
+    		else if (index < 1){
+    			index = slides.length;
+    		}
+    		
+    		for (i = 0; i < slides.length; i++) {
+       			slides[i].style.display = "none";  
+    		}
+    		
+    		for (i = 0; i < dots.length; i++) {
+        		dots[i].className = dots[i].className.replace(" active", "");
+    		}
+    		
+    		slides[index-1].style.display = "block";  
+    		dots[index-1].className += " active";
+		}
+	</script>
+</wicket:extend>

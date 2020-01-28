@@ -1,0 +1,268 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" id="active-bottom" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+
+	<h2>Zdroje (PSU)</h2>
+	<img id="productLogo" src="products logos\\power_supply_unit.png">
+	
+	<!-- Nejprodávanější produkty -->
+	<article id="topSelling">
+	<div class="frameTitle">Nejprodávanější</div>
+	
+	<div id="topSellingUnderline1"></div>
+	<div id="topSellingUnderline2"></div>
+	
+		<table wicket:id="topSellingListView">
+			<tr>
+				<td>
+					<span id="counter" wicket:id="counter"></span>
+				</td>
+				
+				<td>
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+				
+				<td>
+					<a href="#" id="name" wicket:id="nameLink">
+						<span wicket:id="name"></span>
+					</a>
+					
+					<a href="#" id="description" wicket:id="descriptionLink">
+						<span wicket:id="description"></span>
+					</a>
+				</td>
+				
+				<td>
+					<span id="price" wicket:id="price"></span>
+				</td>
+			</tr>
+		</table>
+	</article>
+
+	<!-- Filtr produktů -->
+	<form id="productFilter" wicket:id="filterForm">
+		<div class="frameTitle">Filtr</div>
+		
+		<!-- Cena -->
+		<p class="category">Cena:</p>
+		<p>
+  			<span id="from">Od: </span>
+  			<input type="text" wicket:id="minPriceTextField">
+  			<span id="to">Do: </span>
+  			<input type="text" wicket:id="maxPriceTextField">
+  			<input type="submit" hidden="true">
+  			<br><br>
+		</p>
+		
+		<!-- Dostupnost -->
+		<p class="category">Dostupnost:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="onStockCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="onStockLabel"></span>
+			</label><br>
+		</p>
+		
+		<!-- Výrobce -->
+		<p class="category">Výrobce:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="corsairCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="corsairLabel"></span>
+			</label><br>
+		</p>
+			
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="evgaCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="evgaLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="seasonicCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="seasonicLabel"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Typ zdroje -->
+		<p class="category">Typ zdroje:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="atxCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="atxLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="sfxCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="sfxLabel"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Výkon -->
+		<p class="category">Výkon:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="performance650CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="performance650Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="performance750CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="performance750Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="performance850CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="performance850Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="performance1300CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="performance1300Label"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Energetická efektivita -->
+		<p class="category">Energetická efektivita:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="efficiencyBronzeCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="efficiencyBronzeLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="efficiencySilverCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="efficiencySilverLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="efficiencyGoldCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="efficiencyGoldLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="efficiencyPlatinumCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="efficiencyPlatinumLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="efficiencyTitaniumCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="efficiencyTitaniumLabel"></span>
+			</label><br><br>
+		</p>
+		
+		<!-- Velikost ventilátoru -->
+		<p class="category">Velikost ventilátoru:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="fan92CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="fan92Label"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="fan120CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="fan120Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="fan130CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="fan130Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="fan135CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="fan135Label"></span>
+			</label><br>
+		</p>
+		
+		<p>		
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="fan140CheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="fan140Label"></span>
+			</label><br><br>
+		</p>
+	</form>
+	
+	<!-- Produkty -->
+	<div class="toRight" wicket:id="markupContainer"> 
+	
+		<!-- Třídící filtr -->
+		<div id="sortFilter">
+			<span wicket:id="itemsAmount"></span>
+			<a href="#" id="first" wicket:id="topSellingLink">Nejprodávanější</a>
+			<a href="#" wicket:id="mostExpensiveLink">Nejdražší</a>
+			<a href="#" wicket:id="cheapestLink">Nejlevnější</a>
+			<a href="#" wicket:id="bestRatedLink">Nejlépe hodnocené</a>
+		</div>
+	
+		<!-- Chybová hláška -->
+		<div class="errorMessageContainer" wicket:id="errorMessageMarkupContainer">
+			<span wicket:id="errorMessage"></span>
+			<a href="#" wicket:id="refreshLink">Zrušit filtr</a>
+		</div>
+	
+		<!-- Produkt -->
+		<article id="items" wicket:id="productsPageableListView">
+		
+			<div id="imageFrame">
+				<a href="#" wicket:id="imageLink">
+					<img id="image" wicket:id="image">
+				</a>
+			</div>
+			
+			<span id="rating" wicket:id="rating"></span>
+			<span id="price" wicket:id="price"></span>
+			<span id="priceWithoutDPH" wicket:id="priceWithoutDPH"></span>
+			<span wicket:id="stock"></span>
+			
+			<a href="#" id="buy" wicket:id="buyLink">
+				<span wicket:id="buyLabel"></span>
+			</a>
+			
+			<a href="#" id="name" wicket:id="nameLink">
+				<span wicket:id="name"></span>
+			</a>
+			
+			<span id="description" wicket:id="description"></span>
+		</article>
+		
+		<!-- Stránkování -->
+		<div class="pagingNavigatorContainer">
+			<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+		</div>
+	</div>
+</wicket:extend>

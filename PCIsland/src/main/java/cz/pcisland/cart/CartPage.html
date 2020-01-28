@@ -1,0 +1,78 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Postup objednávkou -->
+	<div id="cartTitle">
+		<a href="#" id="current">Košík</a>
+		<a href="#">Doprava a platba</a>
+		<a href="#">Dodací údaje</a>
+		<a href="#">Souhrn objednávky</a>
+	</div>
+	
+	<!-- Košík -->
+	<div id="cartWebContainer" wicket:id="cartWebContainer">
+		<div class="frameTitle">Obsah košíku</div>
+	
+		<!-- Chybová hláška -->
+		<span id="emptyCartLabel" wicket:id="emptyCartLabel"></span>
+		<span id="cartUnderline" wicket:id="emptyCartUnderline"></span>
+		
+		<table wicket:id="cartListView">
+			<tr>
+				<td id="imageCell">
+					<a href="#" wicket:id="imageLink">
+						<img id="image" wicket:id="image">
+					</a>
+				</td>
+				
+				<td id="nameCell">
+					<a href="#" wicket:id="nameLink">
+						<span id="name" wicket:id="name"></span>
+					</a>
+					<span wicket:id="stock"></span>
+				</td>
+				
+				<td id="amountCell">
+					<input class="amount" type="number" wicket:id="amount">
+				</td>
+				
+				<td id="priceCell">
+					<span id="price" wicket:id="price"></span>
+				</td>
+				
+				<td id="removeCell">
+					<a href="#" id="removeLink" wicket:id="removeLink">
+						<img id="removeImage" src="remove.png">
+					</a>
+				</td>
+			</tr>
+		</table>
+		
+		<!-- Cena bez DPH -->
+		<div class="totalPriceWithoutDPH">
+			<span>Cena bez DPH: </span>
+			<span wicket:id="totalPriceWithoutDPH"></span>
+		</div>
+		
+		<!-- Celková cena -->
+		<div class="totalPrice">
+			<span>Celková cena k úhradě: </span>
+			<span class="totalPriceInt" wicket:id="totalPrice"></span>
+		</div>
+	</div>
+
+	<!-- Navigační odkazy -->
+	<div class="cartContainer">
+		<a href="#" id="deliveryAndPaymentLink" wicket:id="deliveryAndPaymentLink">Doprava a platba</a>
+		<a href="#" id="backToHomePageLink" wicket:id="backToHomePageLink">Zpět do obchodu</a>
+	</div>
+</wicket:extend>

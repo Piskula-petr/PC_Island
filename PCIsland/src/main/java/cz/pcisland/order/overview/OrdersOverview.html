@@ -1,0 +1,79 @@
+<wicket:extend>
+
+	<!-- Navigační menu -->
+	<nav>
+		<a href="#" wicket:id="processorsPage">Procesory</a>
+		<a href="#" class="underline" wicket:id="graphicsCardsPage" >Grafické karty</a>
+		<a href="#" class="underline" wicket:id="memoryPage">Operační paměti</a>
+		<a href="#" class="underline" wicket:id="motherboardsPage">Základní desky</a>
+		<a href="#" class="underline" wicket:id="hardDisksPage">Pevné disky</a>
+		<a href="#" class="underline" wicket:id="powerSupplyUnitsPage">Zdroje</a>
+	</nav>
+	
+	<!-- Filtr objednávek -->
+	<form id="filter" wicket:id="filterForm">
+		<div class="frameTitle">Filtr</div>
+	
+		<!-- Stav objednávky -->
+		<p class="category">Stav objednávky:</p>
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="newOrderCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="newOrderLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="processedOrderCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="processedOrderLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="sentOrderCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="sentOrderLabel"></span>
+			</label><br>
+		</p>
+		
+		<p>
+			<label class="containerCheckbox">
+  				<input type="checkbox" wicket:id="completedOrderCheckBox">
+  				<span class="checkmarkCheckbox" wicket:id="completedOrderLabel"></span>
+			</label><br>
+		</p>
+	</form>
+	
+	<!-- Přehled objednávek -->
+	<h2>Objednávky</h2>
+	
+	<!-- Chybová hláška -->
+	<span id="noOrdersLabel" wicket:id="noOrdersLabel"></span>
+	
+	<div wicket:id="markupContainer">
+		<div id="ordersOverviewContainer" wicket:id="ordersPageableListView">
+			<div class="frameTitle">
+				<span id="creationDate" wicket:id="creationDate"></span>
+				
+				<a href="#" id="idOrderLink" wicket:id="idOrderLink">
+					<span id="idOrder" wicket:id="idOrder"></span>
+				</a>
+				
+				<span id="status" wicket:id="status"></span>
+				<span id="totalPrice" wicket:id="totalPrice"></span>
+			</div>
+				
+			<div wicket:id="productsListView">
+				<a href="#" wicket:id="imageLink">
+					<img id="image" wicket:id="image">
+				</a>
+			</div>
+		</div>
+		
+		<!-- Stránkování -->
+		<div class="pagingNavigatorContainer">
+			<span class="pagingNavigator" wicket:id="pagingNavigator"></span>
+		</div>
+	</div>
+</wicket:extend>
