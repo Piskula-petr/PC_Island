@@ -220,7 +220,7 @@ public class DeliveryDataPage extends BasePage {
 				
 				// Uložení všech parametrů produktů, separované středníkem
 				String productTypes = "";
-				String productIDs = "";
+				String productNames = "";
 				String productAmount = "";
 				String productsPrices = "";
 				
@@ -228,8 +228,8 @@ public class DeliveryDataPage extends BasePage {
 					productTypes = productTypes + product.getType() + ";";
 					order.setProductTypes(productTypes);
 					
-					productIDs = productIDs + product.getId() + ";";
-					order.setProductIDs(productIDs);
+					productNames = productNames + product.getName() + ";";
+					order.setProductNames(productNames);
 					
 					productAmount = productAmount + product.getAmount() + ";";
 					order.setProductAmount(productAmount);

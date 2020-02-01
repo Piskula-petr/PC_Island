@@ -196,7 +196,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM pc_island.reviews WHERE (pros NOTNULL OR cons NOTNULL) ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.reviews WHERE (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				Review review = new Review();

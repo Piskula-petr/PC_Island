@@ -19,17 +19,13 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 
 import cz.pcisland.base_page.BasePage;
-import cz.pcisland.graphics_cards.GraphicsCardDAOImpl;
-import cz.pcisland.hard_disks.HardDiskDAOImpl;
-import cz.pcisland.memory.MemoryDAOImpl;
-import cz.pcisland.motherboards.MotherboardDAOImpl;
 import cz.pcisland.order.Order;
 import cz.pcisland.order.OrderDAO;
 import cz.pcisland.order.OrderDAOImpl;
 import cz.pcisland.order.overview.OrdersOverview;
-import cz.pcisland.power_supply_units.PowerSupplyUnitDAOImpl;
-import cz.pcisland.processors.ProcessorDAOImpl;
 import cz.pcisland.product.Product;
+import cz.pcisland.product.ProductDAO;
+import cz.pcisland.product.ProductDAOImpl;
 import cz.pcisland.user.User;
 
 /*
@@ -41,10 +37,6 @@ import cz.pcisland.user.User;
  *		fakturační údaje,
  *		zakoupené produkty,
  *		navigační odkaz (přehled objednávek)
- *
- *	Metody:
- *
- *		informace o produktu
  */
 
 public class OrderOverviewDetail extends BasePage {
@@ -104,6 +96,7 @@ public class OrderOverviewDetail extends BasePage {
 				
 				// Posun možností stavu objednávky + uložení nového stavu
 				OrderDAO orderDAO = new OrderDAOImpl();
+				
 				switch (order.getStatus()) {
 					case "Nová" :
 						dropdownOptionsContainer.add(new AttributeModifier("style", "margin: -17px 0px 0px 883px"));
@@ -205,14 +198,55 @@ public class OrderOverviewDetail extends BasePage {
 		
 		// Rozložení typů zboží a ID Zboží
 		String[] productTypes = order.getProductTypes().split(";");		// (processors,memory,hard_disks)
-		String[] productIDs = order.getProductIDs().split(";");			// (4,1,1)
+		String[] productNames = order.getProductNames().split(";");		// (Intel Core i7-9700K;EVGA 850 B3;WD Blue 1TB)
 		String[] productAmount = order.getProductAmount().split(";");	// (1,2,1)
 		String[] productPrices = order.getProductPrices().split(";");	// (7900,4620,2130)
 		
 		for (int i = 0; i < productTypes.length; i++) {
 			
 			// Uloží informace o produktu do listu
-			getProductInfo(productTypes, productIDs, productAmount, productPrices, i);
+			ProductDAO productDAO = new ProductDAOImpl();
+			
+			switch (productTypes[i]) {
+					
+				case "processor" :
+						product = productDAO.getProductByName(productNames[i]);
+						product.setAmount(Integer.parseInt(productAmount[i]));
+						product.setPrice(Integer.parseInt(productPrices[i]));
+						break;
+						
+					case "graphics_card" :
+						product = productDAO.getProductByName(productNames[i]);
+						product.setAmount(Integer.parseInt(productAmount[i]));
+						product.setPrice(Integer.parseInt(productPrices[i]));
+						break;
+						
+					case "memory" :
+						product = productDAO.getProductByName(productNames[i]);
+						product.setAmount(Integer.parseInt(productAmount[i]));
+						product.setPrice(Integer.parseInt(productPrices[i]));
+						break;
+						
+					case "motherboard" :
+						product = productDAO.getProductByName(productNames[i]);
+						product.setAmount(Integer.parseInt(productAmount[i]));
+						product.setPrice(Integer.parseInt(productPrices[i]));
+						break;
+						
+					case "hard_disk" :
+						product = productDAO.getProductByName(productNames[i]);
+						product.setAmount(Integer.parseInt(productAmount[i]));
+						product.setPrice(Integer.parseInt(productPrices[i]));
+						break;
+						
+					case "power_supply_unit" :
+						product = productDAO.getProductByName(productNames[i]);
+						product.setAmount(Integer.parseInt(productAmount[i]));
+						product.setPrice(Integer.parseInt(productPrices[i]));
+						break;
+			}
+				
+			products.add(product);
 		}
 
 // Obsah košíku ListView /////////////////////////////////////////////////////////////////////////////
@@ -343,61 +377,6 @@ public class OrderOverviewDetail extends BasePage {
 				setResponsePage(OrdersOverview.class);
 			}
 		});
-		
-	}
-	
-// Metody /////////////////////////////////////////////////////////////////////////////////////////////
-	
-	/**
-	 * 	Uloží informace o produktu do listu
-	 * 
-	 * 	@param productTypes - Pole typů produktů oddělených ";" (processor,hard_disk,memory ...)
-	 * 	@param productIDs - Pole ID produktů oddělených ";" (5,24,9 ...)
-	 * 	@param productAmount - Pole množství produktů oddělených ";" (1,2,1 ...)
-	 * 	@param productPrices - Pole cen produktů oddělených ";" (7990,2130,16599 ...)
-	 * 	@param index - pozice v cyklu
-	 */
-	private void getProductInfo(String[] productTypes, String[] productIDs, String[] productAmount, String[] productPrices, int index) {
-		
-		switch (productTypes[index]) {
-			case "processor" :
-				product = new ProcessorDAOImpl().getProcessor(Integer.parseInt(productIDs[index]));
-				product.setAmount(Integer.parseInt(productAmount[index]));
-				product.setPrice(Integer.parseInt(productPrices[index]));
-				break;
-				
-			case "graphics_card" :
-				product = new GraphicsCardDAOImpl().getGraphicsCard(Integer.parseInt(productIDs[index]));
-				product.setAmount(Integer.parseInt(productAmount[index]));
-				product.setPrice(Integer.parseInt(productPrices[index]));
-				break;
-				
-			case "memory" :
-				product = new MemoryDAOImpl().getMemory(Integer.parseInt(productIDs[index]));
-				product.setAmount(Integer.parseInt(productAmount[index]));
-				product.setPrice(Integer.parseInt(productPrices[index]));
-				break;
-				
-			case "motherboard" :
-				product = new MotherboardDAOImpl().getMotherboard(Integer.parseInt(productIDs[index]));
-				product.setAmount(Integer.parseInt(productAmount[index]));
-				product.setPrice(Integer.parseInt(productPrices[index]));
-				break;
-				
-			case "hard_disk" :
-				product = new HardDiskDAOImpl().getHardDisk(Integer.parseInt(productIDs[index]));
-				product.setAmount(Integer.parseInt(productAmount[index]));
-				product.setPrice(Integer.parseInt(productPrices[index]));
-				break;
-				
-			case "power_supply_unit" :
-				product = new PowerSupplyUnitDAOImpl().getPowerSupplyUnit(Integer.parseInt(productIDs[index]));
-				product.setAmount(Integer.parseInt(productAmount[index]));
-				product.setPrice(Integer.parseInt(productPrices[index]));
-				break;
-		}
-		
-		products.add(product);
 	}
 	
 }

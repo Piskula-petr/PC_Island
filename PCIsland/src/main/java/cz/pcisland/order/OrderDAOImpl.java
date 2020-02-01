@@ -50,7 +50,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"INSERT INTO pc_island.orders (id_user, customer_full_name, customer_email, customer_phone_number, street_address, zip_code_and_city, country, creation_date, status, product_types, product_ids, product_amount, product_prices, delivery_type_and_price, payment_type_and_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"INSERT INTO pc_island.orders (id_user, customer_full_name, customer_email, customer_phone_number, street_address, zip_code_and_city, country, creation_date, status, product_types, product_names, product_amount, product_prices, delivery_type_and_price, payment_type_and_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setInt(1, order.getIdUser());
 			ps.setString(2, order.getCustomerFullName());
@@ -63,7 +63,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			ps.setDate(8, Date.valueOf(localDate));
 			ps.setString(9, order.getStatus());
 			ps.setString(10, order.getProductTypes());
-			ps.setString(11, order.getProductIDs());
+			ps.setString(11, order.getProductNames());
 			ps.setString(12, order.getProductAmount());
 			ps.setString(13, order.getProductPrices());
 			ps.setString(14, order.getDeliveryTypeAndPrice());
@@ -108,7 +108,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 				order.setCreationDate(date.toLocalDate());
 				order.setStatus(resultSet.getString("status"));
 				order.setProductTypes(resultSet.getString("product_types"));
-				order.setProductIDs(resultSet.getString("product_ids"));
+				order.setProductNames(resultSet.getString("product_names"));
 				order.setProductAmount(resultSet.getString("product_amount"));
 				order.setProductPrices(resultSet.getString("product_prices"));
 				order.setDeliveryTypeAndPrice(resultSet.getString("delivery_type_and_price"));
@@ -155,7 +155,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 				order.setCreationDate(date.toLocalDate());
 				order.setStatus(resultSet.getString("status"));
 				order.setProductTypes(resultSet.getString("product_types"));
-				order.setProductIDs(resultSet.getString("product_ids"));
+				order.setProductNames(resultSet.getString("product_Names"));
 				order.setProductAmount(resultSet.getString("product_amount"));
 				order.setProductPrices(resultSet.getString("product_prices"));
 				order.setDeliveryTypeAndPrice(resultSet.getString("delivery_type_and_price"));
@@ -186,7 +186,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT id_order FROM pc_island.orders WHERE customer_full_name = '" + userFullName + "' ORDER BY id_order DESC LIMIT 1");
+			"SELECT TOP 1 id_order FROM pc_island.orders WHERE customer_full_name = '" + userFullName + "' ORDER BY id_order DESC");
 			
 			while (resultSet.next()) {
 				idOrder = resultSet.getInt("id_order");
@@ -201,11 +201,11 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	}
 	
 	/**
-	 * 	Zvýšení počtu prodaných kusů podle zadaného ID
+	 * 	Zvýšení počtu prodaných kusů podle zadaného názvu produktu
 	 */
 	
 	@Override
-	public void incrementProductSales(int productId, int amount) {
+	public void incrementProductSales(String productName, int amount) {
 		int sales = 0;
 		
 		// Načtení počtu prodaných kusů
@@ -215,7 +215,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT sales FROM pc_island.products WHERE id_product = '" + productId + "'");
+			"SELECT sales FROM pc_island.products WHERE name = '" + productName + "'");
 			
 			while (resultSet.next()) {
 				sales = resultSet.getInt("sales");
@@ -233,7 +233,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET sales = '" + sales + "' WHERE id_product = '" + productId + "'");
+			"UPDATE pc_island.products SET sales = '" + sales + "' WHERE name = '" + productName + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -243,11 +243,11 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	}
 	
 	/**
-	 * 	Snížení počtu kusů skladem podle zadaného ID
+	 * 	Snížení počtu kusů skladem podle zadaného názvu produktu
 	 */
 	
 	@Override
-	public void decrementProductStock(int productId, int amount) {
+	public void decrementProductStock(String productName, int amount) {
 		int stock = 0;
 		
 		// Načtení počtu kusů skladem
@@ -257,7 +257,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT stock FROM pc_island.products WHERE id_product = '" + productId + "'");
+			"SELECT stock FROM pc_island.products WHERE name = '" + productName + "'");
 			
 			while (resultSet.next()) {
 				stock = resultSet.getInt("stock");
@@ -275,7 +275,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET stock = '" + stock + "' WHERE id_product = '" + productId + "'");
+			"UPDATE pc_island.products SET stock = '" + stock + "' WHERE name = '" + productName + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {

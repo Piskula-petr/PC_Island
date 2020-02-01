@@ -39,20 +39,20 @@ public interface OrderDAO {
 	public int getIdOrder(String userFullName);
 	
 	/**
-	 * 	Zvýšení počtu prodaných kusů podle zadaného ID
+	 * 	Zvýšení počtu prodaných kusů podle zadaného názvu produktu
 	 * 
-	 * 	@param productId - ID produktu
+	 * 	@param productName - Název produktu
 	 * 	@param amount - množství
 	 */
-	public void incrementProductSales(int productId, int amount);
+	public void incrementProductSales(String productName, int amount);
 	
 	/**
-	 * 	Snížení počtu kusů skladem podle zadaného ID
+	 * 	Snížení počtu kusů skladem podle zadaného názvu produktu
 	 * 
-	 * 	@param productId - ID produktu
+	 * 	@param productName - Název produktu
 	 * 	@param amount - množství
 	 */
-	public void decrementProductStock(int productId, int amount);
+	public void decrementProductStock(String productName, int amount);
 	
 	/**
 	 * 	Změna stavu objednávky podle zadaného ID

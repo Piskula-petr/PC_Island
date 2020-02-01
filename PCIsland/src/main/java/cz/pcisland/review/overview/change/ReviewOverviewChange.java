@@ -59,12 +59,12 @@ public class ReviewOverviewChange extends BasePage {
 						newPros = newPros + prosPreviewArray[i] + ";";
 					}
 					
-					// Změna stylu pokud nejsou údaje stejné + uložení
+					// Uložení + Změna stylu
 					if (!newPros.equals(review.getPros())) {
 						reviewDAO.changeReviewPros(review.getIdReview(), newPros);
 						prosTextArea.add(new AttributeModifier("style", "border: 1px solid green"));
 					
-					} else prosTextArea.add(new AttributeModifier("style", "border: 1px solid red"));
+					} else prosTextArea.add(new AttributeModifier("style", "border: 1px solid #c2c2c2"));
 				}
 				
 				// Zápory
@@ -77,12 +77,12 @@ public class ReviewOverviewChange extends BasePage {
 						newCons = newCons + consPreviewArray[i] + ";";
 					}
 					
-					// Změna stylu pokud nejsou údaje stejné + uložení
+					// Uložení + Změna stylu
 					if (!newCons.equals(review.getCons())) {
 						reviewDAO.changeReviewCons(review.getIdReview(), newCons);
 						consTextArea.add(new AttributeModifier("style", "border: 1px solid green"));
 					
-					} else consTextArea.add(new AttributeModifier("style", "border: 1px solid red"));
+					} else consTextArea.add(new AttributeModifier("style", "border: 1px solid #c2c2c2"));
 				}
 			}
 		};

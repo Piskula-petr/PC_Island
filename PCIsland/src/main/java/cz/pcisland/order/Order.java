@@ -25,7 +25,7 @@ public class Order implements Serializable {
 	private LocalDate creationDate;
 	private String status;
 	private String productTypes;
-	private String productIDs;
+	private String productNames;
 	private String productAmount;
 	private String productPrices;
 	private String deliveryTypeAndPrice;
@@ -120,12 +120,12 @@ public class Order implements Serializable {
 		this.productTypes = productTypes;
 	}
 
-	public String getProductIDs() {
-		return productIDs;
+	public String getProductNames() {
+		return productNames;
 	}
 
-	public void setProductIDs(String productIDs) {
-		this.productIDs = productIDs;
+	public void setProductNames(String productNames) {
+		this.productNames = productNames;
 	}
 
 	public String getProductAmount() {

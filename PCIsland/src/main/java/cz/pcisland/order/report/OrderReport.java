@@ -51,15 +51,15 @@ public class OrderReport extends BasePage {
 		webSession.setAttribute("cartSize", null);
 		webSession.setAttribute("cartPrice", null);
 		
-		// Rozdělení ID zboží
-		String[] productIDs = order.getProductIDs().split(";");			// (3,5,1)
+		// Rozdělení názvů a množství produktů
+		String[] productNames = order.getProductNames().split(";");		// (Intel Core i7-9700K;EVGA 850 B3;WD Blue 1TB)
 		String[] productAmount = order.getProductAmount().split(";");	// (2,1,1)
 		
 		// Zvýší počet prodaných kusů, sníží počet kusů na skladu
-		for (int i = 0; i < productIDs.length; i++) {
+		for (int i = 0; i < productNames.length; i++) {
 
-			orderDAO.incrementProductSales(Integer.parseInt(productIDs[i]), Integer.parseInt(productAmount[i]));
-			orderDAO.decrementProductStock(Integer.parseInt(productIDs[i]), Integer.parseInt(productAmount[i]));
+			orderDAO.incrementProductSales(productNames[i], Integer.parseInt(productAmount[i]));
+			orderDAO.decrementProductStock(productNames[i], Integer.parseInt(productAmount[i]));
 		}
 		
 // Zpět na hlavní stránku Link ////////////////////////////////////////////////////////////////////////

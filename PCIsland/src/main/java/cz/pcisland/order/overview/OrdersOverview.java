@@ -20,24 +20,20 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 
 import cz.pcisland.base_page.BasePage;
-import cz.pcisland.graphics_cards.GraphicsCardDAOImpl;
 import cz.pcisland.graphics_cards.detail.GraphicsCardDetailPage;
-import cz.pcisland.hard_disks.HardDiskDAOImpl;
 import cz.pcisland.hard_disks.detail.HarddiskDetailPage;
 import cz.pcisland.home_page.CustomPagingNavigator;
-import cz.pcisland.memory.MemoryDAOImpl;
 import cz.pcisland.memory.detail.MemoryDetailPage;
-import cz.pcisland.motherboards.MotherboardDAOImpl;
 import cz.pcisland.motherboards.detail.MotherBoardDetailPage;
 import cz.pcisland.order.Order;
 import cz.pcisland.order.OrderDAO;
 import cz.pcisland.order.OrderDAOImpl;
 import cz.pcisland.order.overview.detail.OrderOverviewDetail;
-import cz.pcisland.power_supply_units.PowerSupplyUnitDAOImpl;
 import cz.pcisland.power_supply_units.detail.PowerSupplyUnitsDetailPage;
-import cz.pcisland.processors.ProcessorDAOImpl;
 import cz.pcisland.processors.detail.ProcessorDetailPage;
 import cz.pcisland.product.Product;
+import cz.pcisland.product.ProductDAO;
+import cz.pcisland.product.ProductDAOImpl;
 import cz.pcisland.user.User;
 
 /*
@@ -47,11 +43,6 @@ import cz.pcisland.user.User;
  * 		filtr (nová, zpracovaná ...),
  * 		konfigurace komponent filtru,
  *   	nastavení objednávek podle přihlášeného uživatele,
- *   	
- *   Metody:
- *   
- *    	cesta k náhledovému obrázku, 
- *    	přesměrování na detail produktu
  */
 
 public class OrdersOverview extends BasePage {
@@ -248,7 +239,7 @@ public class OrdersOverview extends BasePage {
 
 				Order order = item.getModelObject();
 				imagePaths = new ArrayList<>();
-
+				
 				String pattern = "###,###.###";
 				DecimalFormat decimalFormat = new DecimalFormat(pattern);
 				String totalPrice = decimalFormat.format(order.getTotalPrice()) + ",-";
@@ -269,43 +260,12 @@ public class OrdersOverview extends BasePage {
 				
 				// Rozložení typů zboží a ID Zboží
 				String[] productTypes = order.getProductTypes().split(";");		// (processors;memory;hard_disks)
-				String[] productIDs = order.getProductIDs().split(";");			// (4;1;1)
+				String[] productNames = order.getProductNames().split(";");		// (Intel Core i7-9700K;EVGA 850 B3;WD Blue 1TB)
 				for (int i = 0; i < productTypes.length; i++) {
 
 					// Uloží cestu k náhledovému obrázku do Listu
 					String imagePath = "";
-					switch (productTypes[i]) {
-						case "processor":
-							Product processor = new ProcessorDAOImpl().getProcessor(Integer.parseInt(productIDs[i]));
-							imagePath = "preview images//" + processor.getName() + "//" + processor.getName() + ".jpg";
-							break;
-							
-						case "graphics_card":
-							Product graphicsCard = new GraphicsCardDAOImpl().getGraphicsCard(Integer.parseInt(productIDs[i]));
-							imagePath = "preview images//" + graphicsCard.getName() + "//" + graphicsCard.getName() + ".jpg";
-							break;
-							
-						case "memory":
-							Product memory = new MemoryDAOImpl().getMemory(Integer.parseInt(productIDs[i]));
-							imagePath = "preview images//" + memory.getName() + "//" + memory.getName() + ".jpg";
-							break;
-							
-						case "motherboard":
-							Product motherboard = new MotherboardDAOImpl().getMotherboard(Integer.parseInt(productIDs[i]));
-							imagePath = "preview images//" + motherboard.getName() + "//" + motherboard.getName() + ".jpg";
-							break;
-							
-						case "hard_disk":
-							Product hardDisk = new HardDiskDAOImpl().getHardDisk(Integer.parseInt(productIDs[i]));
-							imagePath = "preview images//" + hardDisk.getName() + "//" + hardDisk.getName() + ".jpg";
-							break;
-							
-						case "power_supply_unit":
-							Product powerSupplyUnit = new PowerSupplyUnitDAOImpl().getPowerSupplyUnit(Integer.parseInt(productIDs[i]));
-							imagePath = "preview images//" + powerSupplyUnit.getName() + "//" + powerSupplyUnit.getName() + ".jpg";
-							break;
-					}
-					
+					imagePath = "preview images//" + productNames[i] + "//" + productNames[i] + ".jpg";
 					imagePaths.add(imagePath);
 				}
 				
@@ -320,34 +280,37 @@ public class OrdersOverview extends BasePage {
 							public void onClick() {
 								
 								// Přesměrování na detail zboží
+								ProductDAO productDAO = new ProductDAOImpl();
+
 								switch (productTypes[item.getIndex()]) {
+								
 									case "processor":
-										Product processor = new ProcessorDAOImpl().getProcessor(Integer.parseInt(productIDs[item.getIndex()]));
+										Product processor = productDAO.getProductByName(productNames[item.getIndex()]);
 										setResponsePage(new ProcessorDetailPage(processor));
 										break;
 										
 									case "graphics_card":
-										Product graphicsCard = new GraphicsCardDAOImpl().getGraphicsCard(Integer.parseInt(productIDs[item.getIndex()]));
+										Product graphicsCard = productDAO.getProductByName(productNames[item.getIndex()]);
 										setResponsePage(new GraphicsCardDetailPage(graphicsCard));
 										break;
 										
 									case "memory":
-										Product memory = new MemoryDAOImpl().getMemory(Integer.parseInt(productIDs[item.getIndex()]));
+										Product memory = productDAO.getProductByName(productNames[item.getIndex()]);
 										setResponsePage(new MemoryDetailPage(memory));
 										break;
 										
 									case "motherboard":
-										Product motherboard = new MotherboardDAOImpl().getMotherboard(Integer.parseInt(productIDs[item.getIndex()]));
+										Product motherboard = productDAO.getProductByName(productNames[item.getIndex()]);
 										setResponsePage(new MotherBoardDetailPage(motherboard));
 										break;
 										
 									case "hard_disk":
-										Product hardDisk = new HardDiskDAOImpl().getHardDisk(Integer.parseInt(productIDs[item.getIndex()]));
+										Product hardDisk = productDAO.getProductByName(productNames[item.getIndex()]);
 										setResponsePage(new HarddiskDetailPage(hardDisk));
 										break;
 										
 									case "power_supply_unit":
-										Product powerSupplyUnit = new PowerSupplyUnitDAOImpl().getPowerSupplyUnit(Integer.parseInt(productIDs[item.getIndex()]));
+										Product powerSupplyUnit = productDAO.getProductByName(productNames[item.getIndex()]);
 										setResponsePage(new PowerSupplyUnitsDetailPage(powerSupplyUnit));
 										break;
 								}
