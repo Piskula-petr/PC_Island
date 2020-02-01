@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 
 import cz.pcisland.cart.CartPage;
 import cz.pcisland.product.Product;
@@ -39,9 +38,6 @@ public class SearchingPage extends ProductPage {
 		// Vyhledávané produkty PageableListView (ProductPage)
 		productsPageableListView.setList(searchedProducts);
 		products = productsPageableListView.getList();
-		
-		// Počet položek
-		markupContainer.add(new Label("itemsAmount", new PropertyModel<String>(this, "itemsAmount")));
 	}
 	
 }

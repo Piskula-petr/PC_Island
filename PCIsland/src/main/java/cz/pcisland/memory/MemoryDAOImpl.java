@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 import cz.pcisland.product.Product;
 
 /**
@@ -22,14 +22,14 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
 	
 	public MemoryDAOImpl() {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -45,10 +45,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 	public Product getMemory(int id) {
 		Product memory = new Product();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE id_product = '" + id + "'");
+			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
 				memory.setId(resultSet.getInt("id_product"));
@@ -77,10 +80,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 	public List<Product> getAllMemory() {
 		List<Product> memories = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'memory' ORDER BY id_product");
+			"SELECT * FROM pc_island.products WHERE type = 'memory' ORDER BY id_product");
 		
 			while(resultSet.next()) {
 				Product memory = new Product();
@@ -111,10 +117,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 	public List<Product> getTopSellingMemory() {
 		List<Product> memories = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'memory' ORDER BY sales DESC LIMIT 3");
+			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'memory' ORDER BY sales DESC");
 		
 			while(resultSet.next()) {
 				Product memory = new Product();
@@ -146,10 +155,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 		int numberOfPreview = 0;
 		
 		// Načtení počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT number_of_preview FROM products WHERE id_product = '" + memoryId + "'");
+			"SELECT number_of_preview FROM pc_island.products WHERE id_product = '" + memoryId + "'");
 			
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
@@ -162,9 +174,12 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 		}
 		
 		// Uložení zvýšené hodnoty počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + memoryId + "'");
+			"UPDATE pc_island.products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + memoryId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -182,10 +197,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 		int overallRating = 0;
 		
 		// Načtení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT overall_rating FROM products WHERE id_product = '" + memoryId + "'");
+			"SELECT overall_rating FROM pc_island.products WHERE id_product = '" + memoryId + "'");
 			
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
@@ -198,9 +216,12 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 		}
 		
 		// Uložení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + memoryId + "'");
+			"UPDATE pc_island.products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + memoryId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {

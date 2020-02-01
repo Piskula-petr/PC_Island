@@ -245,10 +245,10 @@ public class OrdersOverview extends BasePage {
 			
 			@Override
 			protected void populateItem(ListItem<Order> item) {
-				
+
 				Order order = item.getModelObject();
 				imagePaths = new ArrayList<>();
-				
+
 				String pattern = "###,###.###";
 				DecimalFormat decimalFormat = new DecimalFormat(pattern);
 				String totalPrice = decimalFormat.format(order.getTotalPrice()) + ",-";
@@ -268,28 +268,93 @@ public class OrdersOverview extends BasePage {
 				item.add(new Label("totalPrice", totalPrice));
 				
 				// Rozložení typů zboží a ID Zboží
-				String[] productTypes = order.getProductTypes().split(";");		// (processors,memory,hard_disks)
-				String[] productIDs = order.getProductIDs().split(";");			// (4,1,1)
+				String[] productTypes = order.getProductTypes().split(";");		// (processors;memory;hard_disks)
+				String[] productIDs = order.getProductIDs().split(";");			// (4;1;1)
 				for (int i = 0; i < productTypes.length; i++) {
-					
+
 					// Uloží cestu k náhledovému obrázku do Listu
-					getImagePath(productTypes, productIDs, i);
+					String imagePath = "";
+					switch (productTypes[i]) {
+						case "processor":
+							Product processor = new ProcessorDAOImpl().getProcessor(Integer.parseInt(productIDs[i]));
+							imagePath = "preview images//" + processor.getName() + "//" + processor.getName() + ".jpg";
+							break;
+							
+						case "graphics_card":
+							Product graphicsCard = new GraphicsCardDAOImpl().getGraphicsCard(Integer.parseInt(productIDs[i]));
+							imagePath = "preview images//" + graphicsCard.getName() + "//" + graphicsCard.getName() + ".jpg";
+							break;
+							
+						case "memory":
+							Product memory = new MemoryDAOImpl().getMemory(Integer.parseInt(productIDs[i]));
+							imagePath = "preview images//" + memory.getName() + "//" + memory.getName() + ".jpg";
+							break;
+							
+						case "motherboard":
+							Product motherboard = new MotherboardDAOImpl().getMotherboard(Integer.parseInt(productIDs[i]));
+							imagePath = "preview images//" + motherboard.getName() + "//" + motherboard.getName() + ".jpg";
+							break;
+							
+						case "hard_disk":
+							Product hardDisk = new HardDiskDAOImpl().getHardDisk(Integer.parseInt(productIDs[i]));
+							imagePath = "preview images//" + hardDisk.getName() + "//" + hardDisk.getName() + ".jpg";
+							break;
+							
+						case "power_supply_unit":
+							Product powerSupplyUnit = new PowerSupplyUnitDAOImpl().getPowerSupplyUnit(Integer.parseInt(productIDs[i]));
+							imagePath = "preview images//" + powerSupplyUnit.getName() + "//" + powerSupplyUnit.getName() + ".jpg";
+							break;
+					}
+					
+					imagePaths.add(imagePath);
 				}
 				
 				item.add(new ListView<String>("productsListView", imagePaths) {
 					
 					@Override
 					protected void populateItem(ListItem<String> item) {
+
 						item.add(new Link<Object>("imageLink") {
 							
 							@Override
 							public void onClick() {
 								
-									// Přesměrování na detail zboží
-									getDetailPage(productTypes, productIDs, item.getIndex());
+								// Přesměrování na detail zboží
+								switch (productTypes[item.getIndex()]) {
+									case "processor":
+										Product processor = new ProcessorDAOImpl().getProcessor(Integer.parseInt(productIDs[item.getIndex()]));
+										setResponsePage(new ProcessorDetailPage(processor));
+										break;
+										
+									case "graphics_card":
+										Product graphicsCard = new GraphicsCardDAOImpl().getGraphicsCard(Integer.parseInt(productIDs[item.getIndex()]));
+										setResponsePage(new GraphicsCardDetailPage(graphicsCard));
+										break;
+										
+									case "memory":
+										Product memory = new MemoryDAOImpl().getMemory(Integer.parseInt(productIDs[item.getIndex()]));
+										setResponsePage(new MemoryDetailPage(memory));
+										break;
+										
+									case "motherboard":
+										Product motherboard = new MotherboardDAOImpl().getMotherboard(Integer.parseInt(productIDs[item.getIndex()]));
+										setResponsePage(new MotherBoardDetailPage(motherboard));
+										break;
+										
+									case "hard_disk":
+										Product hardDisk = new HardDiskDAOImpl().getHardDisk(Integer.parseInt(productIDs[item.getIndex()]));
+										setResponsePage(new HarddiskDetailPage(hardDisk));
+										break;
+										
+									case "power_supply_unit":
+										Product powerSupplyUnit = new PowerSupplyUnitDAOImpl().getPowerSupplyUnit(Integer.parseInt(productIDs[item.getIndex()]));
+										setResponsePage(new PowerSupplyUnitsDetailPage(powerSupplyUnit));
+										break;
 								}
+							}
 						}.add(new Image("image", new ContextRelativeResource(item.getModelObject()))));
 					}
+					
 				});
 			}
 		};
@@ -301,97 +366,6 @@ public class OrdersOverview extends BasePage {
 		// Zobrazení všech objednávek pokud je příhlášený Admin
 		if (user.getEmail().equals("admin@pcisland.cz")) {
 			ordersPageableListView.setList(orderDAO.getAllOrders());
-		}
-	}
-	
-// Metody /////////////////////////////////////////////////////////////////////////////////////////////
-	
-	/**
-	 * 	Uloží cestu k náhledovému obrázku do Listu
-	 * 
-	 * 	@param productTypes - Pole typů produktů oddělených ";" (processor,hard_disk,memory ...)
-	 * 	@param productIDs - Pole ID produktů oddělených ";" (5,24,9 ...)
-	 * 	@param index - pozice v cyklu
-	 */
-	private void getImagePath(String[] productTypes, String[] productIDs, int index) {
-		
-		String imagePath = "";
-		switch (productTypes[index]) {
-			case "processor":
-				Product processor = new ProcessorDAOImpl().getProcessor(Integer.parseInt(productIDs[index]));
-				imagePath = "preview images//" + processor.getName() + "//" + processor.getName() + ".jpg";
-				break;
-				
-			case "graphics_card":
-				Product graphicsCard = new GraphicsCardDAOImpl().getGraphicsCard(Integer.parseInt(productIDs[index]));
-				imagePath = "preview images//" + graphicsCard.getName() + "//" + graphicsCard.getName() + ".jpg";
-				break;
-				
-			case "memory":
-				Product memory = new MemoryDAOImpl().getMemory(Integer.parseInt(productIDs[index]));
-				imagePath = "preview images//" + memory.getName() + "//" + memory.getName() + ".jpg";
-				break;
-				
-			case "motherboard":
-				Product motherboard = new MotherboardDAOImpl().getMotherboard(Integer.parseInt(productIDs[index]));
-				imagePath = "preview images//" + motherboard.getName() + "//" + motherboard.getName() + ".jpg";
-				break;
-				
-			case "hard_disk":
-				Product hardDisk = new HardDiskDAOImpl().getHardDisk(Integer.parseInt(productIDs[index]));
-				imagePath = "preview images//" + hardDisk.getName() + "//" + hardDisk.getName() + ".jpg";
-				break;
-				
-			case "power_supply_unit":
-				Product powerSupplyUnit = new PowerSupplyUnitDAOImpl().getPowerSupplyUnit(Integer.parseInt(productIDs[index]));
-				imagePath = "preview images//" + powerSupplyUnit.getName() + "//" + powerSupplyUnit.getName() + ".jpg";
-				break;
-		}
-		
-		imagePaths.add(imagePath);
-	}
-	
-	// 
-	
-	/**
-	 * 	Přesměrování na detail produktu
-	 * 
-	 * 	@param productTypes - Pole typů produktů oddělených ";" (processor,hard_disk,memory ...)
-	 * 	@param productIDs - Pole ID produktů oddělených ";" (5,24,9 ...)
-	 * 	@param index - pozice v cyklu
-	 */
-	private void getDetailPage(String[] productTypes, String[] productIDs, int index) {
-		
-		switch (productTypes[index]) {
-			case "processor":
-				Product processor = new ProcessorDAOImpl().getProcessor(Integer.parseInt(productIDs[index]));
-				setResponsePage(new ProcessorDetailPage(processor));
-				break;
-				
-			case "graphics_card":
-				Product graphicsCard = new GraphicsCardDAOImpl().getGraphicsCard(Integer.parseInt(productIDs[index]));
-				setResponsePage(new GraphicsCardDetailPage(graphicsCard));
-				break;
-				
-			case "memory":
-				Product memory = new MemoryDAOImpl().getMemory(Integer.parseInt(productIDs[index]));
-				setResponsePage(new MemoryDetailPage(memory));
-				break;
-				
-			case "motherboard":
-				Product motherboard = new MotherboardDAOImpl().getMotherboard(Integer.parseInt(productIDs[index]));
-				setResponsePage(new MotherBoardDetailPage(motherboard));
-				break;
-				
-			case "hard_disk":
-				Product hardDisk = new HardDiskDAOImpl().getHardDisk(Integer.parseInt(productIDs[index]));
-				setResponsePage(new HarddiskDetailPage(hardDisk));
-				break;
-				
-			case "power_supply_unit":
-				Product powerSupplyUnit = new PowerSupplyUnitDAOImpl().getPowerSupplyUnit(Integer.parseInt(productIDs[index]));
-				setResponsePage(new PowerSupplyUnitsDetailPage(powerSupplyUnit));
-				break;
 		}
 	}
 	

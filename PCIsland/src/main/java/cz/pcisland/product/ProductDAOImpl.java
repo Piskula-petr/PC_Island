@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 
 /**
  * 	Třída implementující rozhraní přístupu dat k produktům
@@ -21,14 +21,14 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
 	
 	public ProductDAOImpl() {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -43,11 +43,14 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	@Override
 	public Product getProductByName(String name) {
 		Product product = new Product();
-		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+				 												 databaseConnection.getUsername(), 
+				 												 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE name = '" + name + "'");
+			"SELECT * FROM pc_island.products WHERE name = '" + name + "'");
 			
 			while (resultSet.next()) {
 				product.setId(resultSet.getInt("id_product"));
@@ -77,10 +80,13 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	public List<Product> getAllProducts() {
 		List<Product> products = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products ORDER BY id_product");
+			"SELECT * FROM pc_island.products ORDER BY id_product");
 			
 			while (resultSet.next()) {
 				Product product = new Product();
@@ -112,10 +118,13 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	public List<Product> getAllProductSortByStock() {
 		List<Product> products = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+				 												 databaseConnection.getUsername(), 
+				 												 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products ORDER BY stock");
+			"SELECT * FROM pc_island.products ORDER BY stock");
 			
 			while (resultSet.next()) {
 				Product product = new Product();
@@ -147,10 +156,13 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	public List<Product> getProductsFromCompany(String companyName) {
 		List<Product> products = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+				 												 databaseConnection.getUsername(), 
+				 												 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE name LIKE '%" + companyName + "%'");
+			"SELECT * FROM pc_island.products WHERE name LIKE '%" + companyName + "%'");
 			
 			while (resultSet.next()) {
 				Product product = new Product();
@@ -181,9 +193,12 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	@Override
 	public void changeStock(int idProduct, int newStock) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+				 												 databaseConnection.getUsername(), 
+				 												 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET stock = '" + newStock + "' WHERE id_product = '" + idProduct + "'");
+			"UPDATE pc_island.products SET stock = '" + newStock + "' WHERE id_product = '" + idProduct + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -199,9 +214,12 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	@Override
 	public void changePrice(int idProduct, int newPrice) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+				 												 databaseConnection.getUsername(), 
+				 												 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET price = '" + newPrice + "' WHERE id_product = '" + idProduct + "'");
+			"UPDATE pc_island.products SET price = '" + newPrice + "' WHERE id_product = '" + idProduct + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

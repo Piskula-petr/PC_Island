@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 import cz.pcisland.product.Product;
 
 /**
@@ -22,14 +22,14 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor /////////////////////////////////////////////////////////////////////////////////////////
 	
 	public HardDiskDAOImpl() {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -45,10 +45,13 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	public Product getHardDisk(int id) {
 		Product hardDisk = new Product();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE id_product = '" + id + "'");
+			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
 				hardDisk.setId(resultSet.getInt("id_product"));
@@ -78,10 +81,13 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	public List<Product> getAllHardDisks() {
 		List<Product> hardDisks = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'hard_disk' ORDER BY id_product");
+			"SELECT * FROM pc_island.products WHERE type = 'hard_disk' ORDER BY id_product");
 			
 			while (resultSet.next()) {
 				Product hardDisk = new Product();
@@ -111,10 +117,13 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	@Override
 	public List<Product> getTopSellingHardDisks() {
 		List<Product> hardDisks = new ArrayList<>();
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'hard_disk' ORDER BY sales DESC LIMIT 3");
+			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'hard_disk' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
 				Product hardDisk = new Product();
@@ -147,10 +156,13 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 		int numberOfPreview = 0;
 		
 		// Načtení počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT number_of_preview FROM products WHERE id_product = '" + hardDiskId + "'");
+			"SELECT number_of_preview FROM pc_island.products WHERE id_product = '" + hardDiskId + "'");
 			
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
@@ -163,9 +175,12 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 		}
 		
 		// Uložení zvýšené hodnoty počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+				 												 databaseConnection.getUsername(), 
+				 												 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + hardDiskId + "'");
+			"UPDATE pc_island.products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + hardDiskId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -183,10 +198,13 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 		int overallRating = 0;
 		
 		// Načtení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT overall_rating FROM products WHERE id_product = '" + hardDiskId + "'");
+			"SELECT overall_rating FROM pc_island.products WHERE id_product = '" + hardDiskId + "'");
 			
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
@@ -199,9 +217,12 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 		}
 		
 		// Uložení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + hardDiskId + "'");
+			"UPDATE pc_island.products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + hardDiskId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {

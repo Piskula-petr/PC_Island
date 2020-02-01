@@ -116,8 +116,11 @@ public abstract class BasePage extends WebPage {
 			protected void onSubmit() {
 				super.onSubmit();
 				
-				// Přesměrování na stránku vyhledávání
-				setResponsePage(new SearchingPage(searchedProductsDropdownListView.getList(), search));
+				if (search != null) {
+					
+					// Přesměrování na stránku vyhledávání
+					setResponsePage(new SearchingPage(searchedProductsDropdownListView.getList(), search));
+				}
 			}
 		};
 		searchBarForm.setOutputMarkupId(true);

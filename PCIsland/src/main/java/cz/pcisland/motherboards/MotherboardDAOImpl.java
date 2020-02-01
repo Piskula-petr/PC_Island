@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 import cz.pcisland.product.Product;
 
 /**
@@ -22,14 +22,14 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
 	
 	public MotherboardDAOImpl() {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -45,10 +45,13 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	public Product getMotherboard(int id) {
 		Product motherboard = new Product();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE id_product = '" + id + "'");
+			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
 				motherboard.setId(resultSet.getInt("id_product"));
@@ -78,10 +81,13 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	public List<Product> getAllMotherboards() {
 		List<Product> motherboards = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'motherboard' ORDER BY id_product");
+			"SELECT * FROM pc_island.products WHERE type = 'motherboard' ORDER BY id_product");
 			
 			while (resultSet.next()) {
 				Product motherboard = new Product();
@@ -113,10 +119,12 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	public List<Product> getTopSellingMotherboards() {
 		List<Product> motherboards = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'motherboard' ORDER BY sales DESC LIMIT 3");
+			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'motherboard' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
 				Product motherboard = new Product();
@@ -149,10 +157,13 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 		int numberOfPreview = 0;
 		
 		// Načtení počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT number_of_preview FROM products WHERE id_product = '" + motherboardId + "'");
+			"SELECT number_of_preview FROM pc_island.products WHERE id_product = '" + motherboardId + "'");
 			
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
@@ -165,9 +176,12 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 		}
 		
 		// Uložení zvýšené hodnoty počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + motherboardId + "'");
+			"UPDATE pc_island.products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + motherboardId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -185,10 +199,13 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 		int overallRating = 0;
 		
 		// Načtení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT overall_rating FROM products WHERE id_product = '" + motherboardId + "'");
+			"SELECT overall_rating FROM pc_island.products WHERE id_product = '" + motherboardId + "'");
 			
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
@@ -201,9 +218,12 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 		}
 		
 		// Uložení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + motherboardId + "'");
+			"UPDATE pc_island.products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + motherboardId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {

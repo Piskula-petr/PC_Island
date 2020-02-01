@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 
 /**
  * 	Třída implementující rozhraní přístupu dat k uživatelům
@@ -21,14 +21,14 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
 	
 	public UserDAOImpl() {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -43,9 +43,12 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	@Override
 	public void saveUser(User user) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"INSERT INTO users (email, password, name, surname, gender, phone_number, street_address, city, zip_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"INSERT INTO pc_island.users (email, password, name, surname, gender, phone_number, street_address, city, zip_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
@@ -74,10 +77,13 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM users ORDER BY id_user");
+			"SELECT * FROM pc_island.users ORDER BY id_user");
 			
 			while(resultSet.next()) {
 				User user = new User();
@@ -111,10 +117,13 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	public List<String> getCountries() {
 		List<String> countries = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM countries ORDER BY id_country");
+			"SELECT * FROM pc_island.countries ORDER BY id_country");
 			
 			while (resultSet.next()) {
 				countries.add(resultSet.getString("country_name"));
@@ -135,9 +144,12 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	@Override
 	public void changeEmail(String currentUserEmail, String newEmail) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE users SET email = '" + newEmail + "' WHERE email = '" + currentUserEmail + "'");
+			"UPDATE pc_island.users SET email = '" + newEmail + "' WHERE email = '" + currentUserEmail + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -153,9 +165,12 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	@Override
 	public void changePassword(String currentUserEmail, String newPassword) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE users SET password = '" + newPassword + "' WHERE email = '" + currentUserEmail + "'");
+			"UPDATE pc_island.users SET password = '" + newPassword + "' WHERE email = '" + currentUserEmail + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -171,9 +186,12 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	@Override
 	public void changeDeliveryData(String currentUserEmail, String columnName, String newValue) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE users SET " + columnName + " = '" + newValue + "' WHERE email = '" + currentUserEmail + "'");
+			"UPDATE pc_island.users SET " + columnName + " = '" + newValue + "' WHERE email = '" + currentUserEmail + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

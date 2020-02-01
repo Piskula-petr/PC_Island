@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 import cz.pcisland.product.Product;
 
 /**
@@ -22,14 +22,14 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
 	
 	public GraphicsCardDAOImpl() {
 				
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -45,10 +45,13 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	public Product getGraphicsCard(int id) {
 		Product graphicsCard = new Product();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE id_product = '" + id + "'");
+			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
 				graphicsCard.setId(resultSet.getInt("id_product"));
@@ -78,10 +81,13 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	public List<Product> getAllGraphicsCards() {
 		List<Product> graphicsCards = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'graphics_card' ORDER BY id_product");
+			"SELECT * FROM pc_island.products WHERE type = 'graphics_card' ORDER BY id_product");
 			
 			while (resultSet.next()) {
 				Product graphicsCard = new Product();
@@ -113,10 +119,13 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	public List<Product> getTopSellingGraphicsCards() {
 		List<Product> graphicsCards = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'graphics_card' ORDER BY sales DESC LIMIT 3");
+			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'graphics_card' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
 				Product graphicsCard = new Product();
@@ -149,10 +158,13 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 		int numberOfPreview = 0;
 		
 		// Načtení počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT number_of_preview FROM products WHERE id_product = '" + graphicsCardId + "'");
+			"SELECT number_of_preview FROM pc_island.products WHERE id_product = '" + graphicsCardId + "'");
 			
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
@@ -165,9 +177,12 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 		}
 		
 		// Uložení zvýšené hodnoty počtu recenzí
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + graphicsCardId + "'");
+			"UPDATE pc_island.products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + graphicsCardId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -185,10 +200,13 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 		int overallRating = 0;
 		
 		// Načtení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT overall_rating FROM products WHERE id_product = '" + graphicsCardId + "'");
+			"SELECT overall_rating FROM pc_island.products WHERE id_product = '" + graphicsCardId + "'");
 			
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
@@ -201,9 +219,12 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 		}
 		
 		// Uložení celkového hodnocení
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + graphicsCardId + "'");
+			"UPDATE pc_island.products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + graphicsCardId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {

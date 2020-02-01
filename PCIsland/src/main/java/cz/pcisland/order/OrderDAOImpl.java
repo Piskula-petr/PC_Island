@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 
 /**
  *	Třída implementující rozhraní přístupu dat k objednávkám
@@ -23,14 +23,14 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
 	
 	public OrderDAOImpl() {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -45,9 +45,12 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	@Override
 	public void saveOrder(Order order) {
 
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"INSERT INTO orders (id_user, customer_full_name, customer_email, customer_phone_number, street_address, zip_code_and_city, country, creation_date, status, product_types, product_ids, product_amount, product_prices, delivery_type_and_price, payment_type_and_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"INSERT INTO pc_island.orders (id_user, customer_full_name, customer_email, customer_phone_number, street_address, zip_code_and_city, country, creation_date, status, product_types, product_ids, product_amount, product_prices, delivery_type_and_price, payment_type_and_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setInt(1, order.getIdUser());
 			ps.setString(2, order.getCustomerFullName());
@@ -83,10 +86,13 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	public List<Order> getAllOrders() {
 		List<Order> orders = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM orders ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.orders ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				Order order = new Order();
@@ -127,10 +133,13 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	public List<Order> getUsersOrders(int idUser) {
 		List<Order> orders = new ArrayList();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM orders WHERE id_user = '" + idUser + "' ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.orders WHERE id_user = '" + idUser + "' ORDER BY creation_date DESC");
 
 			while (resultSet.next()) {
 				Order order = new Order();
@@ -171,10 +180,13 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	public int getIdOrder(String userFullName) {
 		int idOrder = 0;
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT id_order FROM orders WHERE customer_full_name = '" + userFullName + "' ORDER BY id_order DESC LIMIT 1");
+			"SELECT id_order FROM pc_island.orders WHERE customer_full_name = '" + userFullName + "' ORDER BY id_order DESC LIMIT 1");
 			
 			while (resultSet.next()) {
 				idOrder = resultSet.getInt("id_order");
@@ -197,10 +209,13 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 		int sales = 0;
 		
 		// Načtení počtu prodaných kusů
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT sales FROM products WHERE id_product = '" + productId + "'");
+			"SELECT sales FROM pc_island.products WHERE id_product = '" + productId + "'");
 			
 			while (resultSet.next()) {
 				sales = resultSet.getInt("sales");
@@ -213,9 +228,12 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 		}
 		
 		// Uložení zvýšené hodnoty prodaných kusů
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET sales = '" + sales + "' WHERE id_product = '" + productId + "'");
+			"UPDATE pc_island.products SET sales = '" + sales + "' WHERE id_product = '" + productId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -233,10 +251,13 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 		int stock = 0;
 		
 		// Načtení počtu kusů skladem
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT stock FROM products WHERE id_product = '" + productId + "'");
+			"SELECT stock FROM pc_island.products WHERE id_product = '" + productId + "'");
 			
 			while (resultSet.next()) {
 				stock = resultSet.getInt("stock");
@@ -249,9 +270,12 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 		}
 		
 		// Uložení snížené hodnoty kusů skladem
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET stock = '" + stock + "' WHERE id_product = '" + productId + "'");
+			"UPDATE pc_island.products SET stock = '" + stock + "' WHERE id_product = '" + productId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -267,9 +291,12 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	@Override
 	public void changeOrderStatus(int idOrder, String status) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE orders SET status = '" + status + "' WHERE id_order = '" + idOrder + "'");
+			"UPDATE pc_island.orders SET status = '" + status + "' WHERE id_order = '" + idOrder + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {

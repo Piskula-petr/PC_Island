@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import cz.pcisland.base_page.PostgreSQL;
+import cz.pcisland.base_page.DatabaseConnection;
 
 /**
  * 	Třída implementující rozhraní přístupu dat k uživatelským recenzím
@@ -23,14 +23,14 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje
-	private PostgreSQL postgreSQL = new PostgreSQL();
+	private DatabaseConnection databaseConnection = new DatabaseConnection();
 	
 // Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
 	
 	public ReviewDAOImpl() {
 		
 		try {
-			Class.forName("org.postgresql.Driver");
+			Class.forName(databaseConnection.getDriver());
 		
 		} catch (ClassNotFoundException e) {
 			System.out.println("Nepodařilo se načíst databázový ovladač");
@@ -45,9 +45,12 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	@Override
 	public void saveReview(Review review) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"INSERT INTO reviews (id_user, user_full_name, product_name, pros, cons, rating, creation_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			"INSERT INTO pc_island.reviews (id_user, user_full_name, product_name, pros, cons, rating, creation_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setInt(1, review.getIdUser());
 			ps.setString(2, review.getUserFullName());
@@ -74,10 +77,13 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	public List<Review> getProductNotNullReviews(String productName) {
 		List<Review> reviews = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM reviews WHERE product_name = '" + productName + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.reviews WHERE product_name = '" + productName + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				Review review = new Review();
@@ -109,10 +115,13 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	public List<Review> getUsersNotNullReviews(int idUser) {
 		List<Review> reviews = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM reviews WHERE id_user = '" + idUser + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.reviews WHERE id_user = '" + idUser + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				Review review = new Review();
@@ -143,10 +152,13 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	public List<Review> getProductNotNullReviewsFromUser(String productName, int idUser) {
 		List<Review> reviews = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
-		Statement statement = connection.createStatement();
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+		
+			Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(
-		"SELECT * FROM reviews WHERE (product_name = '" + productName + "' AND id_user = '" + idUser + "') AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
+		"SELECT * FROM pc_island.reviews WHERE (product_name = '" + productName + "' AND id_user = '" + idUser + "') AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 		
 		while (resultSet.next()) {
 			Review review = new Review();
@@ -178,10 +190,13 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	public List<Review> getAllNotNullReviews() {
 		List<Review> reviews = new ArrayList<>();
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM reviews WHERE (pros NOTNULL OR cons NOTNULL) ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.reviews WHERE (pros NOTNULL OR cons NOTNULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				Review review = new Review();
@@ -212,9 +227,12 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	@Override
 	public void changeReviewPros(int idReview, String newPros) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE reviews SET pros = '" + newPros + "' WHERE id_review = '" + idReview + "'");
+			"UPDATE pc_island.reviews SET pros = '" + newPros + "' WHERE id_review = '" + idReview + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -230,9 +248,12 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	@Override
 	public void changeReviewCons(int idReview, String newCons) {
 		
-		try (Connection connection = DriverManager.getConnection(postgreSQL.getConnection(), postgreSQL.getUsername(), postgreSQL.getPassword())) {
+		try (Connection connection = DriverManager.getConnection(databaseConnection.getConnection(), 
+																 databaseConnection.getUsername(), 
+																 databaseConnection.getPassword())) {
+			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE reviews SET cons = '" + newCons + "' WHERE id_review = '" + idReview + "'");
+			"UPDATE pc_island.reviews SET cons = '" + newCons + "' WHERE id_review = '" + idReview + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
