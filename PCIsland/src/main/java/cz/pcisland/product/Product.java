@@ -7,8 +7,9 @@ import java.util.Map;
 import org.apache.commons.collections4.map.HashedMap;
 
 /**
- *	Třída produktu:
+ *	Třída produktu (Java Bean):
  *
+ *		bezparametrový konstruktor,
  * 		gettery + settery atributů (+ vytvoření Mapy parametrů, popisku produktu);
  */
 
@@ -28,13 +29,13 @@ public class Product implements Serializable {
 	private int numberOfPreview;
 	private Map<String, String> parametrsMap;
 	
-// Bezparamatrový konstruktor /////////////////////////////////////////////////////////////////////////
+// Bezparamatrový konstruktor ///////////////////////////////////////////////////////////////////////
 	
 	public Product() {
 		
 	}
 	
-// Konstruktor ////////////////////////////////////////////////////////////////////////////////////////
+// Konstruktor //////////////////////////////////////////////////////////////////////////////////////
 	
 	public Product(int id, String type, String name, int price, int amount, int stock, int sales, int overallRating, int numberOfReview, Map<String, String> parametrs) {
 		this.id = id;
@@ -48,6 +49,8 @@ public class Product implements Serializable {
 		this.numberOfPreview = numberOfReview;
 		this.parametrsMap = parametrs;
 	}
+
+// Gettery + Settery ////////////////////////////////////////////////////////////////////////////////
 	
 	public int getId() {
 		return id;

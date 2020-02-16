@@ -1,4 +1,4 @@
-package cz.pcisland.home_page;
+package cz.pcisland.base_page;
 
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.html.navigation.paging.IPagingLabelProvider;

@@ -23,7 +23,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
 	public void init() {
 		super.init();
 		
-		// add your configuration here
+		getDebugSettings().setAjaxDebugModeEnabled(false);
 	}
 
 	@Override

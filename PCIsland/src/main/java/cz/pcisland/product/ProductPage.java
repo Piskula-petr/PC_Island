@@ -22,7 +22,7 @@ import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 
 import cz.pcisland.base_page.BasePage;
-import cz.pcisland.home_page.CustomPagingNavigator;
+import cz.pcisland.base_page.CustomPagingNavigator;
 
 /**
  * 	Mateřská třída produktu:

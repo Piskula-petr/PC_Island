@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * 	Třída recenze:
+ * 	Třída recenze (Java Bean):
  * 
+ * 		bezparametrový konstruktor,
  * 		gettery + settery atributů;
  */
 
@@ -22,6 +23,14 @@ public class Review implements Serializable {
 	private String cons;
 	private int rating;
 	private LocalDate creationDate;
+	
+// Bezparametrový konstruktor ///////////////////////////////////////////////////////////////////////
+	
+	public Review() {
+		
+	}
+	
+// Gettery + Settery ////////////////////////////////////////////////////////////////////////////////
 	
 	public int getIdReview() {
 		return idReview;

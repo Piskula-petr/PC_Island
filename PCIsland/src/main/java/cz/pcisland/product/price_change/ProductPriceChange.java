@@ -21,7 +21,7 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 
 import cz.pcisland.base_page.BasePage;
-import cz.pcisland.home_page.CustomPagingNavigator;
+import cz.pcisland.base_page.CustomPagingNavigator;
 import cz.pcisland.product.Product;
 import cz.pcisland.product.ProductDAOImpl;
 

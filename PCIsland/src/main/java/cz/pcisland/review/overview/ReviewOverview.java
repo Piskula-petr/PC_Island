@@ -15,7 +15,7 @@ import org.apache.wicket.markup.html.list.PageableListView;
 import org.apache.wicket.model.Model;
 
 import cz.pcisland.base_page.BasePage;
-import cz.pcisland.home_page.CustomPagingNavigator;
+import cz.pcisland.base_page.CustomPagingNavigator;
 import cz.pcisland.product.ProductDAOImpl;
 import cz.pcisland.review.Review;
 import cz.pcisland.review.ReviewDAOImpl;

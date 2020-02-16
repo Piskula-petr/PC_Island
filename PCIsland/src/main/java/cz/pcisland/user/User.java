@@ -3,8 +3,9 @@ package cz.pcisland.user;
 import java.io.Serializable;
 
 /**
- * 	Třída uživatele:
+ * 	Třída uživatele (Java Bean):
  * 
+ * 		bezparametrový konstruktor,
  * 		gettery + settery atributů;
  */
 
@@ -24,6 +25,14 @@ public class User implements Serializable {
 	private String city;
 	private Integer zipCode;
 	private String country;
+	
+// Bezparametrový konstruktor ///////////////////////////////////////////////////////////////////////
+	
+	public User() {
+		
+	}
+	
+// Gettery + Settery ////////////////////////////////////////////////////////////////////////////////
 	
 	public int getId() {
 		return id;

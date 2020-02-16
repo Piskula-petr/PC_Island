@@ -394,7 +394,7 @@ public class GraphicsCardsPage extends ProductPageWithTopSelling {
 				amdLabel.setVisible(false);
 				nvidiaLabel.setVisible(false);
 				
-				memory16Label.setVisible(false);
+				memory6Label.setVisible(false);
 				memory8Label.setVisible(false);
 				memory11Label.setVisible(false);
 				memory16Label.setVisible(false);

@@ -20,9 +20,9 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.resource.ContextRelativeResource;
 
 import cz.pcisland.base_page.BasePage;
+import cz.pcisland.base_page.CustomPagingNavigator;
 import cz.pcisland.graphics_cards.detail.GraphicsCardDetailPage;
 import cz.pcisland.hard_disks.detail.HarddiskDetailPage;
-import cz.pcisland.home_page.CustomPagingNavigator;
 import cz.pcisland.memory.detail.MemoryDetailPage;
 import cz.pcisland.motherboards.detail.MotherBoardDetailPage;
 import cz.pcisland.order.Order;

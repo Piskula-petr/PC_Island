@@ -1,7 +1,6 @@
 html, body {
 	height: 100%;
 	padding: 0;
-	width: 960px;
 	margin: auto;
 	display: table;
 	font-family: Verdana;
@@ -14,6 +13,7 @@ body {
 
 /*___________________________ záhlaví ___________________________*/
 header {
+	width: 960px;
 	height: 100px;
 	background: #B22222;
 	border-radius: 5px;
@@ -1652,6 +1652,8 @@ option {
 
 /*___________________________ hlavní obsah ___________________________*/
 section {
+	width: 960px;
+	float: left;
 	flex: 1 0 auto;
 	border-radius: 5px;
 	margin: 0px 0px 20px 0px;
@@ -1691,6 +1693,32 @@ section h2 {
 	float: right;
 	margin: -75px 0px 0px 0px;
 	max-height: 75px;
+}
+
+#classDiagramLink {
+	position: fixed;
+	margin: 125px 0px 0px -264px;
+	border: 1px solid #c2c2c2;
+	border-radius: 5px;
+	width: 250px;
+	height: 973px;
+}
+
+#classDiagramLink:hover {
+	opacity: 0.9;
+}
+
+#gitHubLink {
+	position: fixed;
+	margin: 125px 0px 0px 970px;
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 250px;
+	height: 973px;
+}
+
+#gitHubLink:hover {
+	opacity: 0.9;
 }
 
 /*___________________________ slideshow galerie _________________________*/

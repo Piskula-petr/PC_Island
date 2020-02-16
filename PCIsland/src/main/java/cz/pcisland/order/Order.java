@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- *	Třída objednávky:
+ *	Třída objednávky (Java Bean):
  *
+ *		bezparametrový konstruktor,
  *		gettery + settery atributů;
  */
 
@@ -31,6 +32,14 @@ public class Order implements Serializable {
 	private String deliveryTypeAndPrice;
 	private String paymentTypeAndPrice;
 	private int totalPrice;
+	
+// Bezparametrový konstruktor ///////////////////////////////////////////////////////////////////////
+	
+	public Order() {
+		
+	}
+	
+// Gettery + Settery ////////////////////////////////////////////////////////////////////////////////
 	
 	public int getIdOrder() {
 		return idOrder;
