@@ -1,6 +1,5 @@
 package cz.pcisland.shipping_and_payment;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -124,10 +123,8 @@ public class ShippingAndPaymentPage extends BasePage {
 					int DPH = (totalPrice * 21) / 121;
 					totalPriceWithoutDPH = totalPrice - DPH;
 					
-					String pattern = "###,###.###";
-					DecimalFormat decimalFormat = new DecimalFormat(pattern);
-					totalPriceWithoutDPHString = decimalFormat.format(totalPriceWithoutDPH) + ",-";
-					totalPriceString = decimalFormat.format(totalPrice) + ",-";
+					totalPriceWithoutDPHString = getDecimalFormat().format(totalPriceWithoutDPH) + ",-";
+					totalPriceString = getDecimalFormat().format(totalPrice) + ",-";
 				}
 				
 				// Zpřístupnění Linku, pokud je zvolen způsob dopravy a typ platby
@@ -195,10 +192,8 @@ public class ShippingAndPaymentPage extends BasePage {
 					int DPH = (totalPrice * 21) / 121;
 					totalPriceWithoutDPH = totalPrice - DPH;
 					
-					String pattern = "###,###.###";
-					DecimalFormat decimalFormat = new DecimalFormat(pattern);
-					totalPriceWithoutDPHString = decimalFormat.format(totalPriceWithoutDPH) + ",-";
-					totalPriceString = decimalFormat.format(totalPrice) + ",-";
+					totalPriceWithoutDPHString = getDecimalFormat().format(totalPriceWithoutDPH) + ",-";
+					totalPriceString = getDecimalFormat().format(totalPrice) + ",-";
 				}
 				
 				// Zpřístupnění Linku, pokud je zvolen způsob dopravy a typ platby
@@ -248,9 +243,7 @@ public class ShippingAndPaymentPage extends BasePage {
 				Product product = item.getModelObject();
 				String imagePath = "preview images//" + product.getName() + "//" + product.getName() + ".jpg";
 				
-				String pattern = "###,###.###";
-				DecimalFormat decimalFormat = new DecimalFormat(pattern);
-				String price = decimalFormat.format(product.getPrice()) + ",-";
+				String price = getDecimalFormat().format(product.getPrice()) + ",-";
 				
 				String stock = "";
 				if (product.getStock() > 4) {
@@ -390,10 +383,8 @@ public class ShippingAndPaymentPage extends BasePage {
 			int DPH = (totalPrice * 21) / 121;
 			totalPriceWithoutDPH = totalPrice - DPH;
 			
-			String pattern = "###,###.###";
-			DecimalFormat decimalFormat = new DecimalFormat(pattern);
-			totalPriceWithoutDPHString = decimalFormat.format(totalPriceWithoutDPH) + ",-";
-			totalPriceString = decimalFormat.format(totalPrice) + ",-";
+			totalPriceWithoutDPHString = getDecimalFormat().format(totalPriceWithoutDPH) + ",-";
+			totalPriceString = getDecimalFormat().format(totalPrice) + ",-";
 		}
 	}
 	

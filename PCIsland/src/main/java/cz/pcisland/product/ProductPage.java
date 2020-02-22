@@ -1,7 +1,6 @@
 package cz.pcisland.product;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -60,9 +59,6 @@ public abstract class ProductPage extends BasePage {
 // Konstruktor ///////////////////////////////////////////////////////////////////////////////////////
 	
 	public ProductPage() {
-		
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
 		
 // WebMarkupContainer ////////////////////////////////////////////////////////////////////////////////
 		
@@ -174,8 +170,8 @@ public abstract class ProductPage extends BasePage {
 				}.add(new Image("image", new ContextRelativeResource(imagePath))));
 				
 				item.add(new Label("rating", rating));
-				item.add(new Label("price", decimalFormat.format(product.getPrice()) + ",-"));
-				item.add(new Label("priceWithoutDPH", decimalFormat.format(priceWithoutDPH) + ",- bez DPH"));
+				item.add(new Label("price", getDecimalFormat().format(product.getPrice()) + ",-"));
+				item.add(new Label("priceWithoutDPH", getDecimalFormat().format(priceWithoutDPH) + ",- bez DPH"));
 				item.add(new Label("stock", stock) {
 					
 					@Override

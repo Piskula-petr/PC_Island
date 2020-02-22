@@ -1695,32 +1695,6 @@ section h2 {
 	max-height: 75px;
 }
 
-#classDiagramLink {
-	position: fixed;
-	margin: 125px 0px 0px -264px;
-	border: 1px solid #c2c2c2;
-	border-radius: 5px;
-	width: 250px;
-	height: 973px;
-}
-
-#classDiagramLink:hover {
-	opacity: 0.9;
-}
-
-#gitHubLink {
-	position: fixed;
-	margin: 125px 0px 0px 970px;
-	border: 1px solid black;
-	border-radius: 5px;
-	width: 250px;
-	height: 973px;
-}
-
-#gitHubLink:hover {
-	opacity: 0.9;
-}
-
 /*___________________________ slideshow galerie _________________________*/
 #slider img {
 	border-radius: 5px;
@@ -2553,9 +2527,9 @@ footer {
 	margin: 0px 0px 11px 0px;
 }
 
-#copyright {
+#copyrightContainer {
 	font-size: 1.1em;
 	color: white;
 	text-align: center;
-	margin: 40px 0px 0px 0px;
+	margin: 17px 0px 0px 0px;
 }

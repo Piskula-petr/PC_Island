@@ -1,7 +1,5 @@
 package cz.pcisland.product;
 
-import java.text.DecimalFormat;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.link.Link;
@@ -25,9 +23,6 @@ public abstract class ProductPageWithTopSelling extends ProductPage {
 // Konstruktor ///////////////////////////////////////////////////////////////////////////////////////
 	
 	public ProductPageWithTopSelling() {
-		
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
 		
 // Nejprodávanější produkty ListView /////////////////////////////////////////////////////////////////
 		
@@ -70,7 +65,7 @@ public abstract class ProductPageWithTopSelling extends ProductPage {
 					}
 				}.add(new Label("description", product.getDescription(product.getType(), product.getParametrs()))));
 				
-				item.add(new Label("price", decimalFormat.format(product.getPrice()) + ",-"));
+				item.add(new Label("price", getDecimalFormat().format(product.getPrice()) + ",-"));
 			}
 		};
 		add(topSellingListView);

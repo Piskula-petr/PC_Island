@@ -2,9 +2,11 @@ package cz.pcisland.base_page;
 
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -63,7 +65,8 @@ import cz.pcisland.user.User;
  * 
  * 		konfigurace třídy,
  * 		přesměrování na detail produktu,
- * 		titulek stránky
+ * 		titulek stránky,
+ * 		číselný formát
  */
 
 public abstract class BasePage extends WebPage {
@@ -388,9 +391,7 @@ public abstract class BasePage extends WebPage {
 				Product product = item.getModelObject();
 				String imagePath = "preview images//" + product.getName() + "//" + product.getName() + ".jpg";
 				
-				String pattern = "###,###.###";
-				DecimalFormat decimalFormat = new DecimalFormat(pattern);
-				String price = decimalFormat.format(product.getPrice()) + ",-";
+				String price = getDecimalFormat().format(product.getPrice()) + ",-";
 				
 				item.add(new Link<Object>("imageLink") {
 					
@@ -545,14 +546,11 @@ public abstract class BasePage extends WebPage {
   		if (webSession.getAttribute("cartPrice") != null) {
   			totalPrice = (int) webSession.getAttribute("cartPrice");
   			
-  			String pattern = "###,###.###";
-  			DecimalFormat decimalFormat = new DecimalFormat(pattern);
-  			
   			// Zobrazení ceny košíku
   			if ((int) webSession.getAttribute("cartPrice") == 0) {
      			cartPrice = "Košík";
      		
-  			} else cartPrice = decimalFormat.format((int) webSession.getAttribute("cartPrice")) + " Kč";
+  			} else cartPrice = getDecimalFormat().format((int) webSession.getAttribute("cartPrice")) + " Kč";
   		}
      	
      	// Zobrazení počtu položek v košíku
@@ -608,5 +606,16 @@ public abstract class BasePage extends WebPage {
 	 */
 	protected void setTitle(IModel model) {
 		get("titleLabel").setDefaultModel(model);
+	}
+	
+	/**
+	 * 	Číselný formát oddělující tisíce mezerou
+	 * 
+	 * 	@return číselný formát
+	 */
+	public DecimalFormat getDecimalFormat() {
+		DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.FRANCE);
+		
+		return decimalFormat;
 	}
 }

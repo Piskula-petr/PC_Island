@@ -1,6 +1,5 @@
 package cz.pcisland.order.overview.detail;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -173,9 +172,7 @@ public class OrderOverviewDetail extends BasePage {
 		
 		contactInformationWebContainer.add(new Label("customerFullName", order.getCustomerFullName()));
 		
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-		contactInformationWebContainer.add(new Label("customerPhoneNumber", decimalFormat.format(order.getCustomerPhoneNumber())));
+		contactInformationWebContainer.add(new Label("customerPhoneNumber", getDecimalFormat().format(order.getCustomerPhoneNumber())));
 		
 		contactInformationWebContainer.add(new Label("customerEmail", order.getCustomerEmail()));
 		
@@ -259,9 +256,7 @@ public class OrderOverviewDetail extends BasePage {
 				Product product = item.getModelObject();
 				String imagePath = "preview images//" + product.getName() + "//" + product.getName() + ".jpg";
 				
-				String pattern = "###,###.###";
-				DecimalFormat decimalFormat = new DecimalFormat(pattern);
-				String price = decimalFormat.format(product.getPrice()) + ",-";
+				String price = getDecimalFormat().format(product.getPrice()) + ",-";
 				
 				String stock = "";
 				if (product.getStock() > 4) {
@@ -359,8 +354,8 @@ public class OrderOverviewDetail extends BasePage {
 		int DPH = (totalPrice * 21) / 121;
 		totalPriceWithoutDPH = totalPrice - DPH;
 		
-		totalPriceWithoutDPHString = decimalFormat.format(totalPriceWithoutDPH) + ",-";
-		totalPriceString = decimalFormat.format(totalPrice) + ",-";
+		totalPriceWithoutDPHString = getDecimalFormat().format(totalPriceWithoutDPH) + ",-";
+		totalPriceString = getDecimalFormat().format(totalPrice) + ",-";
 		
 		// Cena bez DPH Label
 		productsWebContainer.add(new Label("totalPriceWithoutDPH", new PropertyModel<String>(this, "totalPriceWithoutDPHString")));

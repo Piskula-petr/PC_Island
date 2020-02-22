@@ -1,6 +1,5 @@
 package cz.pcisland.order.overview;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -240,9 +239,7 @@ public class OrdersOverview extends BasePage {
 				Order order = item.getModelObject();
 				imagePaths = new ArrayList<>();
 				
-				String pattern = "###,###.###";
-				DecimalFormat decimalFormat = new DecimalFormat(pattern);
-				String totalPrice = decimalFormat.format(order.getTotalPrice()) + ",-";
+				String totalPrice = getDecimalFormat().format(order.getTotalPrice()) + ",-";
 				
 				item.add(new Label("creationDate", order.getCreationDate()));
 				item.add(new Link<Object>("idOrderLink") {

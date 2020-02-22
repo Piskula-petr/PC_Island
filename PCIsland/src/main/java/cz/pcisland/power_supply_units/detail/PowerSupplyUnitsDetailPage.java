@@ -1,7 +1,5 @@
 package cz.pcisland.power_supply_units.detail;
 
-import java.text.DecimalFormat;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
@@ -38,9 +36,6 @@ public class PowerSupplyUnitsDetailPage extends DetailProductPage {
 		setTitle(new Model(powerSupplyUnit.getName() + " | Zdroje (PSU)"));
 		
 // Parametry //////////////////////////////////////////////////////////////////////////////////////////
-
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
 		
 		// korekce html tagu (odřádkuje pokud je řetězec příliš dlouhý)
 		int addRow = powerSupplyUnit.getParametrs().get("connectors").length() / 37;
@@ -52,7 +47,7 @@ public class PowerSupplyUnitsDetailPage extends DetailProductPage {
 		
 		markupContainer.add(new Label("company", powerSupplyUnit.getParametrs().get("company")));
 		markupContainer.add(new Label("type", powerSupplyUnit.getParametrs().get("type")));
-		markupContainer.add(new Label("performance", decimalFormat.format(Integer.parseInt(powerSupplyUnit.getParametrs().get("performance"))) + " W"));
+		markupContainer.add(new Label("performance", getDecimalFormat().format(Integer.parseInt(powerSupplyUnit.getParametrs().get("performance"))) + " W"));
 		markupContainer.add(new Label("efficiency", powerSupplyUnit.getParametrs().get("efficiency")));
 		markupContainer.add(new Label("fanSize", powerSupplyUnit.getParametrs().get("fanSize") + " mm"));
 		markupContainer.add(new Label("connectors", powerSupplyUnit.getParametrs().get("connectors")));

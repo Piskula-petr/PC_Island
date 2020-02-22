@@ -1,7 +1,5 @@
 package cz.pcisland.motherboards.detail;
 
-import java.text.DecimalFormat;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
@@ -39,9 +37,6 @@ public class MotherBoardDetailPage extends DetailProductPage {
 		
 // Parametry ///////////////////////////////////////////////////////////////////////////////////////////
 
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-
 		markupContainer.add(new Label("company", motherboard.getParametrs().get("company")));
 		markupContainer.add(new Label("socket", motherboard.getParametrs().get("socket")));
 		
@@ -55,7 +50,7 @@ public class MotherBoardDetailPage extends DetailProductPage {
 		markupContainer.add(new Label("processorGeneration", motherboard.getParametrs().get("processorGeneration")));
 		markupContainer.add(new Label("chipset", motherboard.getParametrs().get("chipset")));
 		markupContainer.add(new Label("memoryType", motherboard.getParametrs().get("memoryType")));
-		markupContainer.add(new Label("maxMemoryFrequency", decimalFormat.format(Integer.parseInt(motherboard.getParametrs().get("maxMemoryFrequency"))) + " MHz"));
+		markupContainer.add(new Label("maxMemoryFrequency", getDecimalFormat().format(Integer.parseInt(motherboard.getParametrs().get("maxMemoryFrequency"))) + " MHz"));
 		markupContainer.add(new Label("maxMemory", motherboard.getParametrs().get("maxMmemory") + " GB"));
 		markupContainer.add(new Label("format", motherboard.getParametrs().get("format")));
 		

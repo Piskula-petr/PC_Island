@@ -1,6 +1,5 @@
 package cz.pcisland.product.price_change;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -275,9 +274,7 @@ public class ProductPriceChange extends BasePage {
 				Product product = item.getModelObject();
 				String imagePath = "preview images//" + product.getName() + "//" + product.getName() + ".jpg";
 				
-				String pattern = "###,###.###";
-				DecimalFormat decimalFormat = new DecimalFormat(pattern);
-				String price = decimalFormat.format(product.getPrice()) + ",-";
+				String price = getDecimalFormat().format(product.getPrice()) + ",-";
 				
 				item.add(new Link<Object>("imageLink") {
 					

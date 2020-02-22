@@ -1,7 +1,6 @@
 package cz.pcisland.product;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -117,9 +116,6 @@ public abstract class DetailProductPage extends BasePage {
 		
 		String imagePath1 = "detail images//" + product.getName() + "//" + product.getName() + "_1.jpg";
 		
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-		
 		int DPH = (product.getPrice() * 21) / 121; 
 		int priceWithoutDPH = product.getPrice() - DPH;
 		
@@ -137,8 +133,8 @@ public abstract class DetailProductPage extends BasePage {
 		markupContainer.add(new Label("name", product.getName()));
 		markupContainer.add(new Label("rating", rating));
 		markupContainer.add(new Image("mainImage", new ContextRelativeResource(imagePath1)));
-		markupContainer.add(new Label("price", decimalFormat.format(product.getPrice()) + ",-"));
-		markupContainer.add(new Label("priceWithoutDPH", decimalFormat.format(priceWithoutDPH) + ",- bez DPH"));
+		markupContainer.add(new Label("price", getDecimalFormat().format(product.getPrice()) + ",-"));
+		markupContainer.add(new Label("priceWithoutDPH", getDecimalFormat().format(priceWithoutDPH) + ",- bez DPH"));
 		markupContainer.add(new Label("stock", stock) {
 			
 			@Override

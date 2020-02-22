@@ -1,7 +1,5 @@
 package cz.pcisland.hard_disks.detail;
 
-import java.text.DecimalFormat;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
@@ -39,9 +37,6 @@ public class HarddiskDetailPage extends DetailProductPage {
 
 // Parametry ///////////////////////////////////////////////////////////////////////////////////////////
 		
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-		
 		// Úpravení formátu disku
 		String format = ""; 
 		if (hardDisk.getParametrs().get("format").equals("2.5") || hardDisk.getParametrs().get("format").equals("3.5")) {
@@ -63,15 +58,15 @@ public class HarddiskDetailPage extends DetailProductPage {
 		// Editace HTML tagu (přidá parametr otáček u magnetických disků)
 		if (Integer.parseInt(hardDisk.getParametrs().get("RMP")) > 0) {
 			markupContainer.add(new Label("RPMName", "<p>Rychlost otáčení ploten:</p>").setEscapeModelStrings(false));
-			markupContainer.add(new Label("RPMValue", "<p>" + decimalFormat.format(Integer.parseInt(hardDisk.getParametrs().get("RMP"))) + " otáček/min</p>").setEscapeModelStrings(false));
+			markupContainer.add(new Label("RPMValue", "<p>" + getDecimalFormat().format(Integer.parseInt(hardDisk.getParametrs().get("RMP"))) + " otáček/min</p>").setEscapeModelStrings(false));
 		
 		} else {
 			markupContainer.add(new Label("RPMName", "").setEscapeModelStrings(false));
 			markupContainer.add(new Label("RPMValue", "").setEscapeModelStrings(false));
 		}
 		
-		markupContainer.add(new Label("readingSpeed", decimalFormat.format(Integer.parseInt(hardDisk.getParametrs().get("readingSpeed"))) + " MB/s"));
-		markupContainer.add(new Label("writeSpeed", decimalFormat.format(Integer.parseInt(hardDisk.getParametrs().get("writeSpeed"))) + " MB/s"));
+		markupContainer.add(new Label("readingSpeed", getDecimalFormat().format(Integer.parseInt(hardDisk.getParametrs().get("readingSpeed"))) + " MB/s"));
+		markupContainer.add(new Label("writeSpeed", getDecimalFormat().format(Integer.parseInt(hardDisk.getParametrs().get("writeSpeed"))) + " MB/s"));
 		markupContainer.add(new Label("connector", hardDisk.getParametrs().get("connector")));
 		
 		// Uživatelské recenze ListView (DetailProductPage)

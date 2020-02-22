@@ -1,7 +1,5 @@
 package cz.pcisland.memory.detail;
 
-import java.text.DecimalFormat;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
@@ -39,14 +37,11 @@ public class MemoryDetailPage extends DetailProductPage {
 		
 // Parametry //////////////////////////////////////////////////////////////////////////////////////////
 		
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-		
 		markupContainer.add(new Label("company", memory.getParametrs().get("company")));
 		markupContainer.add(new Label("series", memory.getParametrs().get("series")));
 		markupContainer.add(new Label("memorySize", memory.getParametrs().get("memorySize") + " GB"));
 		markupContainer.add(new Label("memoryType", memory.getParametrs().get("memoryType")));
-		markupContainer.add(new Label("memoryFrequency", decimalFormat.format(Integer.parseInt(memory.getParametrs().get("memoryFrequency"))) + " MHz"));
+		markupContainer.add(new Label("memoryFrequency", getDecimalFormat().format(Integer.parseInt(memory.getParametrs().get("memoryFrequency"))) + " MHz"));
 		markupContainer.add(new Label("latency", memory.getParametrs().get("latency")));
 		markupContainer.add(new Label("voltage", memory.getParametrs().get("voltage") + " V"));
 		markupContainer.add(new Label("XMP", memory.getParametrs().get("XMP")));

@@ -1,7 +1,5 @@
 package cz.pcisland.graphics_cards.detail;
 
-import java.text.DecimalFormat;
-
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 
@@ -39,17 +37,14 @@ public class GraphicsCardDetailPage extends DetailProductPage {
 		
 // Parametry //////////////////////////////////////////////////////////////////////////////////////////
 		
-		String pattern = "###,###.###";
-		DecimalFormat decimalFormat = new DecimalFormat(pattern);
-		
 		markupContainer.add(new Label("graphicsChip", graphicsCard.getParametrs().get("graphicsChip")));
 		markupContainer.add(new Label("series", graphicsCard.getParametrs().get("series")));
-		markupContainer.add(new Label("coreFrequency", decimalFormat.format(Integer.parseInt(graphicsCard.getParametrs().get("coreFrequency"))) + " MHz"));
-		markupContainer.add(new Label("streamProcess", decimalFormat.format(Integer.parseInt(graphicsCard.getParametrs().get("streamProcess"))) + " x"));
+		markupContainer.add(new Label("coreFrequency", getDecimalFormat().format(Integer.parseInt(graphicsCard.getParametrs().get("coreFrequency"))) + " MHz"));
+		markupContainer.add(new Label("streamProcess", getDecimalFormat().format(Integer.parseInt(graphicsCard.getParametrs().get("streamProcess"))) + " x"));
 		markupContainer.add(new Label("memoryType", graphicsCard.getParametrs().get("memoryType")));
-		markupContainer.add(new Label("memorySize", decimalFormat.format(Integer.parseInt(graphicsCard.getParametrs().get("memorySize"))) + " MB"));
+		markupContainer.add(new Label("memorySize", getDecimalFormat().format(Integer.parseInt(graphicsCard.getParametrs().get("memorySize"))) + " MB"));
 		markupContainer.add(new Label("memoryFrequency", graphicsCard.getParametrs().get("memoryFrequency") + " GHz"));
-		markupContainer.add(new Label("memoryWidth", decimalFormat.format(Integer.parseInt(graphicsCard.getParametrs().get("memoryWidth"))) + " bit"));
+		markupContainer.add(new Label("memoryWidth", getDecimalFormat().format(Integer.parseInt(graphicsCard.getParametrs().get("memoryWidth"))) + " bit"));
 		markupContainer.add(new Label("connector", graphicsCard.getParametrs().get("connector")));
 		markupContainer.add(new Label("thermalDesignPower", graphicsCard.getParametrs().get("thermalDesignPower") + " W"));
 		markupContainer.add(new Label("outputs", graphicsCard.getParametrs().get("outputs")));
