@@ -4,6 +4,7 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.junit.Test;
 
+import cz.pcisland.WicketApplication;
 import cz.pcisland.cart.CartPage;
 import cz.pcisland.graphics_cards.GraphicsCardsPage;
 import cz.pcisland.hard_disks.HardDisksPage;

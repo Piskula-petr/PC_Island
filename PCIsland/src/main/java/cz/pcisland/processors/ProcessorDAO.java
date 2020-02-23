@@ -2,16 +2,6 @@ package cz.pcisland.processors;
 
 import java.util.List;
 
-/*
- * 	Rozhraní přístupu dat k procesorům:
- * 
- * 		vrací procesor podle zadaného ID,
- * 		vrací List všech procesorů,
- * 		vrací List nejprodávanějších procesorů,
- * 		zvýší počet recenzí procesoru podle zadaného ID,
- * 		přičte hodnocení procesoru podle zadaného ID;
- */
-
 import cz.pcisland.product.Product;
 
 /**
