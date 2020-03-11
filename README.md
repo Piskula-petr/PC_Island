@@ -10,9 +10,9 @@ https://pc-island.azurewebsites.net/
 E-shop with PC components deploy on Microsoft Azure. <br><br>
 
 ## Technology
-Apache Wicket (8.5.0) <br>
-HTML <br>
-CSS <br><br>
+Apache Wicket <br>
+HTML / CSS <br>
+JavaScript <br><br>
 
 ## Hosting
 Miscrosoft Azure <br>
