@@ -16,7 +16,6 @@ import cz.pcisland.product.Product;
 /**
 *	Třída implementující rozhraní přístupu dat ke grafickým kartám
 */
-
 public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +39,6 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	/**
 	 * 	Načtení grafické karty z databáze podle zadaného ID
 	 */
-	
 	@Override
 	public Product getGraphicsCard(int id) {
 		Product graphicsCard = new Product();
@@ -76,7 +74,6 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	/**
 	 * 	Načtení všech grafických karet z databáze
 	 */
-	
 	@Override
 	public List<Product> getAllGraphicsCards() {
 		List<Product> graphicsCards = new ArrayList<>();
@@ -90,6 +87,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE type = 'graphics_card' ORDER BY id_product");
 			
 			while (resultSet.next()) {
+				
 				Product graphicsCard = new Product();
 				graphicsCard.setId(resultSet.getInt("id_product"));
 				graphicsCard.setType(resultSet.getString("type"));
@@ -114,7 +112,6 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	/**
 	 * 	Načtení 3 nejprodávanějších grafických karet
 	 */
-	
 	@Override
 	public List<Product> getTopSellingGraphicsCards() {
 		List<Product> graphicsCards = new ArrayList<>();
@@ -128,6 +125,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'graphics_card' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
+				
 				Product graphicsCard = new Product();
 				graphicsCard.setId(resultSet.getInt("id_product"));
 				graphicsCard.setType(resultSet.getString("type"));
@@ -152,7 +150,6 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	/**
 	 * 	Zvýšení počtu recenzí podle zadaného ID
 	 */
-	
 	@Override
 	public void incrementNumberOfPreview(int graphicsCardId) {
 		int numberOfPreview = 0;
@@ -169,6 +166,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
 			}
+			
 			numberOfPreview++;
 			
 		} catch (SQLException e) {
@@ -194,7 +192,6 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 	/**
 	 * 	Přičtení hodnocení grafické karty podle zadaného ID
 	 */
-	
 	@Override
 	public void addRating(int graphicsCardId, int rating) {
 		int overallRating = 0;
@@ -211,6 +208,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
 			}
+			
 			overallRating = overallRating + rating;
 			
 		} catch (SQLException e) {

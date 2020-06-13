@@ -15,7 +15,6 @@ import cz.pcisland.review.ReviewDAOImpl;
  *		parametry produktu,
  *		přiřazení uživatelských recenzí
  */
-
 public class HarddiskDetailPage extends DetailProductPage {
 
 	private static final long serialVersionUID = 1L;
@@ -57,10 +56,12 @@ public class HarddiskDetailPage extends DetailProductPage {
 		
 		// Editace HTML tagu (přidá parametr otáček u magnetických disků)
 		if (Integer.parseInt(hardDisk.getParametrs().get("RMP")) > 0) {
+			
 			markupContainer.add(new Label("RPMName", "<p>Rychlost otáčení ploten:</p>").setEscapeModelStrings(false));
 			markupContainer.add(new Label("RPMValue", "<p>" + getDecimalFormat().format(Integer.parseInt(hardDisk.getParametrs().get("RMP"))) + " otáček/min</p>").setEscapeModelStrings(false));
 		
 		} else {
+			
 			markupContainer.add(new Label("RPMName", "").setEscapeModelStrings(false));
 			markupContainer.add(new Label("RPMValue", "").setEscapeModelStrings(false));
 		}

@@ -7,7 +7,6 @@ import cz.pcisland.product.Product;
 /**
  *	Rozhraní přístupu dat k operačním pamětem
  */
-
 public interface MemoryDAO {
 
 	/**

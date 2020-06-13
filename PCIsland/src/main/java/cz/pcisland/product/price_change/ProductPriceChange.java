@@ -32,7 +32,6 @@ import cz.pcisland.product.ProductDAOImpl;
  *		konfigurace komponenty filtru,
  *		list produktů
  */
-
 public class ProductPriceChange extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -76,6 +75,7 @@ public class ProductPriceChange extends BasePage {
 				setResponsePage(ProductPriceChange.class);
 			}
 		};
+		
 		productsPriceChangeForm.setOutputMarkupId(true);
 		add(productsPriceChangeForm);
 		
@@ -157,6 +157,7 @@ public class ProductPriceChange extends BasePage {
 				} else productsPriceChangePageableListView.setList(new ProductDAOImpl().getAllProducts());
 			}
 		};
+		
 		filterForm.setOutputMarkupId(true);
 		add(filterForm);
 		
@@ -171,6 +172,7 @@ public class ProductPriceChange extends BasePage {
 				target.add(pagingNavigator);
 			}
 		};
+		
 		filterForm.add(processorsCheckBox);
 		
 		// Procesory Label
@@ -188,6 +190,7 @@ public class ProductPriceChange extends BasePage {
 				target.add(pagingNavigator);
 			}
 		};
+		
 		filterForm.add(graphicsCardsCheckBox);
 		
 		// Grafické karty Label
@@ -205,6 +208,7 @@ public class ProductPriceChange extends BasePage {
 				target.add(pagingNavigator);
 			}
 		};
+		
 		filterForm.add(memoryCheckBox);
 		
 		// Operační paměti Label
@@ -222,6 +226,7 @@ public class ProductPriceChange extends BasePage {
 				target.add(pagingNavigator);
 			}
 		};
+		
 		filterForm.add(motherboardsCheckBox);
 		
 		// Zákldaní desky Label
@@ -239,6 +244,7 @@ public class ProductPriceChange extends BasePage {
 				target.add(pagingNavigator);
 			}
 		};
+		
 		filterForm.add(hardDisksCheckBox);
 		
 		// Pevné disky Label
@@ -256,6 +262,7 @@ public class ProductPriceChange extends BasePage {
 				target.add(pagingNavigator);
 			}
 		};
+		
 		filterForm.add(powerSupplyUnitsCheckBox);
 		
 		// Zdroje Label
@@ -317,6 +324,7 @@ public class ProductPriceChange extends BasePage {
 						target.add(submitButton);
 					}
 				});
+				
 				item.add(priceChangeNumberTextField);
 
 				submitButton = new Button("submitButton");

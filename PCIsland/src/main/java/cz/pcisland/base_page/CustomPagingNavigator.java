@@ -7,7 +7,6 @@ import org.apache.wicket.markup.html.navigation.paging.PagingNavigator;
 /**
  *	Upravená třída navigace stránkováním
  */
-
 public class CustomPagingNavigator extends PagingNavigator {
 
 	private static final long serialVersionUID = 1L;

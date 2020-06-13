@@ -20,7 +20,6 @@ import cz.pcisland.order.overview.OrdersOverview;
  * 		zpráva o objednávce,
  * 		navigační odkazy (zpět do obchodu, přehled objednávek)
  */
-
 public class OrderReport extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -85,6 +84,7 @@ public class OrderReport extends BasePage {
 				// Viditelnost pokud je uživatel přihlášen
 				if (WebSession.get().getAttribute("currentUser") != null) {
 					setVisible(true);
+					
 				} else setVisible(false);
 			}
 			

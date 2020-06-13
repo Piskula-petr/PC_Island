@@ -17,7 +17,6 @@ import cz.pcisland.base_page.DatabaseConnection;
 /**
  *	Třída implementující rozhraní přístupu dat k objednávkám
  */
-
 public class OrderDAOImpl implements OrderDAO,Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -81,7 +80,6 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	/**
 	 * 	Načte všechny objednávky z databáze
 	 */
-	
 	@Override
 	public List<Order> getAllOrders() {
 		List<Order> orders = new ArrayList<>();
@@ -95,6 +93,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			"SELECT * FROM pc_island.orders ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
+				
 				Order order = new Order();
 				order.setIdOrder(resultSet.getInt("id_order"));
 				order.setIdUser(resultSet.getInt("id_user"));
@@ -104,6 +103,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 				order.setStreetAddress(resultSet.getString("street_address"));
 				order.setZipCodeAndCity(resultSet.getString("zip_code_and_city"));
 				order.setCountry(resultSet.getString("country"));
+				
 				Date date = resultSet.getDate("creation_date");
 				order.setCreationDate(date.toLocalDate());
 				order.setStatus(resultSet.getString("status"));
@@ -128,7 +128,6 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	/**
 	 * 	Načte objednávky podle přihlášeného uživatele
 	 */
-	
 	@Override
 	public List<Order> getUsersOrders(int idUser) {
 		List<Order> orders = new ArrayList();
@@ -142,6 +141,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			"SELECT * FROM pc_island.orders WHERE id_user = '" + idUser + "' ORDER BY creation_date DESC");
 
 			while (resultSet.next()) {
+				
 				Order order = new Order();
 				order.setIdOrder(resultSet.getInt("id_order"));
 				order.setIdUser(resultSet.getInt("id_user"));
@@ -151,6 +151,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 				order.setStreetAddress(resultSet.getString("street_address"));
 				order.setZipCodeAndCity(resultSet.getString("zip_code_and_city"));
 				order.setCountry(resultSet.getString("country"));
+				
 				Date date = resultSet.getDate("creation_date");
 				order.setCreationDate(date.toLocalDate());
 				order.setStatus(resultSet.getString("status"));
@@ -175,7 +176,6 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	/**
 	 * 	Načtení ID objednávky podle uživatele z databáze
 	 */
-	
 	@Override
 	public int getIdOrder(String userFullName) {
 		int idOrder = 0;
@@ -203,7 +203,6 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	/**
 	 * 	Zvýšení počtu prodaných kusů podle zadaného názvu produktu
 	 */
-	
 	@Override
 	public void incrementProductSales(String productName, int amount) {
 		int sales = 0;
@@ -220,6 +219,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			while (resultSet.next()) {
 				sales = resultSet.getInt("sales");
 			}
+			
 			sales = sales + amount;
 			
 		} catch (SQLException e) {
@@ -245,7 +245,6 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	/**
 	 * 	Snížení počtu kusů skladem podle zadaného názvu produktu
 	 */
-	
 	@Override
 	public void decrementProductStock(String productName, int amount) {
 		int stock = 0;
@@ -262,6 +261,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			while (resultSet.next()) {
 				stock = resultSet.getInt("stock");
 			}
+			
 			stock = stock - amount;
 			
 		} catch (SQLException e) {
@@ -287,7 +287,6 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 	/**
 	 * 	Změna stavu objednávky podle zadaného ID
 	 */
-	
 	@Override
 	public void changeOrderStatus(int idOrder, String status) {
 		

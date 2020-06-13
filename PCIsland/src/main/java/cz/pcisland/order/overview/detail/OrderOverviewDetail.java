@@ -37,7 +37,6 @@ import cz.pcisland.user.User;
  *		zakoupené produkty,
  *		navigační odkaz (přehled objednávek)
  */
-
 public class OrderOverviewDetail extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -91,12 +90,14 @@ public class OrderOverviewDetail extends BasePage {
 				
 				if (user.getEmail().equals("admin@pcisland.cz")) {
 					dropdownOptionsContainer.setVisible(true);
+					
 				} else dropdownOptionsContainer.setVisible(false);
 				
 				// Posun možností stavu objednávky + uložení nového stavu
 				OrderDAO orderDAO = new OrderDAOImpl();
 				
 				switch (order.getStatus()) {
+				
 					case "Nová" :
 						dropdownOptionsContainer.add(new AttributeModifier("style", "margin: -17px 0px 0px 883px"));
 						orderDAO.changeOrderStatus(order.getIdOrder(), "Nová");
@@ -119,6 +120,7 @@ public class OrderOverviewDetail extends BasePage {
 				}
 			}
 		};
+		
 		add(dropdownOptionsContainer);
 		
 // Nová objednávka Link (Admin only) //////////////////////////////////////////////////////////////////
@@ -261,11 +263,15 @@ public class OrderOverviewDetail extends BasePage {
 				String stock = "";
 				if (product.getStock() > 4) {
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusů");
+					
 				} else if (product.getStock() == 1) {
+					
 					stock = "Poslední kus";
 				} else if (product.getStock() > 1 && product.getStock() < 5) {
+					
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusy");
 				} else if (product.getStock() <= 0) {
+					
 					stock = "Není Skladem";
 				} 
 				
@@ -298,6 +304,7 @@ public class OrderOverviewDetail extends BasePage {
 						// Změna třídy podle počtu produktů
 						if (product.getStock() <= 0) {
 							tag.put("class", "outStock");
+							
 						} else tag.put("class", "onStock");
 						
 					}

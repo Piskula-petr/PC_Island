@@ -17,7 +17,6 @@ import cz.pcisland.base_page.DatabaseConnection;
 /**
  * 	Třída implementující rozhraní přístupu dat k uživatelským recenzím
  */
-
 public class ReviewDAOImpl implements ReviewDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -41,7 +40,6 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	/**
 	 * 	Uložení recenze do databáze
 	 */
-	
 	@Override
 	public void saveReview(Review review) {
 		
@@ -72,7 +70,6 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	/**
 	 * 	Načtení všech nenulových recenzí podle zadaného produktu
 	 */
-	
 	@Override
 	public List<Review> getProductNotNullReviews(String productName) {
 		List<Review> reviews = new ArrayList<>();
@@ -86,6 +83,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			"SELECT * FROM pc_island.reviews WHERE product_name = '" + productName + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
+				
 				Review review = new Review();
 				review.setIdReview(resultSet.getInt("id_review"));
 				review.setIdUser(resultSet.getInt("id_user"));
@@ -94,6 +92,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 				review.setPros(resultSet.getString("pros"));
 				review.setCons(resultSet.getString("cons"));
 				review.setRating(resultSet.getInt("rating"));
+				
 				Date date = resultSet.getDate("creation_date");
 				review.setCreationDate(date.toLocalDate());
 				reviews.add(review);
@@ -110,7 +109,6 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	/**
 	 * 	Načtení uživatelských recenzí podle přihlášeného uživatele
 	 */
-	
 	@Override
 	public List<Review> getUsersNotNullReviews(int idUser) {
 		List<Review> reviews = new ArrayList<>();
@@ -124,6 +122,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			"SELECT * FROM pc_island.reviews WHERE id_user = '" + idUser + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
+				
 				Review review = new Review();
 				review.setIdReview(resultSet.getInt("id_review"));
 				review.setIdUser(resultSet.getInt("id_user"));
@@ -132,6 +131,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 				review.setPros(resultSet.getString("pros"));
 				review.setCons(resultSet.getString("cons"));
 				review.setRating(resultSet.getInt("rating"));
+				
 				Date date = resultSet.getDate("creation_date");
 				review.setCreationDate(date.toLocalDate());
 				reviews.add(review);
@@ -161,6 +161,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 		"SELECT * FROM pc_island.reviews WHERE (product_name = '" + productName + "' AND id_user = '" + idUser + "') AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 		
 		while (resultSet.next()) {
+			
 			Review review = new Review();
 			review.setIdReview(resultSet.getInt("id_review"));
 			review.setIdUser(resultSet.getInt("id_user"));
@@ -169,6 +170,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			review.setPros(resultSet.getString("pros"));
 			review.setCons(resultSet.getString("cons"));
 			review.setRating(resultSet.getInt("rating"));
+			
 			Date date = resultSet.getDate("creation_date");
 			review.setCreationDate(date.toLocalDate());
 			reviews.add(review);
@@ -185,7 +187,6 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	/**
 	 * 	Načtení všech nenulových recenzí
 	 */
-	
 	@Override
 	public List<Review> getAllNotNullReviews() {
 		List<Review> reviews = new ArrayList<>();
@@ -199,6 +200,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			"SELECT * FROM pc_island.reviews WHERE (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
+				
 				Review review = new Review();
 				review.setIdReview(resultSet.getInt("id_review"));
 				review.setIdUser(resultSet.getInt("id_user"));
@@ -207,6 +209,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 				review.setPros(resultSet.getString("pros"));
 				review.setCons(resultSet.getString("cons"));
 				review.setRating(resultSet.getInt("rating"));
+				
 				Date date = resultSet.getDate("creation_date");
 				review.setCreationDate(date.toLocalDate());
 				reviews.add(review);
@@ -223,7 +226,6 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	/**
 	 *	Upravení kladů recenze podle zadaného ID 
 	 */
-	
 	@Override
 	public void changeReviewPros(int idReview, String newPros) {
 		
@@ -244,7 +246,6 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 	/**
 	 * 	Upravení záporů recenze podle zadaného ID
 	 */
-	
 	@Override
 	public void changeReviewCons(int idReview, String newCons) {
 		

@@ -5,7 +5,6 @@ import java.io.Serializable;
 /**
  *	Třída uchovávající přístupové údaje k databázi
  */
-
 public class DatabaseConnection implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +20,8 @@ public class DatabaseConnection implements Serializable {
 	
 	private final String USERNAME = "pc-island@pc-island-server";
 	private final String PASSWORD = "123456Abc";
+	
+// Gettery ///////////////////////////////////////////////////////////////////////////////////////////////
 	
 	public String getDriver() {
 		return DRIVER;

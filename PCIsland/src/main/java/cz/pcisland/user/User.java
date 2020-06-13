@@ -3,7 +3,7 @@ package cz.pcisland.user;
 import java.io.Serializable;
 
 /**
- * 	Třída uživatele (Java Bean):
+ * 	Třída uživatele:
  * 
  * 		bezparametrový konstruktor,
  * 		gettery + settery atributů;

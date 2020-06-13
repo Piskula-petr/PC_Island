@@ -15,7 +15,6 @@ import cz.pcisland.review.ReviewDAOImpl;
  *		parametry produktu,
  *		přiřazení uživatelských recenzí
  */
-
 public class MotherBoardDetailPage extends DetailProductPage {
 
 	private static final long serialVersionUID = 1L;
@@ -57,6 +56,7 @@ public class MotherBoardDetailPage extends DetailProductPage {
 		// korekce html tagu (odřádkuje pokud je řetězec příliš dlouhý)
 		int addRow = motherboard.getParametrs().get("connectors").length() / 40;
 		String connectorsHtmlTag = "";
+		
 		for (int i = 0; i <= addRow; i++) {
 			connectorsHtmlTag = connectorsHtmlTag + "<br>";
 		}

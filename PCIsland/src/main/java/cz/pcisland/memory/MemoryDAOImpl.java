@@ -16,7 +16,6 @@ import cz.pcisland.product.Product;
 /**
  *	Třída implementující rozhraní přístupu dat k operačním pamětem
  */
-
 public class MemoryDAOImpl implements MemoryDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +39,6 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 	/**
 	 * 	Načtení operační paměťi z databáze podle zadaného ID
 	 */
-	
 	@Override
 	public Product getMemory(int id) {
 		Product memory = new Product();
@@ -54,6 +52,7 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
+				
 				memory.setId(resultSet.getInt("id_product"));
 				memory.setType(resultSet.getString("type"));
 				memory.setName(resultSet.getString("name"));
@@ -69,13 +68,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			System.out.println("Nepodařilo se načíst data z databáze (operační pamět - výběr)");
 			e.printStackTrace();
 		}
+		
 		return memory;
 	}
 	
 	/**
 	 * 	Načtení všech operačních pamětí z databáze
 	 */
-	
 	@Override
 	public List<Product> getAllMemory() {
 		List<Product> memories = new ArrayList<>();
@@ -89,6 +88,7 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE type = 'memory' ORDER BY id_product");
 		
 			while(resultSet.next()) {
+				
 				Product memory = new Product();
 				memory.setId(resultSet.getInt("id_product"));
 				memory.setType(resultSet.getString("type"));
@@ -106,13 +106,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			System.out.println("Nepodařilo se načíst data z databáze (operační paměti - všechny)");
 			e.printStackTrace();
 		}
+		
 		return memories;
 	}
 	
 	/**
 	 * 	Načtení 3 nejprodávanějších operačních pamětí
 	 */
-	
 	@Override
 	public List<Product> getTopSellingMemory() {
 		List<Product> memories = new ArrayList<>();
@@ -126,6 +126,7 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'memory' ORDER BY sales DESC");
 		
 			while(resultSet.next()) {
+				
 				Product memory = new Product();
 				memory.setId(resultSet.getInt("id_product"));
 				memory.setType(resultSet.getString("type"));
@@ -143,13 +144,13 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			System.out.println("Nepodařilo se načíst data z databáze (operační paměti - nejprodávanější)");
 			e.printStackTrace();
 		}
+		
 		return memories;
 	}
 
 	/**
 	 * 	Zvýšení počtu recenzí podle zadaného ID
 	 */
-	
 	@Override
 	public void incrementNumberOfPreview(int memoryId) {
 		int numberOfPreview = 0;
@@ -166,6 +167,7 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
 			}
+			
 			numberOfPreview++;
 			
 		} catch (SQLException e) {
@@ -191,7 +193,6 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 	/**
 	 * 	Přičtení hodnocení operační paměti podle zadaného ID
 	 */
-	
 	@Override
 	public void addRating(int memoryId, int rating) {
 		int overallRating = 0;
@@ -208,6 +209,7 @@ public class MemoryDAOImpl implements MemoryDAO, Serializable {
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
 			}
+			
 			overallRating = overallRating + rating;
 			
 		} catch (SQLException e) {

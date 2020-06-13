@@ -15,7 +15,6 @@ import cz.pcisland.review.ReviewDAOImpl;
  *		parametry produktu,
  *		přiřazení uživatelských recenzí
  */
-
 public class PowerSupplyUnitsDetailPage extends DetailProductPage {
 
 	private static final long serialVersionUID = 1L;
@@ -40,6 +39,7 @@ public class PowerSupplyUnitsDetailPage extends DetailProductPage {
 		// korekce html tagu (odřádkuje pokud je řetězec příliš dlouhý)
 		int addRow = powerSupplyUnit.getParametrs().get("connectors").length() / 37;
 		String htmlTag = "";
+		
 		for (int i = 0; i <= addRow; i++) {
 			htmlTag = htmlTag + "<br>";
 		}

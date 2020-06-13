@@ -30,7 +30,6 @@ import cz.pcisland.user.UserDAOImpl;
  *		přihlášení,
  *		registrace
  */
-
 public class LoginAndRegistrationPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -194,6 +193,7 @@ public class LoginAndRegistrationPage extends BasePage {
 				}
 			}
 		};
+		
 		add(loginForm);
 		
 // Konfigurace komponent //////////////////////////////////////////////////////////////////////////////
@@ -224,11 +224,13 @@ public class LoginAndRegistrationPage extends BasePage {
 				// Deaktivace tlačítka pro přihlášení, pokud je uživatel přihlášený
 				if (AuthenticatedWebSession.get().getAttribute("currentUser") != null) {
 					setEnabled(false);
+					
 				} else {
 					setEnabled(true);
 				}
 			}
 		};
+
 		submitLoginButton.setOutputMarkupId(true);
 		loginForm.add(submitLoginButton);
 		
@@ -363,6 +365,7 @@ public class LoginAndRegistrationPage extends BasePage {
 				boolean emailFound = false;
 				
 				for (User userToCheck : userDAO.getAllUsers()) {
+					
 					if (emailReg.equals(userToCheck.getEmail())) {
 						emailFound = true;
 					} 
@@ -549,12 +552,15 @@ public class LoginAndRegistrationPage extends BasePage {
 				if (agreeReg != null && agreeReg) {
 					submitRegLabel.add(new AttributeModifier("style", "color: green"));
 					setEnabled(true);
+					
 				} else {
+					
 					submitRegLabel.add(new AttributeModifier("style", "color: red"));
 					setEnabled(false);
 				}
 			}
 		};
+		
 		submitRegButton.setOutputMarkupId(true);
 		registrationForm.add(submitRegButton);
 		

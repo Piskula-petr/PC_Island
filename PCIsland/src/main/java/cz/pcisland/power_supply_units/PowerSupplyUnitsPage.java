@@ -24,7 +24,6 @@ import cz.pcisland.product.ProductPageWithTopSelling;
  *		filtr (cena, dostupnost ...),
  *		konfigurace komponent filtru
  */
-
 public class PowerSupplyUnitsPage extends ProductPageWithTopSelling {
 
 	private static final long serialVersionUID = 1L;
@@ -94,6 +93,7 @@ public class PowerSupplyUnitsPage extends ProductPageWithTopSelling {
 				
 				if (products.isEmpty()) {
 					setVisible(true);
+					
 				} else setVisible(false);
 			}
 		};
@@ -576,6 +576,7 @@ public class PowerSupplyUnitsPage extends ProductPageWithTopSelling {
 				}
 			}
 		};
+		
 		filterForm.setOutputMarkupId(true);
 		add(filterForm);
 		
