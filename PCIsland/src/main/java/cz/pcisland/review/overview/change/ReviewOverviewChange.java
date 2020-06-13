@@ -20,7 +20,6 @@ import cz.pcisland.review.overview.ReviewOverview;
  * 		nastavení titulku,
  * 		upravení recenze + uložení nové recenze
  */
-
 public class ReviewOverviewChange extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -51,6 +50,7 @@ public class ReviewOverviewChange extends BasePage {
 				
 				// Klady
 				if (prosTextArea.getModelObject() != null) {
+					
 					newPros = (String) prosTextArea.getModelObject();
 					String[] prosPreviewArray = newPros.split("\r\n|\r|\n");
 					newPros = "";
@@ -61,6 +61,7 @@ public class ReviewOverviewChange extends BasePage {
 					
 					// Uložení + Změna stylu
 					if (!newPros.equals(review.getPros())) {
+						
 						reviewDAO.changeReviewPros(review.getIdReview(), newPros);
 						prosTextArea.add(new AttributeModifier("style", "border: 1px solid green"));
 					
@@ -69,6 +70,7 @@ public class ReviewOverviewChange extends BasePage {
 				
 				// Zápory
 				if (consTextArea.getModelObject() != null) {
+					
 					newCons = (String) consTextArea.getModelObject();
 					String[] consPreviewArray = newCons.split("\r\n|\r|\n");
 					newCons = "";
@@ -79,6 +81,7 @@ public class ReviewOverviewChange extends BasePage {
 					
 					// Uložení + Změna stylu
 					if (!newCons.equals(review.getCons())) {
+						
 						reviewDAO.changeReviewCons(review.getIdReview(), newCons);
 						consTextArea.add(new AttributeModifier("style", "border: 1px solid green"));
 					
@@ -86,6 +89,7 @@ public class ReviewOverviewChange extends BasePage {
 				}
 			}
 		};
+		
 		add(reviewOverviewChangeForm);
 		
 		reviewOverviewChangeForm.add(new Link<Object>("nameLink") {

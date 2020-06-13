@@ -15,7 +15,6 @@ import cz.pcisland.review.ReviewDAOImpl;
  *		parametry produktu,
  *		přiřazení uživatelských recenzí
  */
-
 public class GraphicsCardDetailPage extends DetailProductPage {
 
 	private static final long serialVersionUID = 1L;

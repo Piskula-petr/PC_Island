@@ -35,7 +35,6 @@ import cz.pcisland.product.Product;
  * 		navigační odkazy (zpět do košíku, dodací údaje),
  * 		metody (konfigurace třídy)
  */
-
 public class ShippingAndPaymentPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -106,6 +105,7 @@ public class ShippingAndPaymentPage extends BasePage {
 			
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
+				
 				shippingSelected = true;
 				
 				// Rozdělení typu a ceny doručení
@@ -117,6 +117,7 @@ public class ShippingAndPaymentPage extends BasePage {
 				WebSession webSession = WebSession.get();
 				
 				if (webSession.getAttribute("cartPrice") != null) {
+					
 					totalPrice = (int) webSession.getAttribute("cartPrice");
 					totalPrice = totalPrice + shippingPrice + paymentPrice;
 					
@@ -149,6 +150,7 @@ public class ShippingAndPaymentPage extends BasePage {
 				target.add(deliveryDataLink);
 			}
 		});
+		
 		shippingForm.add(shippingRadioGroup);
 			
 // Typ platby Form ////////////////////////////////////////////////////////////////////////////////////
@@ -175,6 +177,7 @@ public class ShippingAndPaymentPage extends BasePage {
 			
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
+				
 				paymentSelected = true;
 				
 				// Rozdělení typu a ceny platby
@@ -186,6 +189,7 @@ public class ShippingAndPaymentPage extends BasePage {
 				WebSession webSession = WebSession.get();
 				
 				if (webSession.getAttribute("cartPrice") != null) {
+					
 					totalPrice = (int) webSession.getAttribute("cartPrice");
 					totalPrice = totalPrice + paymentPrice + shippingPrice;
 					
@@ -218,6 +222,7 @@ public class ShippingAndPaymentPage extends BasePage {
 				target.add(deliveryDataLink);
 			}
 		});
+		
 		paymentForm.add(paymentRadioGroup);
 		
 // Obsah košíku WebMarkupContainer ///////////////////////////////////////////////////////////////////
@@ -247,12 +252,16 @@ public class ShippingAndPaymentPage extends BasePage {
 				
 				String stock = "";
 				if (product.getStock() > 4) {
+					
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusů");
 				} else if (product.getStock() == 1) {
+					
 					stock = "Poslední kus";
 				} else if (product.getStock() > 1 && product.getStock() < 5) {
+					
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusy");
 				} else if (product.getStock() <= 0) {
+					
 					stock = "Není Skladem";
 				} 
 				
@@ -284,6 +293,7 @@ public class ShippingAndPaymentPage extends BasePage {
 						
 						if (product.getStock() <= 0) {
 							tag.put("class", "outStock");
+							
 						} else tag.put("class", "onStock");
 					}
 				});
@@ -292,6 +302,7 @@ public class ShippingAndPaymentPage extends BasePage {
 				item.add(new Label("price", String.valueOf(price)));
 			}
 		};
+		
 		cartContantWebContainer.add(cartListView);
 		
 		// Způsob dopravy
@@ -378,6 +389,7 @@ public class ShippingAndPaymentPage extends BasePage {
 		
 		// Výpočet ceny košíku
 		if (WebSession.get().getAttribute("cartPrice") != null) {
+			
 			totalPrice = (int) WebSession.get().getAttribute("cartPrice");
 			
 			int DPH = (totalPrice * 21) / 121;

@@ -41,7 +41,6 @@ import cz.pcisland.user.UserDAOImpl;
  *		postup objednávky (košík, doprava a platba ...),
  *		navigační odkazy (zpět k dopravě a platbě ...)
  */
-
 public class DeliveryDataPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -245,6 +244,7 @@ public class DeliveryDataPage extends BasePage {
 				setResponsePage(new OrderSummary(order));
 			}
 		};
+		
 		add(deliveryAddressForm);
 		
 // Konfigurace komponent /////////////////////////////////////////////////////////////////////////////
@@ -314,6 +314,7 @@ public class DeliveryDataPage extends BasePage {
 		
 		// Přednastavení údajů podle přihlášeného uživatele
 		if (user != null) {
+			
 			nameTextField.setDefaultModelObject(user.getName());
 			surnameTextField.setDefaultModelObject(user.getSurname());
 			phoneNumberTextField.setDefaultModelObject(user.getPhoneNumber());
@@ -353,11 +354,15 @@ public class DeliveryDataPage extends BasePage {
 				String stock = "";
 				if (product.getStock() > 4) {
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusů");
+					
 				} else if (product.getStock() == 1) {
+					
 					stock = "Poslední kus";
 				} else if (product.getStock() > 1 && product.getStock() < 5) {
+					
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusy");
 				} else if (product.getStock() <= 0) {
+					
 					stock = "Není Skladem";
 				} 
 				
@@ -390,6 +395,7 @@ public class DeliveryDataPage extends BasePage {
 						// Změna třídy podle počtu produktů
 						if (product.getStock() <= 0) {
 							tag.put("class", "outStock");
+							
 						} else tag.put("class", "onStock");
 					}
 				});
@@ -405,6 +411,7 @@ public class DeliveryDataPage extends BasePage {
 		WebSession webSession = WebSession.get();
 		
 		if (webSession.getAttribute("shipping") != null) {
+			
 			String shipping = (String) webSession.getAttribute("shipping");
 			String[] shippingArray = shipping.split(";");
 			shippingType = shippingArray[0];
@@ -429,6 +436,7 @@ public class DeliveryDataPage extends BasePage {
 // Typ platby /////////////////////////////////////////////////////////////////////////////////////////
 		
 		if (webSession.getAttribute("payment") != null) {
+			
 			String payment = (String) webSession.getAttribute("payment");
 			String[] paymentArray = payment.split(";");
 			paymentType = paymentArray[0];
@@ -451,6 +459,7 @@ public class DeliveryDataPage extends BasePage {
 // Celková cena ///////////////////////////////////////////////////////////////////////////////////////
 		
 		if (webSession.getAttribute("cartPrice") != null) {
+			
 			totalPrice = (int) webSession.getAttribute("cartPrice");
 			totalPrice = totalPrice + shippingPrice + paymentPrice;
 			webSession.setAttribute("cartTotalPrice", totalPrice);

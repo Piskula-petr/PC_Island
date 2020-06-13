@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- *	Třída objednávky (Java Bean):
+ *	Třída objednávky:
  *
  *		bezparametrový konstruktor,
  *		gettery + settery atributů;
  */
-
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;

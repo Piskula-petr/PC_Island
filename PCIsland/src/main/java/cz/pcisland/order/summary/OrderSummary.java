@@ -34,7 +34,6 @@ import cz.pcisland.shipping_and_payment.ShippingAndPaymentPage;
  *		produkty v košíku,
  *		navigační odkazy (dodací údaje, odeslat objednávku)
  */
-
 public class OrderSummary extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -112,12 +111,16 @@ public class OrderSummary extends BasePage {
 				
 				String stock = "";
 				if (product.getStock() > 4) {
+					
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusů");
 				} else if (product.getStock() == 1) {
+					
 					stock = "Poslední kus";
 				} else if (product.getStock() > 1 && product.getStock() < 5) {
+					
 					stock = "Skladem " + String.valueOf(product.getStock() + " kusy");
 				} else if (product.getStock() <= 0) {
+					
 					stock = "Není Skladem";
 				} 
 				
@@ -150,6 +153,7 @@ public class OrderSummary extends BasePage {
 						// Změna třídy podle počtu produktů
 						if (product.getStock() <= 0) {
 							tag.put("class", "outStock");
+							
 						} else tag.put("class", "onStock");
 					}
 				});
@@ -158,6 +162,7 @@ public class OrderSummary extends BasePage {
 				item.add(new Label("price", String.valueOf(price)));
 			}
 		};
+		
 		cartContantWebContainer.add(cartListView);
 		
 // Způsob dopravy /////////////////////////////////////////////////////////////////////////////////////

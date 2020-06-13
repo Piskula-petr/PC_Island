@@ -16,7 +16,6 @@ import cz.pcisland.product.Product;
 /**
  *	Třída implementující rozhraní přístupu dat k základním deskám
  */
-
 public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +39,6 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	/**
 	 * 	Načtení základní desky z databáze podle zadaného ID
 	 */
-	
 	@Override
 	public Product getMotherboard(int id) {
 		Product motherboard = new Product();
@@ -54,6 +52,7 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
+				
 				motherboard.setId(resultSet.getInt("id_product"));
 				motherboard.setType(resultSet.getString("type"));
 				motherboard.setName(resultSet.getString("name"));
@@ -76,7 +75,6 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	/**
 	 * 	Načtení všech základních desek z databáze
 	 */
-	
 	@Override
 	public List<Product> getAllMotherboards() {
 		List<Product> motherboards = new ArrayList<>();
@@ -90,6 +88,7 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE type = 'motherboard' ORDER BY id_product");
 			
 			while (resultSet.next()) {
+				
 				Product motherboard = new Product();
 				motherboard.setId(resultSet.getInt("id_product"));
 				motherboard.setType(resultSet.getString("type"));
@@ -114,7 +113,6 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	/**
 	 * 	Načtení 3 nejprodávanějších základních desek
 	 */
-	
 	@Override
 	public List<Product> getTopSellingMotherboards() {
 		List<Product> motherboards = new ArrayList<>();
@@ -127,6 +125,7 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'motherboard' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
+				
 				Product motherboard = new Product();
 				motherboard.setId(resultSet.getInt("id_product"));
 				motherboard.setType(resultSet.getString("type"));
@@ -168,6 +167,7 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
 			}
+			
 			numberOfPreview++;
 			
 		} catch (SQLException e) {
@@ -193,7 +193,6 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 	/**
 	 * 	Přičtení hodnocení základní desky podle zadaného ID
 	 */
-	
 	@Override
 	public void addRating(int motherboardId, int rating) {
 		int overallRating = 0;
@@ -210,6 +209,7 @@ public class MotherboardDAOImpl implements MotherboardDAO, Serializable {
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
 			}
+			
 			overallRating = overallRating + rating;
 			
 		} catch (SQLException e) {

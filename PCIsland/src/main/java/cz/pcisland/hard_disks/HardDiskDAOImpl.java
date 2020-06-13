@@ -16,7 +16,6 @@ import cz.pcisland.product.Product;
 /**
 *	Třída implementující rozhraní přístupu dat k pevným diskům
 */
-
 public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +39,6 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	/**
 	 * 	Načtení pevného disku z databáze podle zadaného ID
 	 */
-	
 	@Override
 	public Product getHardDisk(int id) {
 		Product hardDisk = new Product();
@@ -54,6 +52,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
+				
 				hardDisk.setId(resultSet.getInt("id_product"));
 				hardDisk.setType(resultSet.getString("type"));
 				hardDisk.setName(resultSet.getString("name"));
@@ -76,7 +75,6 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	/**
 	 * 	Načtení všech pevných disků z databáze
 	 */
-	
 	@Override
 	public List<Product> getAllHardDisks() {
 		List<Product> hardDisks = new ArrayList<>();
@@ -90,6 +88,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE type = 'hard_disk' ORDER BY id_product");
 			
 			while (resultSet.next()) {
+				
 				Product hardDisk = new Product();
 				hardDisk.setId(resultSet.getInt("id_product"));
 				hardDisk.setType(resultSet.getString("type"));
@@ -107,13 +106,13 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			System.out.println("Nepodařilo se načíst data z databáze (pevné disky - všechny)");
 			e.printStackTrace();
 		}
+		
 		return hardDisks;
 	}
 	
 	/**
 	 * 	Načtení 3 nejprodávanějších pevných disků
 	 */
-	
 	@Override
 	public List<Product> getTopSellingHardDisks() {
 		List<Product> hardDisks = new ArrayList<>();
@@ -126,6 +125,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'hard_disk' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
+				
 				Product hardDisk = new Product();
 				hardDisk.setId(resultSet.getInt("id_product"));
 				hardDisk.setType(resultSet.getString("type"));
@@ -150,7 +150,6 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	/**
 	 * 	Zvýšení počtu recenzí podle zadaného ID 
 	 */
-	
 	@Override
 	public void incrementNumberOfPreview(int hardDiskId) {
 		int numberOfPreview = 0;
@@ -167,6 +166,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
 			}
+			
 			numberOfPreview++;
 			
 		} catch (SQLException e) {
@@ -192,7 +192,6 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 	/**
 	 * 	Přičtení hodnocení pevného disku podle zadaného ID
 	 */
-	
 	@Override
 	public void addRating(int hardDiskId, int rating) {
 		int overallRating = 0;
@@ -209,6 +208,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
 			}
+			
 			overallRating = overallRating + rating;
 			
 		} catch (SQLException e) {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * 	Třída recenze (Java Bean):
+ * 	Třída recenze:
  * 
  * 		bezparametrový konstruktor,
  * 		gettery + settery atributů;

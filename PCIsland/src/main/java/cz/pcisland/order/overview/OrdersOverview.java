@@ -43,7 +43,6 @@ import cz.pcisland.user.User;
  * 		konfigurace komponent filtru,
  *   	nastavení objednávek podle přihlášeného uživatele,
  */
-
 public class OrdersOverview extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -152,6 +151,7 @@ public class OrdersOverview extends BasePage {
 				}
 			}
 		};
+		
 		filterForm.setOutputMarkupId(true);
 		add(filterForm);
 		
@@ -230,6 +230,7 @@ public class OrdersOverview extends BasePage {
 				// Viditelnost popisku
 				if (getList().size() == 0) {
 					noOrdersLabel.setVisible(true);
+					
 				} else noOrdersLabel.setVisible(false);
 			}
 			
@@ -258,6 +259,7 @@ public class OrdersOverview extends BasePage {
 				// Rozložení typů zboží a ID Zboží
 				String[] productTypes = order.getProductTypes().split(";");		// (processors;memory;hard_disks)
 				String[] productNames = order.getProductNames().split(";");		// (Intel Core i7-9700K;EVGA 850 B3;WD Blue 1TB)
+				
 				for (int i = 0; i < productTypes.length; i++) {
 
 					// Uloží cestu k náhledovému obrázku do Listu
@@ -318,6 +320,7 @@ public class OrdersOverview extends BasePage {
 				});
 			}
 		};
+		
 		markupContainer.add(ordersPageableListView);
 		markupContainer.add(new CustomPagingNavigator("pagingNavigator", ordersPageableListView));
 		

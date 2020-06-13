@@ -15,7 +15,6 @@ import cz.pcisland.base_page.DatabaseConnection;
 /**
  * 	Třída implementující rozhraní přístupu dat k uživatelům
  */
-
 public class UserDAOImpl implements UserDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,7 +38,6 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	/**
 	 * 	Uložení nového uživatele do databáze
 	 */
-	
 	@Override
 	public void saveUser(User user) {
 		
@@ -72,7 +70,6 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	/**
 	 * 	Načtení všech uživatelů z databáze
 	 */
-	
 	@Override
 	public List<User> getAllUsers() {
 		List<User> users = new ArrayList<>();
@@ -86,6 +83,7 @@ public class UserDAOImpl implements UserDAO, Serializable {
 			"SELECT * FROM pc_island.users ORDER BY id_user");
 			
 			while(resultSet.next()) {
+				
 				User user = new User();
 				user.setId(resultSet.getInt("id_user"));
 				user.setEmail(resultSet.getString("email"));
@@ -112,7 +110,6 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	/**
 	 * 	Načtení všech států z databáze
 	 */
-	
 	@Override
 	public List<String> getCountries() {
 		List<String> countries = new ArrayList<>();
@@ -140,7 +137,6 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	/**
 	 * 	Uložení nového emailu podle zadaného emailu uživatele
 	 */
-	
 	@Override
 	public void changeEmail(String currentUserEmail, String newEmail) {
 		
@@ -161,7 +157,6 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	/**
 	 * 	Uložení nového heslo podle zadaného emailu uživatele
 	 */
-	
 	@Override
 	public void changePassword(String currentUserEmail, String newPassword) {
 		
@@ -182,7 +177,6 @@ public class UserDAOImpl implements UserDAO, Serializable {
 	/**
 	 * 	Uložení nových dodacích údajů podle zadaného emailu uživatele 
 	 */
-	
 	@Override
 	public void changeDeliveryData(String currentUserEmail, String columnName, String newValue) {
 		

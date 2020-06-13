@@ -16,7 +16,6 @@ import cz.pcisland.product.Product;
 /**
  *	Třída implementující rozhraní přístupu dat ke zdrojům
  */
-
 public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -40,7 +39,6 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 	/**
 	 * 	Načtení zdroje z databáze podle zadaného ID
 	 */
-	
 	@Override
 	public Product getPowerSupplyUnit(int id) {
 		Product powerSupplyUnit = new Product();
@@ -54,6 +52,7 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
+				
 				powerSupplyUnit.setId(resultSet.getInt("id_product"));
 				powerSupplyUnit.setType(resultSet.getString("type"));
 				powerSupplyUnit.setName(resultSet.getString("name"));
@@ -76,7 +75,6 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 	/**
 	 * 	Načtení všech zdrojů z databáze
 	 */
-	
 	@Override
 	public List<Product> getAllPowerSupplyUnits() {
 		List<Product> powerSupplyUnits = new ArrayList<>();
@@ -90,6 +88,7 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 			"SELECT * FROM pc_island.products WHERE type = 'power_supply_unit' ORDER BY id_product");
 		
 			while (resultSet.next()) {
+				
 				Product powerSupplyUnit = new Product();
 				powerSupplyUnit.setId(resultSet.getInt("id_product"));
 				powerSupplyUnit.setType(resultSet.getString("type"));
@@ -114,7 +113,6 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 	/**
 	 * 	Načtení 3 nejprodávanějších zdrojů
 	 */
-	
 	@Override
 	public List<Product> getTopSellingPowerSupplyUnits() {
 		List<Product> powerSupplyUnits = new ArrayList<>();
@@ -128,6 +126,7 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'power_supply_unit' ORDER BY sales DESC");
 		
 			while (resultSet.next()) {
+				
 				Product powerSupplyUnit = new Product();
 				powerSupplyUnit.setId(resultSet.getInt("id_product"));
 				powerSupplyUnit.setType(resultSet.getString("type"));
@@ -152,7 +151,6 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 	/**
 	 * 	Zvýšení počtu recenzí podle zadaného ID
 	 */
-	
 	@Override
 	public void incrementNumberOfPreview(int powerSupplyUnitId) {
 		int numberOfPreview = 0;
@@ -169,6 +167,7 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
 			}
+			
 			numberOfPreview++;
 			
 		} catch (SQLException e) {
@@ -194,7 +193,6 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 	/**
 	 * 	Přičtení hodnocení zdroje podle zadaného ID
 	 */
-	
 	@Override
 	public void addRating(int powerSupplyUnitId, int rating) {
 		int overallRating = 0;
@@ -211,6 +209,7 @@ public class PowerSupplyUnitDAOImpl implements PowerSupplyUnitDAO, Serializable 
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
 			}
+			
 			overallRating = overallRating + rating;
 			
 		} catch (SQLException e) {
