@@ -14,6 +14,7 @@ import cz.pcisland.product.ProductPage;
  *		nastavení všech produktů,
  *		odkazy na produkty společností (amd, asus ...)
  */
+
 public class HomePage extends ProductPage {
 
 	private static final long serialVersionUID = 1L;

@@ -7,6 +7,7 @@ import org.apache.wicket.request.Request;
 /**
  * 	Třída ověřující přihlášení uživatele;
  */
+
 public class UserAuthentication extends AuthenticatedWebSession {
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +23,6 @@ public class UserAuthentication extends AuthenticatedWebSession {
 		UserDAO userDAO = new UserDAOImpl();
 		
 		for (User user : userDAO.getAllUsers()) {
-			
 			if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
 				return true;
 			}

@@ -27,6 +27,7 @@ import cz.pcisland.product.ProductDAOImpl;
  *		konfigurace komponenty filtru,
  * 		list produktů
  */
+
 public class ProductStockStatus extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -57,7 +58,6 @@ public class ProductStockStatus extends BasePage {
 				setResponsePage(ProductStockStatus.class);
 			}
 		};
-		
 		productsStatusForm.setOutputMarkupId(true);
 		add(productsStatusForm);
 		
@@ -102,7 +102,6 @@ public class ProductStockStatus extends BasePage {
 						// Změna barvy podle počtu položek na skladu
 						if (product.getStock() <= 0) {
 							tag.put("style", "color: red;");
-							
 						} else tag.put("style", "color: green;");
 					}
 				});
@@ -119,7 +118,6 @@ public class ProductStockStatus extends BasePage {
 				item.add(amountNumberTextField);
 			}
 		};
-		
 		productsStatusForm.add(productsStatusPageableListView);
 		add(new CustomPagingNavigator("pagingNavigator", productsStatusPageableListView));
 	}

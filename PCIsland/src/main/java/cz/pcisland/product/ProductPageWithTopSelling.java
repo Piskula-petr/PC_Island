@@ -12,6 +12,7 @@ import org.apache.wicket.request.resource.ContextRelativeResource;
  * 
  * 		list nejprodávanějších produktů
  */
+
 public abstract class ProductPageWithTopSelling extends ProductPage {
 
 	private static final long serialVersionUID = 1L;
@@ -67,7 +68,6 @@ public abstract class ProductPageWithTopSelling extends ProductPage {
 				item.add(new Label("price", getDecimalFormat().format(product.getPrice()) + ",-"));
 			}
 		};
-		
 		add(topSellingListView);
 	}
 	

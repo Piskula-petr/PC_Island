@@ -15,6 +15,7 @@ import cz.pcisland.product.ProductPage;
  * 		nastavení titulku,
  * 		nastavení vyhledávaných produktů
  */
+
 public class SearchingPage extends ProductPage {
 
 	private static final long serialVersionUID = 1L;

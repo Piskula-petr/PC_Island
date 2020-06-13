@@ -7,6 +7,7 @@ import cz.pcisland.product.Product;
 /**
  * 	Rozhraní přístupu dat k procesorům
  */
+
 public interface ProcessorDAO {
 
 	/**

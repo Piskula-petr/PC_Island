@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * 	Rozhraní přístupu dat k uživatelům
  */
+
 public interface UserDAO {
 
 	/**

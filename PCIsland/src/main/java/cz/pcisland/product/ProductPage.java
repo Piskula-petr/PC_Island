@@ -34,6 +34,7 @@ import cz.pcisland.base_page.CustomPagingNavigator;
  *  	setřízení Listu podle stisknutého Linku,
  *  	nastavené cenového rozpětí
  */
+
 public abstract class ProductPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -81,13 +82,11 @@ public abstract class ProductPage extends BasePage {
 					setList(sortList(products));
 				
 				} else if (!topSelling) {
-					
 					topSellingLink.add(AttributeModifier.remove("class"));
 				}
 				
 				// Nejdražší - změna třídy
 				if (mostExpensive) {
-					
 					mostExpensiveLink.add(AttributeModifier.append("class", "active"));
 					topSellingLink.add(AttributeModifier.append("class", "nextToActive"));
 					
@@ -95,13 +94,11 @@ public abstract class ProductPage extends BasePage {
 					setList(sortList(products));
 				
 				} else if (!mostExpensive) {
-					
 					mostExpensiveLink.add(AttributeModifier.remove("class"));
 				}
 				
 				// Nejlevnější - změna třídy
 				if (cheapest) {
-					
 					cheapestLink.add(AttributeModifier.append("class", "active"));
 					mostExpensiveLink.add(AttributeModifier.append("class", "nextToActive"));
 					
@@ -109,13 +106,11 @@ public abstract class ProductPage extends BasePage {
 					setList(sortList(products));
 				
 				} else if (!cheapest) {
-					
 					cheapestLink.add(AttributeModifier.remove("class"));
 				}
 				
 				// nejlépe hodnocené - změna třídy
 				if (bestRated) {
-					
 					bestRatedLink.add(AttributeModifier.append("class", "active"));
 					cheapestLink.add(AttributeModifier.append("class", "nextToActive"));
 					
@@ -123,7 +118,6 @@ public abstract class ProductPage extends BasePage {
 					setList(sortList(products));
 				
 				} else if (!bestRated) {
-					
 					bestRatedLink.add(AttributeModifier.remove("class"));
 				}
 				
@@ -156,16 +150,12 @@ public abstract class ProductPage extends BasePage {
 				
 				String stock = "";
 				if (product.getStock() > 4) {
-					
 					stock = "Skladem " + product.getStock() + " kusů";
 				} else if (product.getStock() == 1) {
-					
 					stock = "Poslední kus";
 				} else if (product.getStock() > 1 && product.getStock() < 5) {
-					
 					stock = "Skladem " + product.getStock() + " kusy";
 				} else if (product.getStock() <= 0) {
-					
 					stock = "Není Skladem";
 				} 
 				
@@ -191,7 +181,6 @@ public abstract class ProductPage extends BasePage {
 						// Změna třídy podle počtu produktů
 						if (product.getStock() <= 0) {
 							tag.put("class", "outStock");
-							
 						} else tag.put("class", "onStock");
 					}
 				});
@@ -226,13 +215,11 @@ public abstract class ProductPage extends BasePage {
 						if (webSession.getAttribute("cartList") != null) {
 							cartItems = (List<Product>) webSession.getAttribute("cartList");
 						}
-						
 						cartItems.add(product);
 						webSession.setAttribute("cartList", (Serializable) cartItems);
 						
 						// Uložení ceny produktu
 						if (webSession.getAttribute("cartPrice") != null) {
-							
 							int currentPrice = (int)webSession.getAttribute("cartPrice");
 							currentPrice = currentPrice + product.getPrice();
 							webSession.setAttribute("cartPrice", currentPrice);
@@ -259,7 +246,6 @@ public abstract class ProductPage extends BasePage {
 							for (Product productFromCart : (List<Product>) webSession.getAttribute("cartList")) {
 								
 								if (productFromCart.getName().equals(product.getName())) {
-									
 									setDefaultModelObject("V košíku");
 									buyLink.setEnabled(false);
 								}
@@ -281,7 +267,6 @@ public abstract class ProductPage extends BasePage {
 				item.add(new Label("description", product.getDescription(product.getType(), product.getParametrs())));
 			}
 		};
-		
 		productsPageableListView.setOutputMarkupId(true);
 		markupContainer.add(productsPageableListView);
 		markupContainer.add(new CustomPagingNavigator("pagingNavigator", productsPageableListView));
@@ -307,7 +292,6 @@ public abstract class ProductPage extends BasePage {
 				target.add(markupContainer);
 			}
 		};
-		
 		markupContainer.add(topSellingLink);
 		
 // Nejdražší Link ////////////////////////////////////////////////////////////////////////////////////
@@ -328,7 +312,6 @@ public abstract class ProductPage extends BasePage {
 				target.add(markupContainer);
 			}
 		};
-		
 		markupContainer.add(mostExpensiveLink);
 		
 // Nejlevnější Link //////////////////////////////////////////////////////////////////////////////////
@@ -349,7 +332,6 @@ public abstract class ProductPage extends BasePage {
 				target.add(markupContainer);
 			}
 		};
-		
 		markupContainer.add(cheapestLink);
 		
 // Nejlépe hodnocené Link ////////////////////////////////////////////////////////////////////////////
@@ -370,7 +352,6 @@ public abstract class ProductPage extends BasePage {
 				target.add(markupContainer);
 			}
 		};
-		
 		markupContainer.add(bestRatedLink);
 	}
 

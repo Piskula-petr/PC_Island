@@ -15,6 +15,7 @@ import cz.pcisland.review.ReviewDAOImpl;
  *		parametry produktu,
  *		přiřazení uživatelských recenzí;
  */
+
 public class ProcessorDetailPage extends DetailProductPage {
 
 	private static final long serialVersionUID = 1L;

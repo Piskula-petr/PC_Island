@@ -34,6 +34,7 @@ import cz.pcisland.shipping_and_payment.ShippingAndPaymentPage;
  *
  *		konfigurace třídy
  */
+
 public class CartPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -78,13 +79,11 @@ public class CartPage extends BasePage {
 				
 				// Viditelnost náhledu košíku
 				if (getList().size() == 0) {
-					
 					emptyCartLabel.setVisible(true);
 					emptyCartUnderline.setVisible(true);
 					deliveryAndPaymentLink.setEnabled(false);
 				
 				} else {
-					
 					emptyCartLabel.setVisible(false);
 					emptyCartUnderline.setVisible(false);
 					deliveryAndPaymentLink.setEnabled(true);
@@ -142,7 +141,6 @@ public class CartPage extends BasePage {
 						// Změna třídy podle počtu produktů
 						if (product.getStock() <= 0) {
 							tag.put("class", "outStock");
-							
 						} else tag.put("class", "onStock");
 					}
 				});
@@ -230,9 +228,8 @@ public class CartPage extends BasePage {
 	
 // Metody /////////////////////////////////////////////////////////////////////////////////////////////
 	
-	/**
-	 * 	Konfigura třídy
-	 */
+	// Konfigura třídy
+	
 	@Override
 	protected void onConfigure() {
 		super.onConfigure();

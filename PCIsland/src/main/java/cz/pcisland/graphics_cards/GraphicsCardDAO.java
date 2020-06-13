@@ -7,6 +7,7 @@ import cz.pcisland.product.Product;
 /**
  *	Rozhraní přistupu dat ke grafickým kartám
  */
+
 public interface GraphicsCardDAO {
 
 	/**

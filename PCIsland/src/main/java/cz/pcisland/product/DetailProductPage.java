@@ -60,6 +60,7 @@ import cz.pcisland.user.User;
  * 
  *  	zvýšení počtu recenzí + přičtení počtu recenzí
  */
+
 public abstract class DetailProductPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -120,16 +121,12 @@ public abstract class DetailProductPage extends BasePage {
 		
 		String stock = "";
 		if (product.getStock() > 4) {
-			
 			stock = "Skladem " + product.getStock() + " kusů";
 		} else if (product.getStock() == 1) {
-			
 			stock = "Poslední kus";
 		} else if (product.getStock() > 1 && product.getStock() < 5) {
-			
 			stock = "Skladem " + product.getStock() + " kusy";
 		} else if (product.getStock() <= 0) {
-			
 			stock = "Není Skladem";
 		} 
 		
@@ -147,7 +144,6 @@ public abstract class DetailProductPage extends BasePage {
 				// Změna třídy podle počtu produktů
 				if (product.getStock() <= 0) {
 					tag.put("class", "outStock");
-					
 				} else tag.put("class", "onStock");
 			}
 		});
@@ -196,7 +192,6 @@ public abstract class DetailProductPage extends BasePage {
 				webSession.setAttribute("cartSize", cartItems.size());
 			}
 		};
-		
 		markupContainer.add(buyLink);
 		
 		buyLink.add(new Label("buyLabel", "Koupit") {
@@ -253,7 +248,6 @@ public abstract class DetailProductPage extends BasePage {
 				// Zobrazení zprávy pokud nejsou k produktu žádné recenze
 				if (getList().size() == 0) {
 					noReview.setVisible(true);
-					
 				} else noReview.setVisible(false);
 			}
 			
@@ -311,7 +305,6 @@ public abstract class DetailProductPage extends BasePage {
 				});
 			}
 		};
-		
 		markupContainer.add(reviewsListView);
 		
 		// Žádná recenze Label
@@ -352,7 +345,6 @@ public abstract class DetailProductPage extends BasePage {
 				review.setPros(prosReview);
 				review.setCons(consReview);
 				review.setRating(ratingReview);
-				
 				LocalDate dateNow = LocalDate.now();
 				review.setCreationDate(dateNow);
 				
@@ -364,7 +356,6 @@ public abstract class DetailProductPage extends BasePage {
 				saveRating(product);
 			}
 		};
-		
 		newReviewForm.setOutputMarkupId(true);
 		markupContainer.add(newReviewForm);
 				
@@ -386,7 +377,6 @@ public abstract class DetailProductPage extends BasePage {
 				target.add(submitReviewButton);
 			}
 		});
-		
 		newReviewForm.add(userFullNameReviewTextField);
 		
 		prosReviewTextArea = new TextArea("prosReviewTextArea", new PropertyModel<String>(this, "prosReview"));
@@ -427,7 +417,6 @@ public abstract class DetailProductPage extends BasePage {
 				} else target.appendJavaScript("document.getElementById('reviewFrame').style.display='block'");;
 			}
 		};
-		
 		markupContainer.add(newReviewAjaxLink);
 		
 		submitReviewButton = new Button("submitReviewButton") {
@@ -439,13 +428,11 @@ public abstract class DetailProductPage extends BasePage {
 				// Zneviditelní tlačítko "Odeslat" při nezadaném jménu
 				if (userFullNameReview != null) {
 					setVisible(true);
-					
 				} else {
 					setVisible(false);
 				}
 			}
 		};
-		
 		submitReviewButton.setOutputMarkupPlaceholderTag(true);
 		submitReviewButton.setOutputMarkupId(true);
 		newReviewForm.add(submitReviewButton);
@@ -461,42 +448,41 @@ public abstract class DetailProductPage extends BasePage {
 	private void saveRating(Product product) {
 		
 		switch(product.getType()) {
-		
-			case "processor" :
-				ProcessorDAO processorDAO = new ProcessorDAOImpl();
-				processorDAO.incrementNumberOfPreview(product.getId());
-				processorDAO.addRating(product.getId(), ratingReview);
-				break;
-				
-			case "graphics_card" :
-				GraphicsCardDAO graphicsCardDAO = new GraphicsCardDAOImpl();
-				graphicsCardDAO.incrementNumberOfPreview(product.getId());
-				graphicsCardDAO.addRating(product.getId(), ratingReview);
-				break;
-				
-			case "memory" :
-				MemoryDAO memoryDAO = new MemoryDAOImpl();
-				memoryDAO.incrementNumberOfPreview(product.getId());
-				memoryDAO.addRating(product.getId(), ratingReview);
-				break;
-				
-			case "motherboard" :
-				MotherboardDAO motherboardDAO = new MotherboardDAOImpl();
-				motherboardDAO.incrementNumberOfPreview(product.getId());
-				motherboardDAO.addRating(product.getId(), ratingReview);
-				break;
-				
-			case "hard_disk" :
-				HardDiskDAO hardDiskDAO = new HardDiskDAOImpl();
-				hardDiskDAO.incrementNumberOfPreview(product.getId());
-				hardDiskDAO.addRating(product.getId(), ratingReview);
-				break;
-				
-			case "power_supply_unit" :
-				PowerSupplyUnitDAO powerSupplyUnitDAO = new PowerSupplyUnitDAOImpl();
-				powerSupplyUnitDAO.incrementNumberOfPreview(product.getId());
-				powerSupplyUnitDAO.addRating(product.getId(), ratingReview);
-				break;
+		case "processor" :
+			ProcessorDAO processorDAO = new ProcessorDAOImpl();
+			processorDAO.incrementNumberOfPreview(product.getId());
+			processorDAO.addRating(product.getId(), ratingReview);
+			break;
+			
+		case "graphics_card" :
+			GraphicsCardDAO graphicsCardDAO = new GraphicsCardDAOImpl();
+			graphicsCardDAO.incrementNumberOfPreview(product.getId());
+			graphicsCardDAO.addRating(product.getId(), ratingReview);
+			break;
+			
+		case "memory" :
+			MemoryDAO memoryDAO = new MemoryDAOImpl();
+			memoryDAO.incrementNumberOfPreview(product.getId());
+			memoryDAO.addRating(product.getId(), ratingReview);
+			break;
+			
+		case "motherboard" :
+			MotherboardDAO motherboardDAO = new MotherboardDAOImpl();
+			motherboardDAO.incrementNumberOfPreview(product.getId());
+			motherboardDAO.addRating(product.getId(), ratingReview);
+			break;
+			
+		case "hard_disk" :
+			HardDiskDAO hardDiskDAO = new HardDiskDAOImpl();
+			hardDiskDAO.incrementNumberOfPreview(product.getId());
+			hardDiskDAO.addRating(product.getId(), ratingReview);
+			break;
+			
+		case "power_supply_unit" :
+			PowerSupplyUnitDAO powerSupplyUnitDAO = new PowerSupplyUnitDAOImpl();
+			powerSupplyUnitDAO.incrementNumberOfPreview(product.getId());
+			powerSupplyUnitDAO.addRating(product.getId(), ratingReview);
+			break;
 		}
 	}
 	

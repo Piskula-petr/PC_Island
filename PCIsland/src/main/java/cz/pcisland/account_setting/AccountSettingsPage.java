@@ -25,6 +25,7 @@ import cz.pcisland.user.UserDAOImpl;
  *		změnu hesla,
  *		změnu dodacích údajů
  */
+
 public class AccountSettingsPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;
@@ -106,7 +107,7 @@ public class AccountSettingsPage extends BasePage {
 			protected void onSubmit() {
 				super.onSubmit();
 				
-				// Ověření jestli není email stejný jako původní
+				// Ověření jestli není email stjený jako původní
 				if (!emailChange.equals(user.getEmail())) {
 					UserDAO userDAO = new UserDAOImpl();
 					userDAO.changeEmail(user.getEmail(), emailChange);
@@ -217,7 +218,7 @@ public class AccountSettingsPage extends BasePage {
 					currentPasswordField.add(new AttributeModifier("style", "border: 1px solid red"));
 				}
 				
-				// Ověření jestli není heslo stejné jako původní
+				// Ověření jestli není heslo stjené jako původní
 				boolean passwordIsNotSame = false;
 
 				if (!passwordConfirmChange.equals(user.getPassword())) {
@@ -247,7 +248,7 @@ public class AccountSettingsPage extends BasePage {
 					passwordConfirmChangePasswordField.add(new AttributeModifier("style", "border: 1px solid red"));
 				}
 				
-				// Uložení hesla, pokud je správné (není stejně a nové heslo souhlací s potvrzovacím)
+				// Uložení hesla, pokud je správné, není stejně a nové heslo souhlací s potvrzovacím
 				if (passwordOk && passwordIsNotSame && passwordConfirmation) {
 					UserDAO userDAO = new UserDAOImpl();
 					userDAO.changePassword(user.getEmail(), passwordChange);

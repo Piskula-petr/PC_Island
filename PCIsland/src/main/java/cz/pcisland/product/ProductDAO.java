@@ -5,6 +5,7 @@ import java.util.List;
 /**
  * 	Rozraní přístupu dat k produktům
  */
+
 public interface ProductDAO {
 
 	/**

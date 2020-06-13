@@ -68,6 +68,7 @@ import cz.pcisland.user.User;
  * 		titulek stránky,
  * 		číselný formát
  */
+
 public abstract class BasePage extends WebPage {
 
 	private static final long serialVersionUID = 1L;
@@ -237,7 +238,6 @@ public abstract class BasePage extends WebPage {
 				// Viditelnost linku
 				if (AuthenticatedWebSession.get().getAttribute("currentUser") != null) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		});
@@ -260,7 +260,6 @@ public abstract class BasePage extends WebPage {
 				// Viditelnost linku
 				if (AuthenticatedWebSession.get().getAttribute("currentUser") != null) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		});
@@ -283,7 +282,6 @@ public abstract class BasePage extends WebPage {
 				// Viditelnost linku
 				if (AuthenticatedWebSession.get().getAttribute("currentUser") != null) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		});
@@ -307,7 +305,6 @@ public abstract class BasePage extends WebPage {
 				if ((AuthenticatedWebSession.get().getAttribute("currentUser") != null) 
 					&& (user.getEmail().equals("admin@pcisland.cz"))) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		});
@@ -331,7 +328,6 @@ public abstract class BasePage extends WebPage {
 				if ((AuthenticatedWebSession.get().getAttribute("currentUser") != null) 
 					&& (user.getEmail().equals("admin@pcisland.cz"))) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		});
@@ -355,7 +351,6 @@ public abstract class BasePage extends WebPage {
 				// Viditelnost linku
 				if (AuthenticatedWebSession.get().getAttribute("currentUser") != null) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		});
@@ -382,7 +377,6 @@ public abstract class BasePage extends WebPage {
 				// Viditelnost velikosti košíku
 				if (cartSize != 0) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		}));
@@ -526,9 +520,8 @@ public abstract class BasePage extends WebPage {
 
 // Metody /////////////////////////////////////////////////////////////////////////////////////////////
 	
-	/**
-	 * 	Konfigurace třídy
-	 */
+	// Konfigurace třídy
+	
 	@Override
 	protected void onConfigure() {
 		super.onConfigure();
@@ -575,7 +568,7 @@ public abstract class BasePage extends WebPage {
 	/**
 	 * 	Přesměrování na stránku produktu
 	 * 
-	 * 	@param product - produkt
+	 * @param product - produkt
 	 */
 	public void getDetailPage(Product product) {
 		
@@ -621,7 +614,6 @@ public abstract class BasePage extends WebPage {
 	 * 	@return číselný formát
 	 */
 	public DecimalFormat getDecimalFormat() {
-		
 		DecimalFormat decimalFormat = (DecimalFormat) NumberFormat.getInstance(Locale.FRANCE);
 		
 		return decimalFormat;

@@ -25,6 +25,7 @@ import cz.pcisland.product.ProductPageWithTopSelling;
  *		filtr (cena, dostupnost ...),
  *		konfigurace komponent filtru
  */
+
 public class ProcessorsPage extends ProductPageWithTopSelling {
 
 	private static final long serialVersionUID = 1L;
@@ -101,11 +102,9 @@ public class ProcessorsPage extends ProductPageWithTopSelling {
 				
 				if (products.isEmpty()) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		};
-		
 		errorMessageMarkupContainer.setOutputMarkupId(true);
 		markupContainer.add(errorMessageMarkupContainer);
 		
@@ -663,7 +662,6 @@ public class ProcessorsPage extends ProductPageWithTopSelling {
 				}
 			}
 		};
-		
 		filterForm.setOutputMarkupId(true);
 		add(filterForm);
 		

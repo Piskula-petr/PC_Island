@@ -10,6 +10,8 @@ import cz.pcisland.user.UserAuthentication;
 
 public class WicketApplication extends AuthenticatedWebApplication {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public Class<? extends WebPage> getHomePage() {
 		

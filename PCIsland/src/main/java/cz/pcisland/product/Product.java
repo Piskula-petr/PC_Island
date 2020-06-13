@@ -7,11 +7,12 @@ import java.util.Map;
 import org.apache.commons.collections4.map.HashedMap;
 
 /**
- *	Třída produktu:
+ *	Třída produktu (Java Bean):
  *
  *		bezparametrový konstruktor,
  * 		gettery + settery atributů (+ vytvoření Mapy parametrů, popisku produktu);
  */
+
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -124,13 +125,11 @@ public class Product implements Serializable {
 	}
 
 	public void setParametrs(String type, String parametrs) {
-		
 		String[] parametrsArray = parametrs.split(";");
 		Map<String, String> parametrsMap = new HashedMap<>();
 		
 		// Procesor
 		if (type.equals("processor")) {
-			
 			parametrsMap.put("company", parametrsArray[0]);
 			parametrsMap.put("series", parametrsArray[1]);
 			parametrsMap.put("codeName", parametrsArray[2]);
@@ -146,7 +145,6 @@ public class Product implements Serializable {
 			
 		// Grafická karta 	
 		} else if (type.equals("graphics_card")) {
-			
 			parametrsMap.put("company", parametrsArray[0]);
 			parametrsMap.put("graphicsChip", parametrsArray[1]);
 			parametrsMap.put("series", parametrsArray[2]);
@@ -162,7 +160,6 @@ public class Product implements Serializable {
 			
 		// Operační paměť
 		} else if (type.equals("memory")) {
-			
 			parametrsMap.put("company", parametrsArray[0]);
 			parametrsMap.put("series", parametrsArray[1]);
 			parametrsMap.put("memorySize", parametrsArray[2]);
@@ -174,7 +171,6 @@ public class Product implements Serializable {
 			
 		// Základní deska
 		} else if (type.equals("motherboard")) {
-			
 			parametrsMap.put("company", parametrsArray[0]);
 			parametrsMap.put("chipset", parametrsArray[1]);
 			parametrsMap.put("socket", parametrsArray[2]);
@@ -187,7 +183,6 @@ public class Product implements Serializable {
 			
 		// Pevný disk
 		} else if (type.equals("hard_disk")) {
-			
 			parametrsMap.put("company", parametrsArray[0]);
 			parametrsMap.put("type", parametrsArray[1]);
 			parametrsMap.put("format", parametrsArray[2]);
@@ -199,7 +194,6 @@ public class Product implements Serializable {
 			
 		// Zdroj
 		} else if (type.equals("power_supply_unit")) {
-			
 			parametrsMap.put("company", parametrsArray[0]);
 			parametrsMap.put("type", parametrsArray[1]);
 			parametrsMap.put("performance", parametrsArray[2]);
@@ -225,7 +219,6 @@ public class Product implements Serializable {
 // Procesor ///////////////////////////////////////////////////////////////////////////////////////////
 		
 		if (type.equals("processor")) {
-			
 			description = "Procesor " + parametrsMap.get("company") + " "+ parametrsMap.get("series") + ", " + parametrsMap.get("codeName") +
 					 ", " + parametrsMap.get("numberOfCores") + " jader, " + parametrsMap.get("numberOfThreads") + 
 					 " vláken, frekvence " + parametrsMap.get("workFrequency") + " GHz, turboboost " + parametrsMap.get("turboFrequency") + 
@@ -235,7 +228,6 @@ public class Product implements Serializable {
 // Grafická karta /////////////////////////////////////////////////////////////////////////////////////
 		
 		} else if (type.equals("graphics_card")) {
-			
 			description = "Grafická karta " + parametrsMap.get("graphicsChip") + " " + parametrsMap.get("series") + ", " + Integer.parseInt(parametrsMap.get("memorySize")) / 1000 + 
 					 " GB " + parametrsMap.get("memoryType") + ", sběrnice " + parametrsMap.get("memoryWidth") + " bit, frekvence " + decimalFormat.format(Integer.parseInt(parametrsMap.get("coreFrequency"))) +
 					 " MHz / frekvence paměti " + parametrsMap.get("memoryFrequency") + " GHz, " + parametrsMap.get("thermalDesignPower") +
@@ -244,7 +236,6 @@ public class Product implements Serializable {
 // Operační paměť /////////////////////////////////////////////////////////////////////////////////////
 		
 		} else if (type.equals("memory")) {
-			
 			description = "Operační paměť " + parametrsMap.get("company") + ", řady " + parametrsMap.get("series") + ", kapacita " + parametrsMap.get("memorySize") + 
 					 " GB, typu " + parametrsMap.get("memoryType") + ", frekvence " + decimalFormat.format(Integer.parseInt(parametrsMap.get("memoryFrequency"))) + " MHz, časování " + parametrsMap.get("latency") + 
 					 " při pracovním napětí " + parametrsMap.get("voltage") + " V, podpora " + parametrsMap.get("XMP");
@@ -252,7 +243,6 @@ public class Product implements Serializable {
 // Základní deska /////////////////////////////////////////////////////////////////////////////////////
 		
 		} else if (type.equals("motherboard")) {
-			
 			description = "Základní deska " + parametrsMap.get("company") + ", chipset " + parametrsMap.get("chipset") + ", socket " + parametrsMap.get("socket") + 
 					 " pro procesory " + parametrsMap.get("processorGeneration") + ", " + parametrsMap.get("memoryType") + ", frekvence paměti až " + decimalFormat.format(Integer.parseInt(parametrsMap.get("maxMemoryFrequency"))) + 
 					 " MHz, maximálně velikost paměti " + parametrsMap.get("maxMmemory") + " GB, formát " + parametrsMap.get("format");
@@ -260,17 +250,14 @@ public class Product implements Serializable {
 // Pevný disk /////////////////////////////////////////////////////////////////////////////////////////
 		
 		} else if (type.equals("hard_disk")) {
-			
 			String format = ""; 
 			if (parametrsMap.get("format").equals("2.5") || parametrsMap.get("format").equals("3.5")) {
 				format = parametrsMap.get("format") + "\"";
-				
 			} else format = parametrsMap.get("format");
 			
 			String size = "";
 			if (Integer.parseInt(parametrsMap.get("size")) >= 1000) {
 				size = Integer.parseInt(parametrsMap.get("size")) / 1000 + " TB";
-				
 			} else size = (parametrsMap.get("size")) + " GB";
 			
 			String RMP = "";
@@ -286,7 +273,6 @@ public class Product implements Serializable {
 // Zdroje /////////////////////////////////////////////////////////////////////////////////////////////
 		
 		} else if (type.equals("power_supply_unit")) {
-			
 			description = parametrsMap.get("type") + " zdroj " + parametrsMap.get("company") + ", " + decimalFormat.format(Integer.parseInt(parametrsMap.get("performance"))) + 
 					 " W, účinost " + parametrsMap.get("efficiency") + ", velikost ventilátoru " + parametrsMap.get("fanSize") + 
 					 " mm, konektory " + parametrsMap.get("connectors");

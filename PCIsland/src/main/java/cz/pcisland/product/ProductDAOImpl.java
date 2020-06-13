@@ -15,6 +15,7 @@ import cz.pcisland.base_page.DatabaseConnection;
 /**
  * 	Třída implementující rozhraní přístupu dat k produktům
  */
+
 public class ProductDAOImpl implements ProductDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +39,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	/**
 	 * 	Načtení produktu podle zadaného názvu
 	 */
+	
 	@Override
 	public Product getProductByName(String name) {
 		Product product = new Product();
@@ -51,7 +53,6 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE name = '" + name + "'");
 			
 			while (resultSet.next()) {
-				
 				product.setId(resultSet.getInt("id_product"));
 				product.setType(resultSet.getString("type"));
 				product.setName(resultSet.getString("name"));
@@ -74,6 +75,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	/**
 	 * 	Načtení všech produktů z databáze
 	 */
+	
 	@Override
 	public List<Product> getAllProducts() {
 		List<Product> products = new ArrayList<>();
@@ -87,7 +89,6 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			"SELECT * FROM pc_island.products ORDER BY id_product");
 			
 			while (resultSet.next()) {
-				
 				Product product = new Product();
 				product.setId(resultSet.getInt("id_product"));
 				product.setType(resultSet.getString("type"));
@@ -112,6 +113,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	/**
 	 * 	Načtení všech produktů z databáze seřazených podle počtu kusů skladem
 	 */
+	
 	@Override
 	public List<Product> getAllProductSortByStock() {
 		List<Product> products = new ArrayList<>();
@@ -125,7 +127,6 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			"SELECT * FROM pc_island.products ORDER BY stock");
 			
 			while (resultSet.next()) {
-				
 				Product product = new Product();
 				product.setId(resultSet.getInt("id_product"));
 				product.setType(resultSet.getString("type"));
@@ -150,6 +151,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	/**
 	 * 	Načtení produktů podle zadané společnosti
 	 */
+	
 	@Override
 	public List<Product> getProductsFromCompany(String companyName) {
 		List<Product> products = new ArrayList<>();
@@ -163,7 +165,6 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE name LIKE '%" + companyName + "%'");
 			
 			while (resultSet.next()) {
-				
 				Product product = new Product();
 				product.setId(resultSet.getInt("id_product"));
 				product.setType(resultSet.getString("type"));
@@ -188,6 +189,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	/**
 	 * 	Změna počtu kusů skladem
 	 */
+	
 	@Override
 	public void changeStock(int idProduct, int newStock) {
 		
@@ -208,6 +210,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 	/**
 	 * 	Změna ceny produktu
 	 */
+	
 	@Override
 	public void changePrice(int idProduct, int newPrice) {
 		

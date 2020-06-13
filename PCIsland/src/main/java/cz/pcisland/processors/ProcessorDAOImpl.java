@@ -16,6 +16,7 @@ import cz.pcisland.product.Product;
 /**
  * 	Třída implementující rozhraní přístupu dat k procesorům
  */
+
 public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -39,6 +40,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 	/**
 	 * 	Načtení procesoru z databáze podle zadaného ID
 	 */
+	
 	@Override
 	public Product getProcessor(int id) {
 		Product processor = new Product();
@@ -52,7 +54,6 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
-				
 				processor.setId(resultSet.getInt("id_product"));
 				processor.setType(resultSet.getString("type"));
 				processor.setName(resultSet.getString("name"));
@@ -75,6 +76,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 	/**
 	 * 	Načtení všech procesorů z databáze
 	 */
+	
 	@Override
 	public List<Product> getAllProcessors() {
 		List<Product> processors = new ArrayList<>();
@@ -88,7 +90,6 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			"SELECT * FROM pc_island.products WHERE type = 'processor' ORDER BY id_product");
 			
 			while(resultSet.next()) {
-				
 				Product processor = new Product();
 				processor.setId(resultSet.getInt("id_product"));
 				processor.setType(resultSet.getString("type"));
@@ -113,6 +114,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 	/**
 	 * 	Načtení 3 nejprodávanějších procesorů
 	 */
+	
 	@Override
 	public List<Product> getTopSellingProcessors() {
 		List<Product> processors = new ArrayList<>();
@@ -126,7 +128,6 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'processor' ORDER BY sales DESC");
 			
 			while(resultSet.next()) {
-				
 				Product processor = new Product();
 				processor.setId(resultSet.getInt("id_product"));
 				processor.setType(resultSet.getString("type"));
@@ -151,6 +152,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 	/**
 	 * 	Zvýšení počtu recenzí podle zadaného ID
 	 */
+	
 	@Override
 	public void incrementNumberOfPreview(int processorId) {
 		int numberOfPreview = 0;
@@ -167,7 +169,6 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
 			}
-			
 			numberOfPreview++;
 			
 		} catch (SQLException e) {
@@ -193,6 +194,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 	/**
 	 * 	Přičtení hodnocení procesoru podle zadaného ID
 	 */
+	
 	@Override
 	public void addRating(int processorId, int rating) {
 		int overallRating = 0;
@@ -209,7 +211,6 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
 			}
-			
 			overallRating = overallRating + rating;
 			
 		} catch (SQLException e) {

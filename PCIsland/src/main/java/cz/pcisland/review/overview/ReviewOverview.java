@@ -29,6 +29,7 @@ import cz.pcisland.user.User;
  * 		list produktů s nenulovými recenzemi,
  * 		list recenzí k produktu
  */
+
 public class ReviewOverview extends BasePage {
 
 	private static final long serialVersionUID = 1L;

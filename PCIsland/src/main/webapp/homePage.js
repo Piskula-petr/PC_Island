@@ -29,11 +29,10 @@
 	
 // Zobrazení aktuálního obrázku //////////////////////////////////////////////////////////////////////
 	function currentSlide(index) {
-		
 		if (index > slides.length) {
 			index = 1;
-			
-		} else if (index < 1){
+		}
+		else if (index < 1){
 			index = slides.length;
 		}
 		

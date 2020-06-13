@@ -18,6 +18,7 @@ import cz.pcisland.product.ProductPage;
  * 		nastavení titulku,
  * 		nastavení produktů
  */
+
 public class CompanyPage extends ProductPage {
 	
 	private static final long serialVersionUID = 1L;

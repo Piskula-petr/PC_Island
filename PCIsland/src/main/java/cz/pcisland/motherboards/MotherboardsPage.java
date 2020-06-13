@@ -24,6 +24,7 @@ import cz.pcisland.product.ProductPageWithTopSelling;
  *		filtr (cena, dostupnost ...),
  *		konfigurace komponent filtru
  */
+
 public class MotherboardsPage extends ProductPageWithTopSelling {
 
 	private static final long serialVersionUID = 1L;
@@ -90,7 +91,6 @@ public class MotherboardsPage extends ProductPageWithTopSelling {
 				// Viditelnost chybové hlášky
 				if (products.isEmpty()) {
 					setVisible(true);
-					
 				} else setVisible(false);
 			}
 		};
@@ -514,7 +514,6 @@ public class MotherboardsPage extends ProductPageWithTopSelling {
 				}
 			}
 		};
-		
 		filterForm.setOutputMarkupId(true);
 		add(filterForm);
 		
