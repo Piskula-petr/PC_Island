@@ -14,4 +14,8 @@ HTML / CSS <br>
 JavaScript <br><br>
 
 ## Database
-PostgreSQL
+PostgreSQL <br><br>
+
+## Hosting
+Microsoft Azure <br>
+https://pc-island.azurewebsites.net (developer mode, long first request 1 - 2 min)
