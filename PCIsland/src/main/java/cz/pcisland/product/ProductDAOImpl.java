@@ -48,7 +48,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM pc_island.products WHERE name = '" + name + "'");
+			"SELECT * FROM products WHERE name = '" + name + "'");
 			
 			while (resultSet.next()) {
 				
@@ -84,7 +84,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM pc_island.products ORDER BY id_product");
+			"SELECT * FROM products ORDER BY id_product");
 			
 			while (resultSet.next()) {
 				
@@ -122,7 +122,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM pc_island.products ORDER BY stock");
+			"SELECT * FROM products ORDER BY stock");
 			
 			while (resultSet.next()) {
 				
@@ -160,7 +160,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM pc_island.products WHERE name LIKE '%" + companyName + "%'");
+			"SELECT * FROM products WHERE name LIKE '%" + companyName + "%'");
 			
 			while (resultSet.next()) {
 				
@@ -196,7 +196,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 				 												 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET stock = '" + newStock + "' WHERE id_product = '" + idProduct + "'");
+			"UPDATE products SET stock = '" + newStock + "' WHERE id_product = '" + idProduct + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -216,7 +216,7 @@ public class ProductDAOImpl implements ProductDAO, Serializable {
 				 												 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET price = '" + newPrice + "' WHERE id_product = '" + idProduct + "'");
+			"UPDATE products SET price = '" + newPrice + "' WHERE id_product = '" + idProduct + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

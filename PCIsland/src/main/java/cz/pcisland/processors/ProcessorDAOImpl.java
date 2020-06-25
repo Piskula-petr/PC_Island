@@ -49,7 +49,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
+			"SELECT * FROM products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
 				
@@ -85,7 +85,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM pc_island.products WHERE type = 'processor' ORDER BY id_product");
+			"SELECT * FROM products WHERE type = 'processor' ORDER BY id_product");
 			
 			while(resultSet.next()) {
 				
@@ -123,7 +123,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'processor' ORDER BY sales DESC");
+			"SELECT * FROM products WHERE type = 'processor' ORDER BY sales DESC LIMIT 3");
 			
 			while(resultSet.next()) {
 				
@@ -162,7 +162,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT number_of_preview FROM pc_island.products WHERE id_product = '" + processorId + "'");
+			"SELECT number_of_preview FROM products WHERE id_product = '" + processorId + "'");
 			
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
@@ -181,7 +181,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + processorId + "'");
+			"UPDATE products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + processorId + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -204,7 +204,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT overall_rating FROM pc_island.products WHERE id_product = '" + processorId + "'");
+			"SELECT overall_rating FROM products WHERE id_product = '" + processorId + "'");
 			
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
@@ -223,7 +223,7 @@ public class ProcessorDAOImpl implements ProcessorDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + processorId + "'");
+			"UPDATE products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + processorId + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

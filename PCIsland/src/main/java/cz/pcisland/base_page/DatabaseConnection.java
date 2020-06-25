@@ -10,16 +10,11 @@ public class DatabaseConnection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Přístupové údaje k Azure databázi
-	private final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	private final String CONNECTION = "jdbc:sqlserver://pc-island-server.database.windows.net:1433;"
-									+ "database=pc-island;"
-									+ "encrypt=true;"
-									+ "trustServerCertificate=false;"
-									+ "hostNameInCertificate=*.database.windows.net;"
-									+ "loginTimeout=30;";
+	private final String DRIVER = "org.postgresql.Driver";
+	private final String CONNECTION = "jdbc:postgresql://localhost/pc_island";
 	
-	private final String USERNAME = "pc-island@pc-island-server";
-	private final String PASSWORD = "123456Abc";
+	private final String USERNAME = "postgres";
+	private final String PASSWORD = "123abc";
 	
 // Gettery ///////////////////////////////////////////////////////////////////////////////////////////////
 	
