@@ -46,7 +46,7 @@ public class UserDAOImpl implements UserDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"INSERT INTO users (email, password, name, surname, gender, phone_number, street_address, city, zip_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"INSERT INTO pc_island.users (email, password, name, surname, gender, phone_number, street_address, city, zip_code, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setString(1, user.getEmail());
 			ps.setString(2, user.getPassword());
@@ -80,7 +80,7 @@ public class UserDAOImpl implements UserDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM users ORDER BY id_user");
+			"SELECT * FROM pc_island.users ORDER BY id_user");
 			
 			while(resultSet.next()) {
 				
@@ -120,7 +120,7 @@ public class UserDAOImpl implements UserDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM countries ORDER BY id_country");
+			"SELECT * FROM pc_island.countries ORDER BY id_country");
 			
 			while (resultSet.next()) {
 				countries.add(resultSet.getString("country_name"));
@@ -145,7 +145,7 @@ public class UserDAOImpl implements UserDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE users SET email = '" + newEmail + "' WHERE email = '" + currentUserEmail + "'");
+			"UPDATE pc_island.users SET email = '" + newEmail + "' WHERE email = '" + currentUserEmail + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -165,7 +165,7 @@ public class UserDAOImpl implements UserDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE users SET password = '" + newPassword + "' WHERE email = '" + currentUserEmail + "'");
+			"UPDATE pc_island.users SET password = '" + newPassword + "' WHERE email = '" + currentUserEmail + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -185,7 +185,7 @@ public class UserDAOImpl implements UserDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE users SET " + columnName + " = '" + newValue + "' WHERE email = '" + currentUserEmail + "'");
+			"UPDATE pc_island.users SET " + columnName + " = '" + newValue + "' WHERE email = '" + currentUserEmail + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

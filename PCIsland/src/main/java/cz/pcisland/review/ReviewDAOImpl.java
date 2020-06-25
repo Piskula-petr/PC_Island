@@ -48,7 +48,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"INSERT INTO reviews (id_user, user_full_name, product_name, pros, cons, rating, creation_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			"INSERT INTO pc_island.reviews (id_user, user_full_name, product_name, pros, cons, rating, creation_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setInt(1, review.getIdUser());
 			ps.setString(2, review.getUserFullName());
@@ -80,7 +80,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM reviews WHERE product_name = '" + productName + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.reviews WHERE product_name = '" + productName + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				
@@ -119,7 +119,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM reviews WHERE id_user = '" + idUser + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.reviews WHERE id_user = '" + idUser + "' AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				
@@ -158,7 +158,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 		
 			Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery(
-		"SELECT * FROM reviews WHERE (product_name = '" + productName + "' AND id_user = '" + idUser + "') AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
+		"SELECT * FROM pc_island.reviews WHERE (product_name = '" + productName + "' AND id_user = '" + idUser + "') AND (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 		
 		while (resultSet.next()) {
 			
@@ -197,7 +197,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM reviews WHERE (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
+			"SELECT * FROM pc_island.reviews WHERE (pros IS NOT NULL OR cons IS NOT NULL) ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				
@@ -234,7 +234,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE reviews SET pros = '" + newPros + "' WHERE id_review = '" + idReview + "'");
+			"UPDATE pc_island.reviews SET pros = '" + newPros + "' WHERE id_review = '" + idReview + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -254,7 +254,7 @@ public class ReviewDAOImpl implements ReviewDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE reviews SET cons = '" + newCons + "' WHERE id_review = '" + idReview + "'");
+			"UPDATE pc_island.reviews SET cons = '" + newCons + "' WHERE id_review = '" + idReview + "'");
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {

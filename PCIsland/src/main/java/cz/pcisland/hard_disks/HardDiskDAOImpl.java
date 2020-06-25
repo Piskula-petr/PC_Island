@@ -49,7 +49,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE id_product = '" + id + "'");
+			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
 				
@@ -85,7 +85,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'hard_disk' ORDER BY id_product");
+			"SELECT * FROM pc_island.products WHERE type = 'hard_disk' ORDER BY id_product");
 			
 			while (resultSet.next()) {
 				
@@ -122,7 +122,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'hard_disk' ORDER BY sales DESC LIMIT 3");
+			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'hard_disk' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
 				
@@ -161,7 +161,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT number_of_preview FROM products WHERE id_product = '" + hardDiskId + "'");
+			"SELECT number_of_preview FROM pc_island.products WHERE id_product = '" + hardDiskId + "'");
 			
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
@@ -180,7 +180,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 				 												 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + hardDiskId + "'");
+			"UPDATE pc_island.products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + hardDiskId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -203,7 +203,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT overall_rating FROM products WHERE id_product = '" + hardDiskId + "'");
+			"SELECT overall_rating FROM pc_island.products WHERE id_product = '" + hardDiskId + "'");
 			
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
@@ -222,7 +222,7 @@ public class HardDiskDAOImpl implements HardDiskDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + hardDiskId + "'");
+			"UPDATE pc_island.products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + hardDiskId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {

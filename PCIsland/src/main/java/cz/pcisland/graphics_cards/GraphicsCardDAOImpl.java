@@ -49,7 +49,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE id_product = '" + id + "'");
+			"SELECT * FROM pc_island.products WHERE id_product = '" + id + "'");
 			
 			while (resultSet.next()) {
 				graphicsCard.setId(resultSet.getInt("id_product"));
@@ -84,7 +84,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'graphics_card' ORDER BY id_product");
+			"SELECT * FROM pc_island.products WHERE type = 'graphics_card' ORDER BY id_product");
 			
 			while (resultSet.next()) {
 				
@@ -122,7 +122,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet =  statement.executeQuery(
-			"SELECT * FROM products WHERE type = 'graphics_card' ORDER BY sales DESC LIMIT 3");
+			"SELECT TOP 3 * FROM pc_island.products WHERE type = 'graphics_card' ORDER BY sales DESC");
 			
 			while (resultSet.next()) {
 				
@@ -161,7 +161,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT number_of_preview FROM products WHERE id_product = '" + graphicsCardId + "'");
+			"SELECT number_of_preview FROM pc_island.products WHERE id_product = '" + graphicsCardId + "'");
 			
 			while (resultSet.next()) {
 				numberOfPreview = resultSet.getInt("number_of_preview");
@@ -180,7 +180,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + graphicsCardId + "'");
+			"UPDATE pc_island.products SET number_of_preview = '" + numberOfPreview + "' WHERE id_product = '" + graphicsCardId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -203,7 +203,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT overall_rating FROM products WHERE id_product = '" + graphicsCardId + "'");
+			"SELECT overall_rating FROM pc_island.products WHERE id_product = '" + graphicsCardId + "'");
 			
 			while (resultSet.next()) {
 				overallRating = resultSet.getInt("overall_rating");
@@ -222,7 +222,7 @@ public class GraphicsCardDAOImpl implements GraphicsCardDAO, Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + graphicsCardId + "'");
+			"UPDATE pc_island.products SET overall_rating = '" + overallRating + "' WHERE id_product = '" + graphicsCardId + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
