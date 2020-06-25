@@ -12,3 +12,6 @@ E-shop with PC components deploy on Microsoft Azure. <br><br>
 Apache Wicket <br>
 HTML / CSS <br>
 JavaScript <br><br>
+
+## Database
+PostgreSQL
