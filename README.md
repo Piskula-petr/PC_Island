@@ -1,5 +1,4 @@
-# PC-Island
-https://pc-island.azurewebsites.net/ - ( long first request 1 - 2 min )
+# 2. PC-Island
 
 <div>
   <img src="pc-island_1.jpg" height="500">
