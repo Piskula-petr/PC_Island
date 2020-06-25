@@ -49,7 +49,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"INSERT INTO pc_island.orders (id_user, customer_full_name, customer_email, customer_phone_number, street_address, zip_code_and_city, country, creation_date, status, product_types, product_names, product_amount, product_prices, delivery_type_and_price, payment_type_and_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			"INSERT INTO orders (id_user, customer_full_name, customer_email, customer_phone_number, street_address, zip_code_and_city, country, creation_date, status, product_types, product_names, product_amount, product_prices, delivery_type_and_price, payment_type_and_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setInt(1, order.getIdUser());
 			ps.setString(2, order.getCustomerFullName());
@@ -90,7 +90,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM pc_island.orders ORDER BY creation_date DESC");
+			"SELECT * FROM orders ORDER BY creation_date DESC");
 			
 			while (resultSet.next()) {
 				
@@ -138,7 +138,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT * FROM pc_island.orders WHERE id_user = '" + idUser + "' ORDER BY creation_date DESC");
+			"SELECT * FROM orders WHERE id_user = '" + idUser + "' ORDER BY creation_date DESC");
 
 			while (resultSet.next()) {
 				
@@ -186,7 +186,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT TOP 1 id_order FROM pc_island.orders WHERE customer_full_name = '" + userFullName + "' ORDER BY id_order DESC");
+			"SELECT id_order FROM orders WHERE customer_full_name = '" + userFullName + "' ORDER BY id_order DESC LIMIT 1");
 			
 			while (resultSet.next()) {
 				idOrder = resultSet.getInt("id_order");
@@ -214,7 +214,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT sales FROM pc_island.products WHERE name = '" + productName + "'");
+			"SELECT sales FROM products WHERE name = '" + productName + "'");
 			
 			while (resultSet.next()) {
 				sales = resultSet.getInt("sales");
@@ -233,7 +233,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET sales = '" + sales + "' WHERE name = '" + productName + "'");
+			"UPDATE products SET sales = '" + sales + "' WHERE name = '" + productName + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -256,7 +256,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 			
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(
-			"SELECT stock FROM pc_island.products WHERE name = '" + productName + "'");
+			"SELECT stock FROM products WHERE name = '" + productName + "'");
 			
 			while (resultSet.next()) {
 				stock = resultSet.getInt("stock");
@@ -275,7 +275,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.products SET stock = '" + stock + "' WHERE name = '" + productName + "'");
+			"UPDATE products SET stock = '" + stock + "' WHERE name = '" + productName + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
@@ -295,7 +295,7 @@ public class OrderDAOImpl implements OrderDAO,Serializable {
 																 databaseConnection.getPassword())) {
 			
 			PreparedStatement ps = connection.prepareStatement(
-			"UPDATE pc_island.orders SET status = '" + status + "' WHERE id_order = '" + idOrder + "'");
+			"UPDATE orders SET status = '" + status + "' WHERE id_order = '" + idOrder + "'");
 			ps.executeUpdate();
 		
 		} catch (SQLException e) {
