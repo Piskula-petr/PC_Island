@@ -11,7 +11,7 @@ public class DatabaseConnection implements Serializable {
 	
 	// Přístupové údaje k Azure databázi
 	private final String DRIVER = "org.postgresql.Driver";
-	private final String CONNECTION = "jdbc:postgresql://localhost/pc_island";
+	private final String CONNECTION = "jdbc:postgresql://localhost:5433/pc_island";
 	
 	private final String USERNAME = "postgres";
 	private final String PASSWORD = "123abc";
